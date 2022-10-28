@@ -1,0 +1,27 @@
+@model SistemaCadeteria.Models.Pedido
+@{
+    ViewData["Title"] = "Modificación de cadete";
+}
+
+@Html.ActionLink("Cancelar", "Index", "Inicio")
+
+@using (Html.BeginForm("EditarPedido", "Inicio"))
+{
+    <input type="hidden" name="nroPed" value="@Model.NroPedido">
+    <label for="name">
+        Nombre completo: <input type="text" name="name" id="name" value="@Model.Costumer.Nombre">
+    </label>
+    <label for="direcc">
+        Dirección: <input type="text" name="direcc" id="direcc" value="@Model.Costumer.Direccion">
+    </label>
+    <label for="tel">
+        Teléfono: <input type="text" name="tel" id="tel" value="@Model.Costumer.Telefono">
+    </label>
+    <label for="refDireccion">
+        Datos de referencia de la dirección: <input type="text" name="refDireccion" id="refDireccion" value="@Model.Costumer.DatosReferenciaDireccion">
+    </label>
+    <label for="obs">
+        Observaciones: <input type="text" name="obs" id="obs" value="@Model.Observaciones">
+    </label>
+    <input type="submit" , value="Guardar cambios">
+}

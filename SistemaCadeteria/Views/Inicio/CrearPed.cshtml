@@ -1,0 +1,25 @@
+@{
+    ViewData["Title"] = "Creación de cadete";
+}
+
+@Html.ActionLink("Cancelar", "Index", "Inicio")
+
+@using (Html.BeginForm("CrearPedido", "Inicio"))
+{
+    <label for="name">
+        Nombre completo: <input type="text" name="name" id="name">
+    </label>
+    <label for="direcc">
+        Dirección: <input type="text" name="direcc" id="direcc">
+    </label>
+    <label for="tel">
+        Teléfono: <input type="text" name="tel" id="tel">
+    </label>
+    <label for="refDireccion">
+        Datos de referencia de la dirección: <input type="text" name="refDireccion" id="refDireccion">
+    </label>
+    <label for="obs">
+        Observaciones: <input type="text" name="obs" id="obs">
+    </label>
+    <input type="submit" , value="Crear">
+}

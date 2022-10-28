@@ -1,0 +1,60 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = SistemaCadeteria
+build_property.RootNamespace = SistemaCadeteria
+build_property.ProjectDir = d:\Repositorios\tl2-tp4-2022-MarianoGomesOpitz\SistemaCadeteria\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = d:\Repositorios\tl2-tp4-2022-MarianoGomesOpitz\SistemaCadeteria
+build_property._RazorSourceGeneratorDebug = 
+
+[d:/Repositorios/tl2-tp4-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Inicio/CrearCad.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5pY2lvXENyZWFyQ2FkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Repositorios/tl2-tp4-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Inicio/CrearPed.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5pY2lvXENyZWFyUGVkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Repositorios/tl2-tp4-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Inicio/EditarCad.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5pY2lvXEVkaXRhckNhZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Repositorios/tl2-tp4-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Inicio/EditarPed.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5pY2lvXEVkaXRhclBlZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Repositorios/tl2-tp4-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Inicio/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5pY2lvXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Repositorios/tl2-tp4-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Inicio/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5pY2lvXFByaXZhY3kuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Repositorios/tl2-tp4-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Repositorios/tl2-tp4-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Repositorios/tl2-tp4-2022-MarianoGomesOpitz/SistemaCadeteria/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Repositorios/tl2-tp4-2022-MarianoGomesOpitz/SistemaCadeteria/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Repositorios/tl2-tp4-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-vtge69gbzm
