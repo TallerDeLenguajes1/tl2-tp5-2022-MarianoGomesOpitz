@@ -1,0 +1,25 @@
+@{
+    ViewData["Title"] = "Crear cadete";
+}
+
+@model SistemaCadeteria.ViewModels.CadeteViewModel
+
+<section>
+    <h2>Crear cadete</h2>
+    <form method="post">
+        <label asp-for="@Model.Nombre"></label>
+        <input asp-for="@Model.Nombre">
+
+        <label asp-for="@Model.Direccion"></label>
+        <input asp-for="@Model.Direccion">
+
+        <label asp-for="@Model.Telefono"></label>
+        <input asp-for="@Model.Telefono">
+
+        <button>Ingresar</button>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

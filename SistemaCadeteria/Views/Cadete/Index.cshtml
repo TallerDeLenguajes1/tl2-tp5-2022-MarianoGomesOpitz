@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Cadetes";
+}
+
+@using SistemaCadeteria.ViewModels;
+@model List<CadeteViewModel>;
+
+<h1>Listado de cadetes</h1>
+
+@if ((Model.Count() < 15))
+{
+    <a asp-controller="Cadete" asp-action="Crear">Contratar</a>
+}
+
+@if (Model.Count() == 0)
+{
+    <p>No hay cadetes</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Cant. de pedidos</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cadete in Model)
+            {
+                <tr>
+                    <td>@cadete.Nombre</td>
+                    <td>@cadete.Direccion</td>
+                    <td>@cadete.Telefono</td>
+                    <td>@cadete.Pedidos.Count()</td>
+                    <td><a href="/Cadete/Editar/@cadete.Id">Editar</a></td>
+                    <td>@Html.ActionLink("Eliminar", "Borrar", "Cadete", new
+                {id = cadete.Id}, new {onclick = $"return confirm('¿Seguro que desea eliminar este cadete?');"})</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

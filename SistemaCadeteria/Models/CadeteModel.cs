@@ -11,7 +11,7 @@ public class Cadete : Persona
         this.Pedidos = new List<Pedido>();
     }
 
-    public Cadete(int i, string name, string direcc, string tel) : base(i, name, direcc, tel)
+    public Cadete(int i, string name, string direcc, long tel) : base(i, name, direcc, tel)
     {
         this.Pedidos = new List<Pedido>();
     }

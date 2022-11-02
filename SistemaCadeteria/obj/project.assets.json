@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Repositorios\\tl2-tp4-2022-MarianoGomesOpitz\\SistemaCadeteria\\SistemaCadeteria.csproj",
+      "projectUniqueName": "D:\\Repositorios\\tl2-tp5-2022-MarianoGomesOpitz\\SistemaCadeteria\\SistemaCadeteria.csproj",
       "projectName": "SistemaCadeteria",
-      "projectPath": "D:\\Repositorios\\tl2-tp4-2022-MarianoGomesOpitz\\SistemaCadeteria\\SistemaCadeteria.csproj",
+      "projectPath": "D:\\Repositorios\\tl2-tp5-2022-MarianoGomesOpitz\\SistemaCadeteria\\SistemaCadeteria.csproj",
       "packagesPath": "C:\\Users\\dagov\\.nuget\\packages\\",
-      "outputPath": "D:\\Repositorios\\tl2-tp4-2022-MarianoGomesOpitz\\SistemaCadeteria\\obj\\",
+      "outputPath": "D:\\Repositorios\\tl2-tp5-2022-MarianoGomesOpitz\\SistemaCadeteria\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dagov\\AppData\\Roaming\\NuGet\\NuGet.Config"

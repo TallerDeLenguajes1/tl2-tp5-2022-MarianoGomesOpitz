@@ -1,7 +1,5 @@
 namespace SistemaCadeteria.Models;
 
-using System.ComponentModel.DataAnnotations;
-
 public class Pedido
 {
     //numero, obs, cliente, estado
@@ -11,7 +9,6 @@ public class Pedido
     private Cliente costumer;
 
     public int NroPedido { get => nroPedido; set => nroPedido = value; }
-    [StringLength(50)][Display(Name = "Observaciones")]
     public string Observaciones { get => observaciones; set => observaciones = value; }
     internal status Estado { get => estado; set => estado = value; }
     public Cliente Costumer { get => costumer; set => costumer = value; }
