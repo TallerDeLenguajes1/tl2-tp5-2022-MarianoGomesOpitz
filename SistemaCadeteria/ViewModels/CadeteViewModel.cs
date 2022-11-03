@@ -37,7 +37,7 @@ namespace SistemaCadeteria.ViewModels
         [StringLength(40)]
         [DisplayName("Dirección: ")]
         public string Direccion { get; set; }
-        
+
         [Required]
         [DisplayName("Teléfono: ")]
         public long Telefono { get; set; }
@@ -62,16 +62,13 @@ namespace SistemaCadeteria.ViewModels
         [DisplayName("Dirección: ")]
         public string Direccion { get; set; }
 
-        public EditarCadeteViewModel()
-        {
-
-        }
+        public EditarCadeteViewModel() { }
         public EditarCadeteViewModel(int i, string name, string direcc, long tel)
         {
-            Id = i;
-            Nombre = name;
-            Direccion = direcc;
-            Telefono = tel;
+            this.Id = i;
+            this.Nombre = name;
+            this.Direccion = direcc;
+            this.Telefono = tel;
         }
     }
 }

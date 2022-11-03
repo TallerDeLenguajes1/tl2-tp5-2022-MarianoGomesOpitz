@@ -9,7 +9,6 @@ public class CadeteController : Controller
 {
     private readonly ILogger<CadeteController> _logger;
 
-    static int id = 1;
     public CadeteController(ILogger<CadeteController> logger)
     {
         _logger = logger;
@@ -30,13 +29,13 @@ public class CadeteController : Controller
     {
         if (ModelState.IsValid)
         {
-            DataBase.Cadetes.Add(new CadeteViewModel(id, cadete.Nombre, cadete.Direccion, cadete.Telefono));
-            id++;
+            DataBase.Cadetes.Add(new CadeteViewModel(DataBase.IdCadete, cadete.Nombre, cadete.Direccion, cadete.Telefono));
+            DataBase.IdCadete++;
             return RedirectToAction("Index");
         }
         else
         {
-            return RedirectToAction("Error", new { error = "Algo ha fallado en la creación de un cadete" });
+            return RedirectToAction("Error");
         }
     }
 
@@ -60,7 +59,7 @@ public class CadeteController : Controller
         }
         else
         {
-            return RedirectToAction("Error", new { error = "Algo ha fallado en la edición del cadete" });
+            return RedirectToAction("Error");
         }
     }
 
