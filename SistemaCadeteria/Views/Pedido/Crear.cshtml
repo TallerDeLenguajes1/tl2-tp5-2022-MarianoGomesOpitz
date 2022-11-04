@@ -1,11 +1,11 @@
 @{
-    ViewData["Title"] = "Crear cadete";
+    ViewData["Title"] = "Crear Pedido";
 }
 
-@model SistemaCadeteria.ViewModels.CrearCadeteViewModel
+@model SistemaCadeteria.ViewModels.CrearPedidoViewModel
 
 <section>
-    <h2>Crear cadete</h2>
+    <h2>Tomar pedido</h2>
     <form method="post">
         <label asp-for="@Model.Nombre"></label>
         <input asp-for="@Model.Nombre">
@@ -16,10 +16,16 @@
         <label asp-for="@Model.Telefono"></label>
         <input asp-for="@Model.Telefono">
 
+        <label asp-for="@Model.DatosReferenciaDireccion"></label>
+        <input asp-for="@Model.DatosReferenciaDireccion">
+
+        <label asp-for="@Model.Observaciones"></label>
+        <input asp-for="@Model.Observaciones">
+
         <button>Ingresar</button>
     </form>
 </section>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+<partial name="_ValidationScriptsPartial" />
 }

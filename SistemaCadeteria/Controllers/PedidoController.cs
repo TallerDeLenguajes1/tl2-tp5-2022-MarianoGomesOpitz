@@ -27,22 +27,16 @@ public class PedidoController : Controller
     [HttpPost]
     public IActionResult Crear(CrearPedidoViewModel pedido)
     {
-        if (ModelState.IsValid)
-        {
-            DataBase.PedidosNoAsignados.Add(new PedidoViewModel(DataBase.IdPedido, pedido.Observaciones, 1, new Cliente(DataBase.IdPedido, pedido.Nombre, pedido.Direccion, pedido.Telefono, pedido.DatosReferenciaDireccion)));
+
+            DataBase.PedidosNoAsignados.Add(new PedidoViewModel(DataBase.IdPedido, pedido.Observaciones, 1, pedido.Nombre, pedido.Direccion, pedido.Telefono, pedido.DatosReferenciaDireccion));
             DataBase.IdPedido++;
             return RedirectToAction("Index");
-        }
-        else
-        {
-            return RedirectToAction("Error");
-        }
     }
 
-    public IActionResult Editar(int nro)
+    public IActionResult Editar(int id)
     {
-        var pedido = DataBase.PedidosNoAsignados.Find(x => x.NroPedido == nro);
-        return View(new EditarPedidoViewModel(nro, pedido.Costumer.Nombre, pedido.Costumer.Direccion, pedido.Costumer.Telefono, pedido.Costumer.DatosReferenciaDireccion, pedido.Observaciones));
+        var pedido = DataBase.PedidosNoAsignados.Find(x => x.NroPedido == id);
+        return View(new EditarPedidoViewModel(id, pedido.Costumer.Nombre, pedido.Costumer.Direccion, pedido.Costumer.Telefono, pedido.Costumer.DatosReferenciaDireccion, pedido.Observaciones));
     }
 
     [HttpPost]
@@ -65,9 +59,9 @@ public class PedidoController : Controller
         }
     }
 
-    public IActionResult Borrar(int nro)
+    public IActionResult Borrar(int id)
     {
-        var pedidoABorrar = DataBase.PedidosNoAsignados.Find(z => z.NroPedido == nro);
+        var pedidoABorrar = DataBase.PedidosNoAsignados.Find(z => z.NroPedido == id);
         DataBase.PedidosNoAsignados.Remove(pedidoABorrar);
 
         return RedirectToAction("Index");

@@ -14,13 +14,12 @@ namespace SistemaCadeteria.ViewModels
 
         public PedidoViewModel() { }
 
-        public PedidoViewModel(int nro, string obs, int est, Cliente C)
+        public PedidoViewModel(int nro, string obs, int est, string name, string direc, long tel, string datos)
         {
             this.NroPedido = nro;
             this.Observaciones = obs;
             this.Estado = Convert.ToString((status)est);
-            this.Costumer = C;
-            this.Costumer.Id = nro;
+            this.Costumer = new(nro, name, direc, tel, datos);
         }
     }
 
@@ -38,11 +37,13 @@ namespace SistemaCadeteria.ViewModels
         [Required]
         [DisplayName("Teléfono: ")]
         public long Telefono { get; set; }
-        
+
+        [AllowNull]
         [StringLength(40)]
         [DisplayName("Datos de referencia de la dirección: ")]
         public string DatosReferenciaDireccion { get; set; }
 
+        [AllowNull]
         [StringLength(40)]
         [DisplayName("Observaciones: ")]
         public string Observaciones { get; set; }
@@ -67,12 +68,12 @@ namespace SistemaCadeteria.ViewModels
         [DisplayName("Teléfono: ")]
         public long Telefono { get; set; }
 
-        [Required]
+        [AllowNull]
         [StringLength(40)]
         [DisplayName("Datos de referencia de la dirección: ")]
         public string DatosReferenciaDireccion { get; set; }
 
-        [Required]
+        [AllowNull]
         [StringLength(40)]
         [DisplayName("Observaciones: ")]
         public string Observaciones { get; set; }

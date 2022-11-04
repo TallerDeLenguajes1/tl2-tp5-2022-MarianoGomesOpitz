@@ -5,19 +5,15 @@ using SistemaCadeteria.Models;
 
 namespace SistemaCadeteria.ViewModels
 {
-    public class CadeteViewModel
+    public class CadeteViewModel : Persona
     {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string Direccion { get; set; }
-        public long Telefono { get; set; }
         public List<Pedido> Pedidos { get; set; }
 
-        public CadeteViewModel()
+        public CadeteViewModel() : base()
         {
 
         }
-        public CadeteViewModel(int i, string name, string direcc, long tel)
+        public CadeteViewModel(int i, string name, string direcc, long tel) : base(i, name, direcc, tel)
         {
             this.Id = i;
             this.Nombre = name;

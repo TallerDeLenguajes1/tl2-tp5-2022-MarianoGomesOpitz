@@ -1,0 +1,33 @@
+@{
+    ViewData["Title"] = "Editar Pedido";
+}
+
+@model SistemaCadeteria.ViewModels.EditarPedidoViewModel;
+
+<section>
+    <h2>Editar cadete</h2>
+    <form method="post">
+        <input asp-for="@Model.NroPedido" value="@Model.NroPedido" hidden>
+
+        <label asp-for="@Model.Nombre">
+            <input asp-for="@Model.Nombre" value="@Model.Nombre">
+        </label>
+        <label asp-for="@Model.Direccion">
+            <input asp-for="@Model.Direccion" value="@Model.Direccion">
+        </label>
+
+        <label asp-for="@Model.Telefono">
+            <input asp-for="@Model.Telefono" value="@Model.Telefono">
+        </label>
+
+        <label asp-for="@Model.DatosReferenciaDireccion">
+            <input asp-for="@Model.DatosReferenciaDireccion" value="@Model.DatosReferenciaDireccion">
+        </label>
+
+        <label asp-for="@Model.Observaciones">
+            <input asp-for="@Model.Observaciones" value="@Model.Observaciones">
+        </label>
+
+        <button>Editar</button>
+    </form>
+</section>

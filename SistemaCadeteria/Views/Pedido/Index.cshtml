@@ -1,3 +1,52 @@
 @{
-    ViewData["Title"] = "Pedidos";
+    ViewData["Title"] = "Pedidos No Asignados";
+}
+
+@using SistemaCadeteria.ViewModels;
+@model List<PedidoViewModel>;
+
+<h1>Listado de pedidos no asignados</h1>
+
+@if ((Model.Count() < 30))
+{
+    <a asp-controller="Pedido" asp-action="Crear">Tomar Pedido</a>
+}
+
+@if (Model.Count() == 0)
+{
+    <p>No hay pedidos agendados</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Datos de referencia de dirección</th>
+                <th>Estado del pedido</th>
+                <th>Observaciones</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pedido in Model)
+            {
+                <tr>
+                    <td>@pedido.Costumer.Nombre</td>
+                    <td>@pedido.Costumer.Direccion</td>
+                    <td>@pedido.Costumer.Telefono</td>
+                    <td>@pedido.Costumer.DatosReferenciaDireccion</td>
+                    <td>@pedido.Estado</td>
+                    <td>@pedido.Observaciones</td>
+                    <td><a href="/Pedido/Editar/@pedido.NroPedido">Editar</a></td>
+                    <td>@Html.ActionLink("Eliminar", "Borrar", "Pedido", new
+                {id = pedido.NroPedido}, new {onclick = $"return confirm('¿Seguro que desea eliminar este pedido?');"})
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
