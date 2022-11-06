@@ -2,6 +2,8 @@
     ViewData["Title"] = "Editar cadete";
 }
 
+<a asp-controller="Cadete" asp-action="Index" >Cancelar</a>
+
 @model SistemaCadeteria.ViewModels.EditarCadeteViewModel;
 
 <section>
@@ -11,12 +13,15 @@
 
         <label asp-for="@Model.Nombre"></label>
         <input asp-for="@Model.Nombre" value="@Model.Nombre">
+        <br>
 
         <label asp-for="@Model.Direccion"></label>
         <input asp-for="@Model.Direccion" value="@Model.Direccion">
+        <br>
 
         <label asp-for="@Model.Telefono"></label>
         <input asp-for="@Model.Telefono" value="@Model.Telefono">
+        <br>
 
         <button>Editar</button>
     </form>

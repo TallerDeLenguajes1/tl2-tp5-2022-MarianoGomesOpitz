@@ -1,0 +1,31 @@
+@{
+    ViewData["Title"] = "Asignar Pedido";
+}
+
+@model SistemaCadeteria.Models.PedidoACadete;
+
+<a asp-controller="Pedido" asp-action="Index">Cancelar</a>
+
+@if (Model.Cadetes.Count() > 0 || Model.Cadetes.Count() < 15)
+{
+    @using (Html.BeginForm("Asignar", "Pedido"))
+    {
+        <input type="hidden" name="IdPedido" value="@Model.Id">
+
+        <p>Cadetes disponibles</p>
+        @foreach (var cadete in Model.Cadetes)
+        {
+            if (cadete.Pedidos.Count() < 5)
+            {
+                <input type="radio" name="IdCadete" value="@cadete.Id">
+                <label for="IdCadete">@cadete.Nombre</label><br>
+            }
+        }
+
+        <button>Asignar</button>
+    }
+}
+else
+{
+    <p>No hay cadetes disponibles</p>
+}

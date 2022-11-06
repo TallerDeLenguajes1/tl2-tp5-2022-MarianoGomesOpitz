@@ -7,7 +7,7 @@ namespace SistemaCadeteria.ViewModels
 {
     public class CadeteViewModel : Persona
     {
-        public List<Pedido> Pedidos { get; set; }
+        public List<PedidoViewModel> Pedidos { get; set; }
 
         public CadeteViewModel() : base()
         {
@@ -19,7 +19,7 @@ namespace SistemaCadeteria.ViewModels
             this.Nombre = name;
             this.Direccion = direcc;
             this.Telefono = tel;
-            this.Pedidos = new List<Pedido>();
+            this.Pedidos = new List<PedidoViewModel>();
         }
     }
 

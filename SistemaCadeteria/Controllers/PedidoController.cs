@@ -28,9 +28,27 @@ public class PedidoController : Controller
     public IActionResult Crear(CrearPedidoViewModel pedido)
     {
 
-            DataBase.PedidosNoAsignados.Add(new PedidoViewModel(DataBase.IdPedido, pedido.Observaciones, 1, pedido.Nombre, pedido.Direccion, pedido.Telefono, pedido.DatosReferenciaDireccion));
-            DataBase.IdPedido++;
-            return RedirectToAction("Index");
+        DataBase.PedidosNoAsignados.Add(new PedidoViewModel(DataBase.IdPedido, pedido.Observaciones, 1, pedido.Nombre, pedido.Direccion, pedido.Telefono, pedido.DatosReferenciaDireccion));
+        DataBase.IdPedido++;
+        return RedirectToAction("Index");
+    }
+
+    public IActionResult Asignar(int id)
+    {
+        PedidoACadete pedCad = new(id, DataBase.Cadetes);
+
+        return View(pedCad);
+    }
+
+    [HttpPost]
+    public IActionResult Asignar(int IdPedido, int IdCadete)
+    {
+        var CadeteAAsignar = DataBase.Cadetes.Find(a => a.Id == IdCadete);
+        var PedidoAMover = DataBase.PedidosNoAsignados.Find(p => p.NroPedido == IdPedido);
+        CadeteAAsignar.Pedidos.Add(PedidoAMover);
+        DataBase.PedidosNoAsignados.Remove(PedidoAMover);
+
+        return RedirectToAction("Index");
     }
 
     public IActionResult Editar(int id)

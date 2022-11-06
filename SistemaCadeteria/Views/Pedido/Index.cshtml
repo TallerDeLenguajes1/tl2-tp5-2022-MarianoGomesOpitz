@@ -7,7 +7,7 @@
 
 <h1>Listado de pedidos no asignados</h1>
 
-@if ((Model.Count() < 30))
+@if ((Model.Count() < 20))
 {
     <a asp-controller="Pedido" asp-action="Crear">Tomar Pedido</a>
 }
@@ -27,6 +27,7 @@ else
                 <th>Datos de referencia de dirección</th>
                 <th>Estado del pedido</th>
                 <th>Observaciones</th>
+                <th>Asignar pedido</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
             </tr>
@@ -41,6 +42,7 @@ else
                     <td>@pedido.Costumer.DatosReferenciaDireccion</td>
                     <td>@pedido.Estado</td>
                     <td>@pedido.Observaciones</td>
+                    <td><a href="/Pedido/Asignar/@pedido.NroPedido">Asignar</a></td>
                     <td><a href="/Pedido/Editar/@pedido.NroPedido">Editar</a></td>
                     <td>@Html.ActionLink("Eliminar", "Borrar", "Pedido", new
                 {id = pedido.NroPedido}, new {onclick = $"return confirm('¿Seguro que desea eliminar este pedido?');"})
