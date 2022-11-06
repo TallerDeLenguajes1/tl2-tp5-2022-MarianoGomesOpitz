@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "Asignar Pedido";
+}
+
+@model SistemaCadeteria.Models.CambiarCadete;
+
+<a asp-controller="Cadete" asp-action="Index">Cancelar</a>
+
+@if (Model.Cadetes.Count() == 0 || Model.Cadetes.Count() >= 15 || (Model.Cadetes.Count() == 1 && Model.Cadetes[0].Id == Model.IdCadete))
+{
+    <p>No hay cadetes disponibles</p>
+}
+else
+{
+    @using (Html.BeginForm("CambiarCadete", "Pedido"))
+    {
+        <input type="hidden" name="IdPedido" value="@Model.IdPedido">
+
+        <input type="hidden" name="IdCadete" value="@Model.IdCadete">
+
+        <p>Cadetes disponibles</p>
+        @foreach (var cadete in Model.Cadetes)
+        {
+            if (cadete.Id != Model.IdCadete)
+            {
+                if (cadete.Pedidos.Count() < 5)
+                {
+                    <input type="radio" name="IdCadeteACambiar" value="@cadete.Id">
+                    <label for="IdCadeteACambiar">@cadete.Nombre</label><br>
+                }
+            }
+        }
+
+        <button>Cambiar</button>
+    }
+}

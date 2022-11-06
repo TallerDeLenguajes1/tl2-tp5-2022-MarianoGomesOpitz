@@ -6,7 +6,11 @@
 
 <a asp-controller="Pedido" asp-action="Index">Cancelar</a>
 
-@if (Model.Cadetes.Count() > 0 || Model.Cadetes.Count() < 15)
+@if (Model.Cadetes.Count() == 0 || Model.Cadetes.Count() >= 15)
+{
+    <p>No hay cadetes disponibles</p>
+}
+else
 {
     @using (Html.BeginForm("Asignar", "Pedido"))
     {
@@ -24,8 +28,4 @@
 
         <button>Asignar</button>
     }
-}
-else
-{
-    <p>No hay cadetes disponibles</p>
 }

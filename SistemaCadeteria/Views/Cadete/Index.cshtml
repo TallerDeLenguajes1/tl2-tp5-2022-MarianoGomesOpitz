@@ -24,7 +24,7 @@ else
                 <th>Nombre</th>
                 <th>Dirección</th>
                 <th>Teléfono</th>
-                <th>Cant. de pedidos</th>
+                <th>Pedidos</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
             </tr>
@@ -36,7 +36,7 @@ else
                     <td>@cadete.Nombre</td>
                     <td>@cadete.Direccion</td>
                     <td>@cadete.Telefono</td>
-                    <td>@cadete.Pedidos.Count()</td>
+                    <td><a href="/Cadete/PedidosAsignados/@cadete.Id">Pedidos</a></td>
                     <td><a href="/Cadete/Editar/@cadete.Id">Editar</a></td>
                     <td>@Html.ActionLink("Eliminar", "Borrar", "Cadete", new
                 {id = cadete.Id}, new {onclick = $"return confirm('¿Seguro que desea eliminar este cadete?');"})</td>

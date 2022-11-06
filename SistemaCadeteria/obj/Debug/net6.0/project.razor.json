@@ -16368,8 +16368,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Repositorios\\tl2-tp5-2022-MarianoGomesOpitz\\SistemaCadeteria\\Views\\Cadete\\PedidosAsignados.cshtml",
+      "TargetPath": "Views\\Cadete\\PedidosAsignados.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Repositorios\\tl2-tp5-2022-MarianoGomesOpitz\\SistemaCadeteria\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Repositorios\\tl2-tp5-2022-MarianoGomesOpitz\\SistemaCadeteria\\Views\\Pedido\\CambiarCadete.cshtml",
+      "TargetPath": "Views\\Pedido\\CambiarCadete.cshtml",
       "FileKind": "mvc"
     }
   ],

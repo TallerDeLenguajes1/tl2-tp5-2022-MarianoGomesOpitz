@@ -19,6 +19,11 @@ public class CadeteController : Controller
         return View(DataBase.Cadetes);
     }
 
+    public IActionResult PedidosAsignados(int id)
+    {
+        return View(DataBase.Cadetes.Find(w => w.Id == id));
+    }
+
     public IActionResult Crear()
     {
         return View();

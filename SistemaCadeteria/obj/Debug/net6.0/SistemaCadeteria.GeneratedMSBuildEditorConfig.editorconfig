@@ -31,12 +31,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FkZXRlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Cadete/PedidosAsignados.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FkZXRlXFBlZGlkb3NBc2lnbmFkb3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Pedido/Asignar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXEFzaWduYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Pedido/CambiarCadete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXENhbWJpYXJDYWRldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Pedido/Crear.cshtml]
