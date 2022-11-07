@@ -7,8 +7,7 @@ namespace SistemaCadeteria.Models
         static public string nombreCadeteria = "";
         static public int IdCadete = InicializarIds();
         static public int IdPedido = InicializarIds();
-        static public List<CadeteViewModel> Cadetes = InicializarCadete();
-        static public List<PedidoViewModel> PedidosNoAsignados = InicializarPedido();
+        static public Cadeteria cadeteria = new();
 
         public DataBase() { }
 
@@ -27,6 +26,20 @@ namespace SistemaCadeteria.Models
         {
             List<PedidoViewModel> ped = new();
             return ped;
+        }
+    }
+
+    public class Cadeteria
+    {
+        public string NombreCadeteria { get; set; }
+        public List<CadeteViewModel> Cadetes { get; set; }
+        public List<PedidoViewModel> PedidosNoAsignados { get; set; }
+
+        public Cadeteria()
+        {
+            this.NombreCadeteria = "";
+            this.Cadetes = new();
+            this.PedidosNoAsignados = new();
         }
     }
 }

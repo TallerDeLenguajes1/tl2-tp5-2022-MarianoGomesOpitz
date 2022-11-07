@@ -28,14 +28,14 @@ public class HomeController : Controller
             {
                 while (reader.Read())
                 {
-                    DataBase.nombreCadeteria = Convert.ToString(reader[0]);
+                    DataBase.cadeteria.NombreCadeteria = Convert.ToString(reader[0]);
                 }
             }
 
             connection.Close();
         }
 
-        return View();
+        return View(DataBase.cadeteria);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -16,7 +16,7 @@ public class PedidoController : Controller
 
     public IActionResult Index()
     {
-        return View(DataBase.PedidosNoAsignados);
+        return View(DataBase.cadeteria.PedidosNoAsignados);
     }
 
     public IActionResult Crear()
@@ -29,7 +29,7 @@ public class PedidoController : Controller
     {
         if (ModelState.IsValid)
         {
-            DataBase.PedidosNoAsignados.Add(new PedidoViewModel(DataBase.IdPedido, pedido.Observaciones, 1, pedido.Nombre, pedido.Direccion, pedido.Telefono, pedido.DatosReferenciaDireccion));
+            DataBase.cadeteria.PedidosNoAsignados.Add(new PedidoViewModel(DataBase.IdPedido, pedido.Observaciones, 1, pedido.Nombre, pedido.Direccion, pedido.Telefono, pedido.DatosReferenciaDireccion));
             DataBase.IdPedido++;
             return RedirectToAction("Index");
         }
@@ -41,7 +41,7 @@ public class PedidoController : Controller
 
     public IActionResult Asignar(int id)
     {
-        PedidoACadete pedCad = new(id, DataBase.Cadetes);
+        PedidoACadete pedCad = new(id, DataBase.cadeteria.Cadetes);
 
         return View(pedCad);
     }
@@ -49,17 +49,17 @@ public class PedidoController : Controller
     [HttpPost]
     public IActionResult Asignar(int IdPedido, int IdCadete)
     {
-        var CadeteAAsignar = DataBase.Cadetes.Find(a => a.Id == IdCadete);
-        var PedidoAMover = DataBase.PedidosNoAsignados.Find(p => p.NroPedido == IdPedido);
+        var CadeteAAsignar = DataBase.cadeteria.Cadetes.Find(a => a.Id == IdCadete);
+        var PedidoAMover = DataBase.cadeteria.PedidosNoAsignados.Find(p => p.NroPedido == IdPedido);
         CadeteAAsignar.Pedidos.Add(PedidoAMover);
-        DataBase.PedidosNoAsignados.Remove(PedidoAMover);
+        DataBase.cadeteria.PedidosNoAsignados.Remove(PedidoAMover);
 
         return RedirectToAction("Index");
     }
 
     public IActionResult CambiarCadete(int idPedido, int idCadete)
     {
-        CambiarCadete pedCad = new(idPedido, idCadete, DataBase.Cadetes);
+        CambiarCadete pedCad = new(idPedido, idCadete, DataBase.cadeteria.Cadetes);
 
         return View(pedCad);
     }
@@ -67,10 +67,10 @@ public class PedidoController : Controller
     [HttpPost]
     public IActionResult CambiarCadete(int IdPedido, int IdCadete, int idCadeteACambiar)
     {
-        var cadeteOriginal = DataBase.Cadetes.Find(i => i.Id == IdCadete);
+        var cadeteOriginal = DataBase.cadeteria.Cadetes.Find(i => i.Id == IdCadete);
         var pedidoAMover = cadeteOriginal.Pedidos.Find(p => p.NroPedido == IdPedido);
 
-        var cadeteACambiar = DataBase.Cadetes.Find(i => i.Id == idCadeteACambiar);
+        var cadeteACambiar = DataBase.cadeteria.Cadetes.Find(i => i.Id == idCadeteACambiar);
 
         cadeteACambiar.Pedidos.Add(pedidoAMover);
         cadeteOriginal.Pedidos.Remove(pedidoAMover);
@@ -79,11 +79,11 @@ public class PedidoController : Controller
 
     public IActionResult Editar(int id)
     {
-        var pedido = DataBase.PedidosNoAsignados.Find(x => x.NroPedido == id);
+        var pedido = DataBase.cadeteria.PedidosNoAsignados.Find(x => x.NroPedido == id);
 
         if (pedido == null)
         {
-            foreach (var cadete in DataBase.Cadetes)
+            foreach (var cadete in DataBase.cadeteria.Cadetes)
             {
                 pedido = cadete.Pedidos.Find(l => l.NroPedido == id);
 
@@ -104,10 +104,10 @@ public class PedidoController : Controller
         {
             string controller = "";
 
-            var pedidoAEditar = DataBase.PedidosNoAsignados.Find(y => y.NroPedido == pedidoRecibido.NroPedido);
+            var pedidoAEditar = DataBase.cadeteria.PedidosNoAsignados.Find(y => y.NroPedido == pedidoRecibido.NroPedido);
             if (pedidoAEditar == null)
             {
-                foreach (var cadete in DataBase.Cadetes)
+                foreach (var cadete in DataBase.cadeteria.Cadetes)
                 {
                     pedidoAEditar = cadete.Pedidos.Find(l => l.NroPedido == pedidoRecibido.NroPedido);
                     if (pedidoAEditar != null)
@@ -139,10 +139,10 @@ public class PedidoController : Controller
     public IActionResult Borrar(int id)
     {
         string controller = "";
-        var pedidoABorrar = DataBase.PedidosNoAsignados.Find(z => z.NroPedido == id);
+        var pedidoABorrar = DataBase.cadeteria.PedidosNoAsignados.Find(z => z.NroPedido == id);
         if (pedidoABorrar == null)
         {
-            foreach (var cadete in DataBase.Cadetes)
+            foreach (var cadete in DataBase.cadeteria.Cadetes)
             {
                 pedidoABorrar = cadete.Pedidos.Find(z => z.NroPedido == id);
                 if (pedidoABorrar != null)
@@ -155,7 +155,7 @@ public class PedidoController : Controller
         }
         else
         {
-            DataBase.PedidosNoAsignados.Remove(pedidoABorrar);
+            DataBase.cadeteria.PedidosNoAsignados.Remove(pedidoABorrar);
             controller = "Pedido";
         }
 

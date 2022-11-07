@@ -17,12 +17,12 @@ public class CadeteController : Controller
     public IActionResult Index()
     {
 
-        return View(DataBase.Cadetes);
+        return View(DataBase.cadeteria.Cadetes);
     }
 
     public IActionResult PedidosAsignados(int id)
     {
-        return View(DataBase.Cadetes.Find(w => w.Id == id));
+        return View(DataBase.cadeteria.Cadetes.Find(w => w.Id == id));
     }
 
     public IActionResult Crear()
@@ -35,7 +35,7 @@ public class CadeteController : Controller
     {
         if (ModelState.IsValid)
         {
-            DataBase.Cadetes.Add(new CadeteViewModel(DataBase.IdCadete, cadete.Nombre, cadete.Direccion, cadete.Telefono));
+            DataBase.cadeteria.Cadetes.Add(new CadeteViewModel(DataBase.IdCadete, cadete.Nombre, cadete.Direccion, cadete.Telefono));
             DataBase.IdCadete++;
             return RedirectToAction("Index");
         }
@@ -47,7 +47,7 @@ public class CadeteController : Controller
 
     public IActionResult Editar(int id)
     {
-        var cadete = DataBase.Cadetes.Find(x => x.Id == id);
+        var cadete = DataBase.cadeteria.Cadetes.Find(x => x.Id == id);
         return View(new EditarCadeteViewModel(id, cadete.Nombre, cadete.Direccion, cadete.Telefono));
     }
 
@@ -56,7 +56,7 @@ public class CadeteController : Controller
     {
         if (ModelState.IsValid)
         {
-            var cadeteAEditar = DataBase.Cadetes.Find(y => y.Id == cadeteRecibido.Id);
+            var cadeteAEditar = DataBase.cadeteria.Cadetes.Find(y => y.Id == cadeteRecibido.Id);
             cadeteAEditar.Nombre = cadeteRecibido.Nombre;
             cadeteAEditar.Direccion = cadeteRecibido.Direccion;
             cadeteAEditar.Telefono = cadeteRecibido.Telefono;
@@ -71,8 +71,8 @@ public class CadeteController : Controller
 
     public IActionResult Borrar(int id)
     {
-        var cadeteABorrar = DataBase.Cadetes.Find(z => z.Id == id);
-        DataBase.Cadetes.Remove(cadeteABorrar);
+        var cadeteABorrar = DataBase.cadeteria.Cadetes.Find(z => z.Id == id);
+        DataBase.cadeteria.Cadetes.Remove(cadeteABorrar);
 
         return RedirectToAction("Index");
     }
