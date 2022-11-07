@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using SistemaCadeteria.Models;
+using Microsoft.Data.Sqlite;
 
 namespace SistemaCadeteria.Controllers;
 
@@ -15,6 +16,25 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        string connectionString = "Data Source=DB/PedidosDB.db;Cache=Shared";
+        using (SqliteConnection connection = new SqliteConnection(connectionString))
+        {
+            string queryString = "SELECT Nombre FROM Cadeteria;";
+            var command = new SqliteCommand(queryString, connection);
+
+            connection.Open();
+
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    DataBase.nombreCadeteria = Convert.ToString(reader[0]);
+                }
+            }
+
+            connection.Close();
+        }
+
         return View();
     }
 

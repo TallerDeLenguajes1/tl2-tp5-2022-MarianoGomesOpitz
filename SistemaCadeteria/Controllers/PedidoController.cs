@@ -86,6 +86,11 @@ public class PedidoController : Controller
             foreach (var cadete in DataBase.Cadetes)
             {
                 pedido = cadete.Pedidos.Find(l => l.NroPedido == id);
+
+                if (pedido != null)
+                {
+                    break;
+                }
             }
         }
 
@@ -97,6 +102,8 @@ public class PedidoController : Controller
     {
         if (ModelState.IsValid)
         {
+            string controller = "";
+
             var pedidoAEditar = DataBase.PedidosNoAsignados.Find(y => y.NroPedido == pedidoRecibido.NroPedido);
             if (pedidoAEditar == null)
             {
@@ -105,9 +112,14 @@ public class PedidoController : Controller
                     pedidoAEditar = cadete.Pedidos.Find(l => l.NroPedido == pedidoRecibido.NroPedido);
                     if (pedidoAEditar != null)
                     {
+                        controller = "Cadete";
                         break;
                     }
                 }
+            }
+            else
+            {
+                controller = "Pedido";
             }
 
             pedidoAEditar.Costumer.DatosReferenciaDireccion = pedidoRecibido.DatosReferenciaDireccion;
@@ -116,7 +128,7 @@ public class PedidoController : Controller
             pedidoAEditar.Costumer.Telefono = pedidoRecibido.Telefono;
             pedidoAEditar.Observaciones = pedidoRecibido.Observaciones;
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", controller);
         }
         else
         {
@@ -126,6 +138,7 @@ public class PedidoController : Controller
 
     public IActionResult Borrar(int id)
     {
+        string controller = "";
         var pedidoABorrar = DataBase.PedidosNoAsignados.Find(z => z.NroPedido == id);
         if (pedidoABorrar == null)
         {
@@ -135,6 +148,7 @@ public class PedidoController : Controller
                 if (pedidoABorrar != null)
                 {
                     cadete.Pedidos.Remove(pedidoABorrar);
+                    controller = "Cadete";
                     break;
                 }
             }
@@ -142,10 +156,11 @@ public class PedidoController : Controller
         else
         {
             DataBase.PedidosNoAsignados.Remove(pedidoABorrar);
+            controller = "Pedido";
         }
 
 
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction("Index", controller);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

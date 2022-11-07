@@ -16,6 +16,7 @@ public class CadeteController : Controller
 
     public IActionResult Index()
     {
+
         return View(DataBase.Cadetes);
     }
 

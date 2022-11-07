@@ -4,6 +4,7 @@ namespace SistemaCadeteria.Models
 {
     public class DataBase
     {
+        static public string nombreCadeteria = "";
         static public int IdCadete = InicializarIds();
         static public int IdPedido = InicializarIds();
         static public List<CadeteViewModel> Cadetes = InicializarCadete();
