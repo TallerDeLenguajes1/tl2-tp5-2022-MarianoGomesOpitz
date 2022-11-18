@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Cliente";
+}
+
+@using SistemaCadeteria.ViewModels;
+@model List<ClienteViewModel>;
+
+<h1>Listado de cliente</h1>
+
+@if ((Model.Count() < 15))
+{
+    <a asp-controller="Cliente" asp-action="Crear">Aceptar clientes</a>
+}
+
+@if (Model.Count() == 0)
+{
+    <p>No hay clientes</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Datos de referencia de la dirección</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cliente in Model)
+            {
+                <tr>
+                    <td>@cliente.Nombre</td>
+                    <td>@cliente.Direccion</td>
+                    <td>@cliente.Telefono</td>
+                    <td>@cliente.DatosReferenciaDireccion</td>
+                    <td><a href="/Cliente/Editar/@cliente.Id">Editar</a></td>
+                    <td>@Html.ActionLink("Eliminar", "Borrar", "Cliente", new
+                {id = cliente.Id}, new {onclick = $"return confirm('¿Seguro que desea eliminar este cliente?');"})</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

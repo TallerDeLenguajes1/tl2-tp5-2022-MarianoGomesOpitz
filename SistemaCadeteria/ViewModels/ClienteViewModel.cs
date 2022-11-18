@@ -5,21 +5,20 @@ using SistemaCadeteria.Models;
 
 namespace SistemaCadeteria.ViewModels
 {
-    public class CadeteViewModel : Persona
+    public class ClienteViewModel : Persona
     {
-        public List<PedidoViewModel> Pedidos { get; set; }
+        public string DatosReferenciaDireccion { get; set; }
 
-        public CadeteViewModel() : base()
-        {
+    public ClienteViewModel() : base()
+    { }
 
-        }
-        public CadeteViewModel(int i, string name, string direcc, long tel) : base(i, name, direcc, tel)
-        {
-            this.Pedidos = new List<PedidoViewModel>();
-        }
+    public ClienteViewModel(int i, string name, string direcc, long tel, string datosRef) : base(i, name, direcc, tel)
+    {
+        this.DatosReferenciaDireccion = datosRef;
+    }
     }
 
-    public class CrearCadeteViewModel
+    public class CrearClienteViewModel
     {
         [Required]
         [DisplayName("Nombre: ")]
@@ -33,9 +32,14 @@ namespace SistemaCadeteria.ViewModels
         [Required]
         [DisplayName("Teléfono: ")]
         public long Telefono { get; set; }
+
+        [AllowNull]
+        [StringLength(40)]
+        [DisplayName("Datos de referencia de la dirección: ")]
+        public string DatosReferenciaDireccion { get; set; }
     }
 
-    public class EditarCadeteViewModel
+    public class EditarClienteViewModel
     {
         [Required]
         [NotNull]
@@ -54,13 +58,19 @@ namespace SistemaCadeteria.ViewModels
         [DisplayName("Dirección: ")]
         public string Direccion { get; set; }
 
-        public EditarCadeteViewModel() { }
-        public EditarCadeteViewModel(int i, string name, string direcc, long tel)
+        [AllowNull]
+        [StringLength(40)]
+        [DisplayName("Datos de referencia de la dirección: ")]
+        public string DatosReferenciaDireccion { get; set; }
+
+        public EditarClienteViewModel() { }
+        public EditarClienteViewModel(int i, string name, string direcc, long tel, string datos)
         {
             this.Id = i;
             this.Nombre = name;
             this.Direccion = direcc;
             this.Telefono = tel;
+            this.DatosReferenciaDireccion = datos;
         }
     }
 }
