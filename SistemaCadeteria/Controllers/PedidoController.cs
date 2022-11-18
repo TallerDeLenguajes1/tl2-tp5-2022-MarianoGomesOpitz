@@ -20,6 +20,7 @@ public class PedidoController : Controller
         return View(DataBase.cadeteria.PedidosNoAsignados);
     }
 
+
     public IActionResult Crear()
     {
         return View();
@@ -28,16 +29,10 @@ public class PedidoController : Controller
     [HttpPost]
     public IActionResult Crear(CrearPedidoViewModel pedido)
     {
-        if (ModelState.IsValid)
-        {
-            DataBase.cadeteria.PedidosNoAsignados.Add(new PedidoViewModel(DataBase.IdPedido, pedido.Observaciones, 1, pedido.Nombre, pedido.Direccion, pedido.Telefono, pedido.DatosReferenciaDireccion));
-            DataBase.IdPedido++;
-            return RedirectToAction("Index");
-        }
-        else
-        {
-            return RedirectToAction("Error");
-        }
+        ClienteViewModel cliente = DataBase.cadeteria.Clientes.Find(i => i.Nombre == pedido.NombreCliente);
+        DataBase.cadeteria.PedidosNoAsignados.Add(new PedidoViewModel(DataBase.IdPedido, pedido.Observaciones, 1, cliente));
+        DataBase.IdPedido++;
+        return RedirectToAction("Index");
     }
 
     public IActionResult Asignar(int id)
@@ -95,7 +90,7 @@ public class PedidoController : Controller
             }
         }
 
-        return View(new EditarPedidoViewModel(id, pedido.Costumer.Nombre, pedido.Costumer.Direccion, pedido.Costumer.Telefono, pedido.Costumer.DatosReferenciaDireccion, pedido.Observaciones));
+        return View(new EditarPedidoViewModel(id, pedido.Observaciones));
     }
 
     [HttpPost]
@@ -123,10 +118,6 @@ public class PedidoController : Controller
                 controller = "Pedido";
             }
 
-            pedidoAEditar.Costumer.DatosReferenciaDireccion = pedidoRecibido.DatosReferenciaDireccion;
-            pedidoAEditar.Costumer.Direccion = pedidoRecibido.Direccion;
-            pedidoAEditar.Costumer.Nombre = pedidoRecibido.Nombre;
-            pedidoAEditar.Costumer.Telefono = pedidoRecibido.Telefono;
             pedidoAEditar.Observaciones = pedidoRecibido.Observaciones;
 
             return RedirectToAction("Index", controller);

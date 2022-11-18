@@ -14,8 +14,6 @@ public class CadeteController : Controller
     SqliteConnection connection = new SqliteConnection(connectionString);
     SqliteDataReader lector;
 
-    static bool noLeido = true;
-
     public CadeteController(ILogger<CadeteController> logger)
     {
         _logger = logger;
@@ -23,22 +21,6 @@ public class CadeteController : Controller
 
     public IActionResult Index()
     {
-        if (noLeido)
-        {
-            SqliteCommand command = connection.CreateCommand();
-
-            command.CommandText = $"SELECT * FROM Cadete;";
-
-            connection.Open();
-            lector = command.ExecuteReader();
-            while (lector.Read())
-            {
-                DataBase.cadeteria.Cadetes.Add(new CadeteViewModel(Convert.ToInt32(lector[0]), Convert.ToString(lector[1]), Convert.ToString(lector[2]), Convert.ToInt64(lector[3])));
-            }
-            connection.Close();
-
-            noLeido = false;
-        }
         return View(DataBase.cadeteria.Cadetes);
     }
 

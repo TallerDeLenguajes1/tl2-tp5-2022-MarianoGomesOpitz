@@ -2,27 +2,16 @@
     ViewData["Title"] = "Crear Pedido";
 }
 
-<a asp-controller="Pedido" asp-action="Index" >Cancelar</a>
+<a asp-controller="Pedido" asp-action="Index">Cancelar</a>
 
 @model SistemaCadeteria.ViewModels.CrearPedidoViewModel
 
 <section>
     <h2>Tomar pedido</h2>
     <form method="post">
-        <label asp-for="@Model.Nombre"></label>
-        <input asp-for="@Model.Nombre">
-        <br>
 
-        <label asp-for="@Model.Direccion"></label>
-        <input asp-for="@Model.Direccion">
-        <br>
-
-        <label asp-for="@Model.Telefono"></label>
-        <input asp-for="@Model.Telefono">
-        <br>
-
-        <label asp-for="@Model.DatosReferenciaDireccion"></label>
-        <input asp-for="@Model.DatosReferenciaDireccion">
+        <label asp-for="@Model.NombreCliente"></label>
+        <input asp-for="@Model.NombreCliente">
         <br>
 
         <label asp-for="@Model.Observaciones"></label>

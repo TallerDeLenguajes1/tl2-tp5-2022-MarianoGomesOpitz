@@ -10,38 +10,24 @@ namespace SistemaCadeteria.ViewModels
         public int NroPedido { get; set; }
         public string Observaciones { get; set; }
         public string Estado { get; set; }
-        public Cliente Costumer { get; set; }
+        public ClienteViewModel Costumer { get; set; }
 
         public PedidoViewModel() { }
 
-        public PedidoViewModel(int nro, string obs, int est, string name, string direc, long tel, string datos)
+        public PedidoViewModel(int nro, string obs, int est, ClienteViewModel C)
         {
             this.NroPedido = nro;
             this.Observaciones = obs;
             this.Estado = Convert.ToString((status)est);
-            this.Costumer = new(nro, name, direc, tel, datos);
+            this.Costumer = C;
         }
     }
 
     public class CrearPedidoViewModel
     {
         [Required]
-        [DisplayName("Nombre: ")]
-        public string Nombre { get; set; }
-
-        [Required]
-        [StringLength(40)]
-        [DisplayName("Dirección: ")]
-        public string Direccion { get; set; }
-
-        [Required]
-        [DisplayName("Teléfono: ")]
-        public long Telefono { get; set; }
-
-        [AllowNull]
-        [StringLength(40)]
-        [DisplayName("Datos de referencia de la dirección: ")]
-        public string DatosReferenciaDireccion { get; set; }
+        [DisplayName("Nombre del cliente: ")]
+        public string NombreCliente { get; set; }
 
         [AllowNull]
         [StringLength(40)]
@@ -55,24 +41,6 @@ namespace SistemaCadeteria.ViewModels
         [NotNull]
         public int NroPedido { get; set; }
 
-        [Required]
-        [DisplayName("Nombre: ")]
-        public string Nombre { get; set; }
-
-        [Required]
-        [StringLength(40)]
-        [DisplayName("Dirección: ")]
-        public string Direccion { get; set; }
-
-        [Required]
-        [DisplayName("Teléfono: ")]
-        public long Telefono { get; set; }
-
-        [AllowNull]
-        [StringLength(40)]
-        [DisplayName("Datos de referencia de la dirección: ")]
-        public string DatosReferenciaDireccion { get; set; }
-
         [AllowNull]
         [StringLength(40)]
         [DisplayName("Observaciones: ")]
@@ -80,13 +48,9 @@ namespace SistemaCadeteria.ViewModels
 
         public EditarPedidoViewModel() { }
 
-        public EditarPedidoViewModel(int nro, string name, string direcc, long tel, string datos, string obs)
+        public EditarPedidoViewModel(int nro, string obs)
         {
             this.NroPedido = nro;
-            this.Nombre = name;
-            this.Direccion = direcc;
-            this.Telefono = tel;
-            this.DatosReferenciaDireccion = datos;
             this.Observaciones = obs;
         }
     }

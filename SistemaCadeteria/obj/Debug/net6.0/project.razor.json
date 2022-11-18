@@ -16333,6 +16333,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Repositorios\\tl2-tp5-2022-MarianoGomesOpitz\\SistemaCadeteria\\Views\\Pedido\\PertenenciaCliente.cshtml",
+      "TargetPath": "Views\\Pedido\\PertenenciaCliente.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Repositorios\\tl2-tp5-2022-MarianoGomesOpitz\\SistemaCadeteria\\Views\\Pedido\\Error.cshtml",
       "TargetPath": "Views\\Pedido\\Error.cshtml",
       "FileKind": "mvc"
