@@ -21,6 +21,7 @@ else
                 <th>Datos de referencia de dirección</th>
                 <th>Estado del pedido</th>
                 <th>Observaciones</th>
+                <th>Modificar estado</th>
                 <th>Cambiar de cadete</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
@@ -36,6 +37,7 @@ else
                     <td>@pedido.Costumer.DatosReferenciaDireccion</td>
                     <td>@pedido.Estado</td>
                     <td>@pedido.Observaciones</td>
+                    <td><a href="/Pedido/ModificarEstado/?idPedido=@pedido.NroPedido">Modificar</a></td>
                     <td><a href="/Pedido/CambiarCadete/?idPedido=@pedido.NroPedido&idCadete=@Model.Id">Cambiar</a></td>
                     <td><a href="/Pedido/Editar/@pedido.NroPedido">Editar</a></td>
                     <td>@Html.ActionLink("Eliminar", "Borrar", "Pedido", new

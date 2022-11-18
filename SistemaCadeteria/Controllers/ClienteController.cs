@@ -34,7 +34,6 @@ public class ClienteController : Controller
     {
         if (ModelState.IsValid)
         {
-
             SqliteCommand command = connection.CreateCommand();
             command.CommandText = $"INSERT INTO Cliente (Nombre, Direccion, Telefono, DatosReferencia) VALUES ('{cliente.Nombre}', '{cliente.Direccion}', '{cliente.Telefono}', '{cliente.DatosReferenciaDireccion}');";
 
@@ -49,12 +48,11 @@ public class ClienteController : Controller
             }
             connection.Close();
 
-
             return RedirectToAction("Index");
         }
         else
         {
-            return RedirectToAction("Error");
+            return RedirectToAction("Error", "Home");
         }
     }
 
@@ -75,26 +73,35 @@ public class ClienteController : Controller
             command.CommandText = $"UPDATE Cliente SET Nombre = '{clienteRecibido.Nombre}', Direccion = '{clienteRecibido.Direccion}', Telefono = '{clienteRecibido.Telefono}', DatosReferencia = '{clienteRecibido.DatosReferenciaDireccion}' WHERE IdCliente = '{clienteRecibido.Id}';";
             connection.Open();
             command.ExecuteNonQuery();
+
+            command.CommandText = $"SELECT Nombre, Direccion, Telefono, DatosReferencia FROM Cliente WHERE IdCliente = '{clienteRecibido.Id}';";
+            lector = command.ExecuteReader();
+            while (lector.Read())
+            {
+                clienteAEditar.Nombre = Convert.ToString(lector[0]);
+                clienteAEditar.Direccion = Convert.ToString(lector[1]);
+                clienteAEditar.Telefono = Convert.ToInt64(lector[2]);
+                clienteAEditar.DatosReferenciaDireccion = Convert.ToString(lector[3]);
+            }
             connection.Close();
-
-            clienteAEditar.Nombre = clienteRecibido.Nombre;
-            clienteAEditar.Direccion = clienteRecibido.Direccion;
-            clienteAEditar.Telefono = clienteRecibido.Telefono;
-            clienteAEditar.DatosReferenciaDireccion = clienteRecibido.DatosReferenciaDireccion;
-
-
 
             return RedirectToAction("Index");
         }
         else
         {
-            return RedirectToAction("Error");
+            return RedirectToAction("Error", "Home");
         }
     }
 
     public IActionResult Borrar(int id)
     {
         var clienteABorrar = DataBase.cadeteria.Clientes.Find(z => z.Id == id);
+
+        DataBase.cadeteria.PedidosNoAsignados.RemoveAll(p => p.Costumer.Id == clienteABorrar.Id);
+        foreach (var cadete in DataBase.cadeteria.Cadetes)
+        {
+            cadete.Pedidos.RemoveAll(p => p.Costumer.Id == clienteABorrar.Id);
+        }
 
         SqliteCommand command = connection.CreateCommand();
         command.CommandText = $"DELETE FROM Cliente WHERE IdCliente = '{id}';";

@@ -32,10 +32,3 @@ public class Pedido
         this.Costumer = cos;
     }
 }
-
-enum status
-{
-    En_Preparación = 1,
-    En_Camino = 2,
-    Entregado = 3,
-}

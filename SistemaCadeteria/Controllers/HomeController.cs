@@ -43,10 +43,10 @@ public class HomeController : Controller
             lector = command2.ExecuteReader();
             while (lector.Read())
             {
-                DataBase.cadeteria.Clientes.Add(new ClienteViewModel(Convert.ToInt32(lector[0]), Convert.ToString(lector[1]), Convert.ToString(lector[2]), Convert.ToInt64(lector[3]), Convert.ToString(lector[4])));
+                DataBase.cadeteria.Clientes.Add(new(Convert.ToInt32(lector[0]), Convert.ToString(lector[1]), Convert.ToString(lector[2]), Convert.ToInt64(lector[3]), Convert.ToString(lector[4])));
             }
             connection.Close();
-            
+
             SqliteCommand command3 = connection.CreateCommand();
 
             connection.Open();
@@ -54,7 +54,33 @@ public class HomeController : Controller
             lector = command3.ExecuteReader();
             while (lector.Read())
             {
-                DataBase.cadeteria.Cadetes.Add(new CadeteViewModel(Convert.ToInt32(lector[0]), Convert.ToString(lector[1]), Convert.ToString(lector[2]), Convert.ToInt64(lector[3])));
+                DataBase.cadeteria.Cadetes.Add(new(Convert.ToInt32(lector[0]), Convert.ToString(lector[1]), Convert.ToString(lector[2]), Convert.ToInt64(lector[3])));
+            }
+            connection.Close();
+
+            SqliteCommand command4 = connection.CreateCommand();
+
+            connection.Open();
+            command4.CommandText = $"SELECT * FROM Pedido;";
+            lector = command4.ExecuteReader();
+            while (lector.Read())
+            {
+                var cost = DataBase.cadeteria.Clientes.Find(c => c.Id == Convert.ToInt32(lector[1]));
+                DataBase.cadeteria.PedidosNoAsignados.Add(new(Convert.ToInt32(lector[0]), Convert.ToString(lector[2]), Convert.ToString(lector[3]), cost));
+            }
+            connection.Close();
+
+            SqliteCommand command5 = connection.CreateCommand();
+
+            connection.Open();
+            command5.CommandText = $"SELECT IdPedido, IdCadete FROM Pedido_Cadete;";
+            lector = command5.ExecuteReader();
+            while (lector.Read())
+            {
+                var PedidoAMover = DataBase.cadeteria.PedidosNoAsignados.Find(p => p.NroPedido == Convert.ToInt32(lector[0]));
+                var CadeteAAsignar = DataBase.cadeteria.Cadetes.Find(a => a.Id == Convert.ToInt32(lector[1]));
+                CadeteAAsignar.Pedidos.Add(PedidoAMover);
+                DataBase.cadeteria.PedidosNoAsignados.Remove(PedidoAMover);
             }
             connection.Close();
 

@@ -8,97 +8,93 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SistemaCadeteria
 build_property.RootNamespace = SistemaCadeteria
-build_property.ProjectDir = D:\Repositorios\tl2-tp5-2022-MarianoGomesOpitz\SistemaCadeteria\
+build_property.ProjectDir = d:\Repositorios\tl2-tp5-2022-MarianoGomesOpitz\SistemaCadeteria\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Repositorios\tl2-tp5-2022-MarianoGomesOpitz\SistemaCadeteria
+build_property.MSBuildProjectDirectory = d:\Repositorios\tl2-tp5-2022-MarianoGomesOpitz\SistemaCadeteria
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Cadete/Crear.cshtml]
+[d:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Cadete/Crear.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FkZXRlXENyZWFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Cadete/Editar.cshtml]
+[d:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Cadete/Editar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FkZXRlXEVkaXRhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Cadete/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FkZXRlXEVycm9yLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Cadete/Index.cshtml]
+[d:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Cadete/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FkZXRlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Cadete/PedidosAsignados.cshtml]
+[d:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Cadete/PedidosAsignados.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FkZXRlXFBlZGlkb3NBc2lnbmFkb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Cliente/Crear.cshtml]
+[d:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Cliente/Crear.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxDcmVhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Cliente/Editar.cshtml]
+[d:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Cliente/Editar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxFZGl0YXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Cliente/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxFcnJvci5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Cliente/Index.cshtml]
+[d:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Cliente/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Home/Index.cshtml]
+[d:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Home/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFcnJvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Pedido/Asignar.cshtml]
+[d:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Pedido/Asignar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXEFzaWduYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Pedido/CambiarCadete.cshtml]
+[d:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Pedido/CambiarCadete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXENhbWJpYXJDYWRldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Pedido/Crear.cshtml]
+[d:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Pedido/Crear.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXENyZWFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Pedido/Editar.cshtml]
+[d:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Pedido/Editar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXEVkaXRhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Pedido/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXEVycm9yLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Pedido/Index.cshtml]
+[d:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Pedido/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Pedido/PertenenciaCliente.cshtml]
+[d:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Pedido/ModificarEstado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXE1vZGlmaWNhckVzdGFkby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Pedido/PertenenciaCliente.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXFBlcnRlbmVuY2lhQ2xpZW50ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Shared/Error.cshtml]
+[d:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Shared/_ValidationScriptsPartial.cshtml]
+[d:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/_ViewImports.cshtml]
+[d:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/_ViewStart.cshtml]
+[d:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Shared/_Layout.cshtml]
+[d:/Repositorios/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-vtge69gbzm

@@ -59,7 +59,7 @@ public class CadeteController : Controller
         }
         else
         {
-            return RedirectToAction("Error");
+            return RedirectToAction("Error", "Home");
         }
     }
 
@@ -80,11 +80,16 @@ public class CadeteController : Controller
             command.CommandText = $"UPDATE Cadete SET Nombre = '{cadeteRecibido.Nombre}', Direccion = '{cadeteRecibido.Direccion}', Telefono = '{cadeteRecibido.Telefono}' WHERE IdCadete = '{cadeteRecibido.Id}';";
             connection.Open();
             command.ExecuteNonQuery();
-            connection.Close();
 
-            cadeteAEditar.Nombre = cadeteRecibido.Nombre;
-            cadeteAEditar.Direccion = cadeteRecibido.Direccion;
-            cadeteAEditar.Telefono = cadeteRecibido.Telefono;
+            command.CommandText = $"SELECT Nombre, Direccion, Telefono FROM Cadete WHERE IdCadete = '{cadeteRecibido.Id}';";
+            lector = command.ExecuteReader();
+            while (lector.Read())
+            {
+                cadeteAEditar.Nombre = Convert.ToString(lector[0]);
+                cadeteAEditar.Direccion = Convert.ToString(lector[1]);
+                cadeteAEditar.Telefono = Convert.ToInt64(lector[2]);
+            }
+            connection.Close();
 
 
 
@@ -92,7 +97,7 @@ public class CadeteController : Controller
         }
         else
         {
-            return RedirectToAction("Error");
+            return RedirectToAction("Error", "Home");
         }
     }
 

@@ -1,0 +1,27 @@
+@{
+    ViewData["Title"] = "Modificar Estado";
+}
+
+@model SistemaCadeteria.ViewModels.PedidoViewModel;
+
+<a asp-controller="Cadete" asp-action="Index">Cancelar</a>
+
+<p>Estado del pedido de: @Model.Costumer.Nombre</p>
+
+@using (Html.BeginForm("ModificarEstado", "Pedido"))
+{
+
+    <input type="hidden" value="@Model.NroPedido" name="idPedido">
+
+    <select name="Estado" id="Estado">
+        @for (int i = 1; i <= 3; i++)
+        {
+            if (Model.Estado != Convert.ToString((status)i))
+            {
+                <option value="@i">@((status)i)</option>
+            }
+        }
+    </select>
+
+    <button>Modificar</button>
+}

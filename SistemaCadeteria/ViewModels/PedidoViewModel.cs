@@ -14,11 +14,11 @@ namespace SistemaCadeteria.ViewModels
 
         public PedidoViewModel() { }
 
-        public PedidoViewModel(int nro, string obs, int est, ClienteViewModel C)
+        public PedidoViewModel(int nro, string obs, string est, ClienteViewModel C)
         {
             this.NroPedido = nro;
             this.Observaciones = obs;
-            this.Estado = Convert.ToString((status)est);
+            this.Estado = est;
             this.Costumer = C;
         }
     }
@@ -54,4 +54,11 @@ namespace SistemaCadeteria.ViewModels
             this.Observaciones = obs;
         }
     }
+}
+
+enum status
+{
+    EnPreparación = 1,
+    EnCamino = 2,
+    Entregado = 3,
 }
