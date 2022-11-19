@@ -24,7 +24,6 @@ public class PedidoController : Controller
         return View(DataBase.cadeteria.PedidosNoAsignados);
     }
 
-
     public IActionResult Crear()
     {
         return View();

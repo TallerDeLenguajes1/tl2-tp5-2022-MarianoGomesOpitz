@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using SistemaCadeteria.Models;
 using Microsoft.Data.Sqlite;
 using SistemaCadeteria.ViewModels;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace SistemaCadeteria.Controllers;
 
@@ -88,6 +90,18 @@ public class HomeController : Controller
         }
 
         return View(DataBase.cadeteria);
+    }
+
+    public IActionResult PedidosPorCliente()
+    {
+        SqliteCommand command = connection.CreateCommand();
+        command.CommandText = "SELECT * FROM PedidosPorCliente;";
+        DataTable tabla = new();
+        connection.Open();
+        tabla.Load(command.ExecuteReader());
+        connection.Close();
+
+        return View(tabla);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
