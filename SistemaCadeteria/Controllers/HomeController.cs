@@ -104,6 +104,18 @@ public class HomeController : Controller
         return View(tabla);
     }
 
+    public IActionResult PedidosPorCadete()
+    {
+        SqliteCommand command = connection.CreateCommand();
+        command.CommandText = "SELECT * FROM PedidosPorCadete;";
+        DataTable tabla = new();
+        connection.Open();
+        tabla.Load(command.ExecuteReader());
+        connection.Close();
+
+        return View(tabla);
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

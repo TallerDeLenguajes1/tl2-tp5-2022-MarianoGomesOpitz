@@ -105,6 +105,11 @@ public class CadeteController : Controller
     {
         var cadeteABorrar = DataBase.cadeteria.Cadetes.Find(z => z.Id == id);
 
+        foreach (var pedido in cadeteABorrar.Pedidos)
+        {
+            DataBase.cadeteria.PedidosNoAsignados.Add(pedido);
+        }
+
         SqliteCommand command = connection.CreateCommand();
         command.CommandText = $"DELETE FROM Cadete WHERE IdCadete = '{id}';";
         connection.Open();

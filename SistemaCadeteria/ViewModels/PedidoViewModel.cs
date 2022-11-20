@@ -58,7 +58,7 @@ namespace SistemaCadeteria.ViewModels
 
 enum status
 {
-    EnPreparación = 1,
-    EnCamino = 2,
+    En_Preparación = 1,
+    En_Camino = 2,
     Entregado = 3,
 }

@@ -96,18 +96,18 @@ public class ClienteController : Controller
     public IActionResult Borrar(int id)
     {
         var clienteABorrar = DataBase.cadeteria.Clientes.Find(z => z.Id == id);
+        
+        SqliteCommand command3 = connection.CreateCommand();
+        command3.CommandText = $"DELETE FROM Cliente WHERE IdCliente = '{id}';";
+        connection.Open();
+        command3.ExecuteNonQuery();
+        connection.Close();
 
         DataBase.cadeteria.PedidosNoAsignados.RemoveAll(p => p.Costumer.Id == clienteABorrar.Id);
         foreach (var cadete in DataBase.cadeteria.Cadetes)
         {
             cadete.Pedidos.RemoveAll(p => p.Costumer.Id == clienteABorrar.Id);
         }
-
-        SqliteCommand command = connection.CreateCommand();
-        command.CommandText = $"DELETE FROM Cliente WHERE IdCliente = '{id}';";
-        connection.Open();
-        command.ExecuteNonQuery();
-        connection.Close();
 
         DataBase.cadeteria.Clientes.Remove(clienteABorrar);
 

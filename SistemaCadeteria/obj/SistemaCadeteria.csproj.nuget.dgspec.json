@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Repositorios\\tl2-tp5-2022-MarianoGomesOpitz\\SistemaCadeteria\\SistemaCadeteria.csproj": {}
+    "D:\\descargas\\tl2-tp5-2022-MarianoGomesOpitz\\SistemaCadeteria\\SistemaCadeteria.csproj": {}
   },
   "projects": {
-    "D:\\Repositorios\\tl2-tp5-2022-MarianoGomesOpitz\\SistemaCadeteria\\SistemaCadeteria.csproj": {
+    "D:\\descargas\\tl2-tp5-2022-MarianoGomesOpitz\\SistemaCadeteria\\SistemaCadeteria.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repositorios\\tl2-tp5-2022-MarianoGomesOpitz\\SistemaCadeteria\\SistemaCadeteria.csproj",
+        "projectUniqueName": "D:\\descargas\\tl2-tp5-2022-MarianoGomesOpitz\\SistemaCadeteria\\SistemaCadeteria.csproj",
         "projectName": "SistemaCadeteria",
-        "projectPath": "D:\\Repositorios\\tl2-tp5-2022-MarianoGomesOpitz\\SistemaCadeteria\\SistemaCadeteria.csproj",
+        "projectPath": "D:\\descargas\\tl2-tp5-2022-MarianoGomesOpitz\\SistemaCadeteria\\SistemaCadeteria.csproj",
         "packagesPath": "C:\\Users\\dagov\\.nuget\\packages\\",
-        "outputPath": "D:\\Repositorios\\tl2-tp5-2022-MarianoGomesOpitz\\SistemaCadeteria\\obj\\",
+        "outputPath": "D:\\descargas\\tl2-tp5-2022-MarianoGomesOpitz\\SistemaCadeteria\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dagov\\AppData\\Roaming\\NuGet\\NuGet.Config"
