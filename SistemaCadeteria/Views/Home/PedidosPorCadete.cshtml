@@ -6,25 +6,35 @@
 @model System.Data.DataTable;
 
 <h1>Listado de pedidos por cadete</h1>
-
-<table>
-    <thead>
-        <tr>
-            @foreach (DataColumn columna in Model.Columns)
-            {
-                <th>@columna.ColumnName</th>
-            }
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (DataRow fila in Model.Rows)
-        {
-            <tr>
-                @foreach (DataColumn columna in Model.Columns)
+@if (Model != null)
+{
+    if (Model.Rows.Count > 0)
+    {
+        <table>
+            <thead>
+                <tr>
+                    @foreach (DataColumn columna in Model.Columns)
+                    {
+                        <th>@columna.ColumnName</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (DataRow fila in Model.Rows)
                 {
-                    <td>@(fila[columna])</td>
+                    <tr>
+                        @foreach (DataColumn columna in Model.Columns)
+                        {
+                            <td>@(fila[columna])</td>
+                        }
+                    </tr>
                 }
-            </tr>
-        }
-    </tbody>
-</table>
+            </tbody>
+        </table>
+
+    }
+    else
+    {
+        <p>No hay pedidos asignados a ningún cadete</p>
+    }
+}

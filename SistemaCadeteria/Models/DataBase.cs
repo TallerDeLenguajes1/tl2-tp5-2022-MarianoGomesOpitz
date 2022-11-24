@@ -4,17 +4,9 @@ namespace SistemaCadeteria.Models
 {
     public class DataBase
     {
-        static public int IdCliente = InicializarIds();
-        static public int IdCadete = InicializarIds();
-        static public int IdPedido = InicializarIds();
         static public Cadeteria cadeteria = new();
 
         public DataBase() { }
-
-        static private int InicializarIds()
-        {
-            return (1);
-        }
     }
 
     public class Cadeteria

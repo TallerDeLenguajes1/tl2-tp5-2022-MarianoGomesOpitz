@@ -107,6 +107,7 @@ public class CadeteController : Controller
 
         foreach (var pedido in cadeteABorrar.Pedidos)
         {
+            pedido.Estado = Convert.ToString((status)1);
             DataBase.cadeteria.PedidosNoAsignados.Add(pedido);
         }
 

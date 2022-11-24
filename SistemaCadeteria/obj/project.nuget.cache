@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YIlruipqGmSg1wZq0P3GaUcAazBzpZHrwe/UcPhWV60MSD/zQUOh957cAsPWqg6bdzJiM1mLk0hO9JbDwpZDmg==",
+  "dgSpecHash": "v/528fl8BiZ5BfuKMyXUetzX8Nx0aGyI4HflqOKe1HbXFcuAOZiLbgIkU/p7YBc+JIJ8liKm7Rl89dnamWVSQQ==",
   "success": true,
-  "projectFilePath": "D:\\descargas\\tl2-tp5-2022-MarianoGomesOpitz\\SistemaCadeteria\\SistemaCadeteria.csproj",
+  "projectFilePath": "D:\\Repositorios\\tl2-tp5-2022-MarianoGomesOpitz\\SistemaCadeteria\\SistemaCadeteria.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dagov\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\dagov\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
