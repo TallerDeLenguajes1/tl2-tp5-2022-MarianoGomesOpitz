@@ -14,12 +14,25 @@ namespace SistemaCadeteria.ViewModels
 
         public PedidoViewModel() { }
 
+        public PedidoViewModel(string obs, string est, ClienteViewModel C)
+        {
+            this.Observaciones = obs;
+            this.Estado = est;
+            this.Costumer = C;
+        }
+
         public PedidoViewModel(int nro, string obs, string est, ClienteViewModel C)
         {
             this.NroPedido = nro;
             this.Observaciones = obs;
             this.Estado = est;
             this.Costumer = C;
+        }
+
+        public PedidoViewModel(int nro, string obs)
+        {
+            this.NroPedido = nro;
+            this.Observaciones = obs;
         }
     }
 

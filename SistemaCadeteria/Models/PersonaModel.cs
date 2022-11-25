@@ -13,6 +13,13 @@ public class Persona
 
     public Persona()
     { }
+    
+    public Persona(string name, string direcc, long tel)
+    {
+        this.Nombre = name;
+        this.Direccion = direcc;
+        this.Telefono = tel;
+    }
 
     public Persona(int i, string name, string direcc, long tel)
     {

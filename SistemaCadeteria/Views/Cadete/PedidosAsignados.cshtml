@@ -16,9 +16,6 @@ else
         <thead>
             <tr>
                 <th>Nombre</th>
-                <th>Dirección</th>
-                <th>Teléfono</th>
-                <th>Datos de referencia de dirección</th>
                 <th>Estado del pedido</th>
                 <th>Observaciones</th>
                 <th>Modificar estado</th>
@@ -32,9 +29,6 @@ else
             {
                 <tr>
                     <td>@pedido.Costumer.Nombre</td>
-                    <td>@pedido.Costumer.Direccion</td>
-                    <td>@pedido.Costumer.Telefono</td>
-                    <td>@pedido.Costumer.DatosReferenciaDireccion</td>
                     <td>@pedido.Estado</td>
                     <td>@pedido.Observaciones</td>
                     <td><a href="/Pedido/ModificarEstado/?idPedido=@pedido.NroPedido">Modificar</a></td>

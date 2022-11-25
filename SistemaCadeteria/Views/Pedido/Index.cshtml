@@ -5,7 +5,7 @@
 @using SistemaCadeteria.ViewModels;
 @model List<PedidoViewModel>;
 
-<h1>Listado de pedidos no asignados</h1>
+<h1>Listado de pedidos</h1>
 
 @if ((Model.Count() < 20))
 {
@@ -21,10 +21,7 @@ else
     <table>
         <thead>
             <tr>
-                <th>Nombre</th>
-                <th>Dirección</th>
-                <th>Teléfono</th>
-                <th>Datos de referencia de dirección</th>
+                <th>Nombre del cliente</th>
                 <th>Estado del pedido</th>
                 <th>Observaciones</th>
                 <th>Asignar pedido</th>
@@ -37,9 +34,6 @@ else
             {
                 <tr>
                     <td>@pedido.Costumer.Nombre</td>
-                    <td>@pedido.Costumer.Direccion</td>
-                    <td>@pedido.Costumer.Telefono</td>
-                    <td>@pedido.Costumer.DatosReferenciaDireccion</td>
                     <td>@pedido.Estado</td>
                     <td>@pedido.Observaciones</td>
                     <td><a href="/Pedido/Asignar/@pedido.NroPedido">Asignar</a></td>

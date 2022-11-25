@@ -21,9 +21,7 @@ else
     <table>
         <thead>
             <tr>
-                <th>Nombre</th>
-                <th>Dirección</th>
-                <th>Teléfono</th>
+                <th>Nombre del cadete</th>
                 <th>Pedidos</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
@@ -34,8 +32,6 @@ else
             {
                 <tr>
                     <td>@cadete.Nombre</td>
-                    <td>@cadete.Direccion</td>
-                    <td>@cadete.Telefono</td>
                     <td><a href="/Cadete/PedidosAsignados/@cadete.Id">Pedidos</a></td>
                     <td><a href="/Cadete/Editar/@cadete.Id">Editar</a></td>
                     <td>@Html.ActionLink("Eliminar", "Borrar", "Cadete", new

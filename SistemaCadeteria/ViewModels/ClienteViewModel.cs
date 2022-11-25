@@ -12,6 +12,11 @@ namespace SistemaCadeteria.ViewModels
     public ClienteViewModel() : base()
     { }
 
+    public ClienteViewModel(string name, string direcc, long tel, string datosRef) : base(name, direcc, tel)
+    {
+        this.DatosReferenciaDireccion = datosRef;
+    }
+
     public ClienteViewModel(int i, string name, string direcc, long tel, string datosRef) : base(i, name, direcc, tel)
     {
         this.DatosReferenciaDireccion = datosRef;

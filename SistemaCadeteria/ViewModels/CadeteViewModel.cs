@@ -13,9 +13,17 @@ namespace SistemaCadeteria.ViewModels
         {
 
         }
+        public CadeteViewModel(string name, string direcc, long tel) : base(name, direcc, tel)
+        {
+            this.Pedidos = new List<PedidoViewModel>();
+        }
         public CadeteViewModel(int i, string name, string direcc, long tel) : base(i, name, direcc, tel)
         {
             this.Pedidos = new List<PedidoViewModel>();
+        }
+        public CadeteViewModel(int i, string name, string direcc, long tel, List<PedidoViewModel> peds) : base(i, name, direcc, tel)
+        {
+            this.Pedidos = peds;
         }
     }
 
