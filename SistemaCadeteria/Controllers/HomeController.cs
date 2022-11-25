@@ -26,7 +26,48 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            return View(model: user);
+        }
+        else
+        {
+            return RedirectToAction("Login");
+        }
+    }
+
+    public IActionResult Login()
+    {
+        return View(model: HttpContext.Session.GetString("User"));
+    }
+
+    [HttpPost]
+    public IActionResult IniciarSesion(string user, string password)
+    {
+        int count = 0;
+        SqliteConnection connection = new SqliteConnection(connectionString);
+        SqliteCommand command = connection.CreateCommand();
+        connection.Open();
+        command.CommandText = $"SELECT COUNT(*) FROM Usuarios WHERE User LIKE '{user}' AND Password = '{password}';";
+        count = Convert.ToInt32(command.ExecuteScalar());
+        connection.Close();
+
+        if (count > 0)
+        {
+            HttpContext.Session.SetString("User", user);
+            return RedirectToAction("Index");
+        }
+        else
+        {
+            return RedirectToAction("Login");
+        }
+    }
+
+    public IActionResult CerrarSesion()
+    {
+        HttpContext.Session.Clear();
+        return RedirectToAction("Login");
     }
 
     public IActionResult PedidosPorCliente()

@@ -1,0 +1,25 @@
+@model string
+@if (string.IsNullOrEmpty(Model))
+{
+    <h1>Inicio de sesión</h1>
+
+    <form asp-action="IniciarSesion" method="post">
+        <Label name="user">Usuario:
+            <input type="text" name="user" id="user">
+        </Label>
+        <br>
+
+        <Label name="password">Contraseña:
+            <input type="password" name="password" id="password">
+        </Label>
+        <br>
+
+        <input type="submit" value="Iniciar">
+    </form>
+}
+else
+{
+    <h3>Ya hay una sesión iniciada</h3>
+
+    <a asp-controller="Home" asp-action="CerrarSesion">Cerrar sesion</a>
+}
