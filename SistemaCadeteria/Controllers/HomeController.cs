@@ -6,6 +6,8 @@ using SistemaCadeteria.ViewModels;
 using System.Data;
 using System.Data.SqlClient;
 using SistemaCadeteria.Repositorios;
+using Microsoft.AspNetCore.Session;
+using Microsoft.AspNetCore.Http;
 
 namespace SistemaCadeteria.Controllers;
 
