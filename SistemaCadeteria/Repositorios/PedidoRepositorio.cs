@@ -36,14 +36,30 @@ namespace SistemaCadeteria.Repositorios
 
             SqliteConnection connection = new SqliteConnection(cadenaConexion);
             SqliteDataReader lector;
-            SqliteCommand command = connection.CreateCommand();
+            SqliteCommand command1 = connection.CreateCommand();
             connection.Open();
-            command.CommandText = $"SELECT * FROM Pedido;";
-            lector = command.ExecuteReader();
+            command1.CommandText = $"SELECT * FROM Pedido;";
+            lector = command1.ExecuteReader();
             while (lector.Read())
             {
                 ClienteViewModel auxCliente = clienteRepository.GetById(Convert.ToInt32(lector[1]));
                 pedidos.Add(new(Convert.ToInt32(lector[0]), Convert.ToString(lector[2]), Convert.ToString(lector[3]), auxCliente));
+            }
+            connection.Close();
+
+            SqliteCommand command2 = connection.CreateCommand();
+            connection.Open();
+            command2.CommandText = $"SELECT IdPedido FROM Pedido_Cadete;";
+            lector = command2.ExecuteReader();
+            while (lector.Read())
+            {
+                for (int i = pedidos.Count() - 1; i >= 0; i--)
+                {
+                    if (pedidos[i].NroPedido == Convert.ToInt32(lector[0]))
+                    {
+                        pedidos.RemoveAt(i);
+                    }
+                }
             }
             connection.Close();
 
