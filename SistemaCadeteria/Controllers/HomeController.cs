@@ -29,11 +29,15 @@ public class HomeController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            return View(model: user);
+            List<String> modelo = new();
+            modelo.Add(HttpContext.Session.GetString("User"));
+            modelo.Add(HttpContext.Session.GetString("Name"));
+            modelo.Add(HttpContext.Session.GetString("Role"));
+            return View(model: modelo);
         }
         else
         {
-            return RedirectToAction("Login");
+            return RedirectToAction("Login", "Home");
         }
     }
 
@@ -47,51 +51,86 @@ public class HomeController : Controller
     {
         int count = 0;
         SqliteConnection connection = new SqliteConnection(connectionString);
-        SqliteCommand command = connection.CreateCommand();
+        SqliteCommand command1 = connection.CreateCommand();
         connection.Open();
-        command.CommandText = $"SELECT COUNT(*) FROM Usuarios WHERE User LIKE '{user}' AND Password = '{password}';";
-        count = Convert.ToInt32(command.ExecuteScalar());
+        command1.CommandText = $"SELECT COUNT(*) FROM Usuarios WHERE User ='{user}' AND Password = '{password}';";
+        count = Convert.ToInt32(command1.ExecuteScalar());
         connection.Close();
 
-        if (count > 0)
+        if (count == 1)
         {
-            HttpContext.Session.SetString("User", user);
+            SqliteCommand command2 = connection.CreateCommand();
+            command2.CommandText = $"SELECT Name, User, Role FROM Usuarios WHERE User ='{user}' AND Password = '{password}';";
+            connection.Open();
+            lector = command2.ExecuteReader();
+            while (lector.Read())
+            {
+                HttpContext.Session.SetString("Name", Convert.ToString(lector[0]));
+                HttpContext.Session.SetString("User", Convert.ToString(lector[1]));
+                HttpContext.Session.SetString("Role", Convert.ToString(lector[2]));
+            }
+            connection.Close();
+
             return RedirectToAction("Index");
         }
         else
         {
-            return RedirectToAction("Login");
+            return RedirectToAction("Login", "Home");
         }
     }
 
     public IActionResult CerrarSesion()
     {
-        HttpContext.Session.Clear();
-        return RedirectToAction("Login");
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login", "Home");
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
     }
 
     public IActionResult PedidosPorCliente()
     {
-        SqliteCommand command = connection.CreateCommand();
-        command.CommandText = "SELECT * FROM PedidosPorCliente;";
-        DataTable tabla = new();
-        connection.Open();
-        tabla.Load(command.ExecuteReader());
-        connection.Close();
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            SqliteCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT * FROM PedidosPorCliente;";
+            DataTable tabla = new();
+            connection.Open();
+            tabla.Load(command.ExecuteReader());
+            connection.Close();
 
-        return View(tabla);
+            return View(tabla);
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
     }
 
     public IActionResult PedidosPorCadete()
     {
-        SqliteCommand command = connection.CreateCommand();
-        command.CommandText = "SELECT * FROM PedidosPorCadete;";
-        DataTable tabla = new();
-        connection.Open();
-        tabla.Load(command.ExecuteReader());
-        connection.Close();
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            SqliteCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT * FROM PedidosPorCadete;";
+            DataTable tabla = new();
+            connection.Open();
+            tabla.Load(command.ExecuteReader());
+            connection.Close();
 
-        return View(tabla);
+            return View(tabla);
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -22,55 +22,103 @@ public class ClienteController : Controller
 
     public IActionResult Index()
     {
-        return View(clienteRepository.GetAll());
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            return View(clienteRepository.GetAll());
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
     }
 
     public IActionResult Crear()
     {
-        return View();
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            return View();
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
     }
 
     [HttpPost]
     public IActionResult Crear(CrearClienteViewModel _cliente_)
     {
-        if (ModelState.IsValid)
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
         {
-            clienteRepository.Create(new(_cliente_.Nombre, _cliente_.Direccion, _cliente_.Telefono, _cliente_.DatosReferenciaDireccion));
+            if (ModelState.IsValid)
+            {
+                clienteRepository.Create(new(_cliente_.Nombre, _cliente_.Direccion, _cliente_.Telefono, _cliente_.DatosReferenciaDireccion));
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
         else
         {
-            return RedirectToAction("Error", "Home");
+            return RedirectToAction("Login", "Home");
         }
     }
 
     public IActionResult Editar(int id)
     {
-        ClienteViewModel _cliente_ = clienteRepository.GetById(id);
-        return View(new EditarClienteViewModel(id, _cliente_.Nombre, _cliente_.Direccion, _cliente_.Telefono, _cliente_.DatosReferenciaDireccion));
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            ClienteViewModel _cliente_ = clienteRepository.GetById(id);
+            return View(new EditarClienteViewModel(id, _cliente_.Nombre, _cliente_.Direccion, _cliente_.Telefono, _cliente_.DatosReferenciaDireccion));
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
     }
 
     [HttpPost]
     public IActionResult Editar(EditarClienteViewModel _cliente_)
     {
-        if (ModelState.IsValid)
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
         {
-            clienteRepository.Update(new(_cliente_.Id, _cliente_.Nombre, _cliente_.Direccion, _cliente_.Telefono, _cliente_.DatosReferenciaDireccion));
+            if (ModelState.IsValid)
+            {
+                clienteRepository.Update(new(_cliente_.Id, _cliente_.Nombre, _cliente_.Direccion, _cliente_.Telefono, _cliente_.DatosReferenciaDireccion));
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
         else
         {
-            return RedirectToAction("Error", "Home");
+            return RedirectToAction("Login", "Home");
         }
     }
 
     public IActionResult Borrar(int id)
     {
-        clienteRepository.Delete(id);
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            clienteRepository.Delete(id);
 
-        return RedirectToAction("Index");
+            return RedirectToAction("Index");
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

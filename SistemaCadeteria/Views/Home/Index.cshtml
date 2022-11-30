@@ -6,6 +6,12 @@
     <h2 class="display-4">Bienvenido al Sistema de Gestión de Cadetería ᕕ( ᐛ )ᕗ</h2>
 </div>
 
+@model List<String>
+
+<p><b>Usuario actual:</b> @Model[0]</p>
+<p><b>Nombre:</b> @Model[1]</p>
+<p><b>Rol:</b> @Model[2]</p>
+
 <br>
 
 <a asp-controller="Home" asp-action="PedidosPorCliente">Listar pedidos por cliente</a>
@@ -13,3 +19,6 @@
 <br>
 
 <a asp-controller="Home" asp-action="PedidosPorCadete">Listar pedidos por cadete</a>
+
+<br>
+<a asp-controller="Home" asp-action="CerrarSesion">Cerrar sesion</a>

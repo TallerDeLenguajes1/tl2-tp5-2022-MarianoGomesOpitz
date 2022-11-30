@@ -22,60 +22,116 @@ public class CadeteController : Controller
 
     public IActionResult Index()
     {
-        return View(cadeteRepository.GetAll());
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            return View(cadeteRepository.GetAll());
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
     }
 
     public IActionResult PedidosAsignados(int id)
     {
-        return View(cadeteRepository.GetById(id));
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            return View(cadeteRepository.GetById(id));
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
     }
 
     public IActionResult Crear()
     {
-        return View();
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            return View();
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
     }
 
     [HttpPost]
     public IActionResult Crear(CrearCadeteViewModel _cadete_)
     {
-        if (ModelState.IsValid)
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
         {
-            cadeteRepository.Create(new(_cadete_.Nombre, _cadete_.Direccion, _cadete_.Telefono));
+            if (ModelState.IsValid)
+            {
+                cadeteRepository.Create(new(_cadete_.Nombre, _cadete_.Direccion, _cadete_.Telefono));
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
         else
         {
-            return RedirectToAction("Error", "Home");
+            return RedirectToAction("Login", "Home");
         }
     }
 
     public IActionResult Editar(int id)
     {
-        CadeteViewModel cadete = cadeteRepository.GetById(id);
-        return View(new EditarCadeteViewModel(id, cadete.Nombre, cadete.Direccion, cadete.Telefono));
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            CadeteViewModel cadete = cadeteRepository.GetById(id);
+            return View(new EditarCadeteViewModel(id, cadete.Nombre, cadete.Direccion, cadete.Telefono));
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
     }
 
     [HttpPost]
     public IActionResult Editar(EditarCadeteViewModel _cadete_)
     {
-        if (ModelState.IsValid)
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
         {
-            cadeteRepository.Update(new(_cadete_.Id, _cadete_.Nombre, _cadete_.Direccion, _cadete_.Telefono));
+            if (ModelState.IsValid)
+            {
+                cadeteRepository.Update(new(_cadete_.Id, _cadete_.Nombre, _cadete_.Direccion, _cadete_.Telefono));
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
         else
         {
-            return RedirectToAction("Error", "Home");
+            return RedirectToAction("Login", "Home");
         }
     }
 
     public IActionResult Borrar(int id)
     {
-        cadeteRepository.Delete(id);
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            cadeteRepository.Delete(id);
 
-        return RedirectToAction("Index");
+            return RedirectToAction("Index");
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

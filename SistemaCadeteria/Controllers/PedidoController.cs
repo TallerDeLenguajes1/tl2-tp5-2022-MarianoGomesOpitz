@@ -26,100 +26,195 @@ public class PedidoController : Controller
 
     public IActionResult Index()
     {
-        return View(pedidoRepositorio.GetAll());
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            return View(pedidoRepositorio.GetAll());
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
     }
 
     public IActionResult Crear()
     {
-        return View();
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            return View();
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
     }
 
     [HttpPost]
     public IActionResult Crear(CrearPedidoViewModel pedido)
     {
-
-        if (ModelState.IsValid)
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
         {
-            ClienteViewModel auxCliente = clienteRepositorio.GetByName(pedido.NombreCliente);
-            pedidoRepositorio.Create(new(pedido.Observaciones, Convert.ToString((status)1), auxCliente));
+            if (ModelState.IsValid)
+            {
+                ClienteViewModel auxCliente = clienteRepositorio.GetByName(pedido.NombreCliente);
+                pedidoRepositorio.Create(new(pedido.Observaciones, Convert.ToString((status)1), auxCliente));
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
         else
         {
-            return RedirectToAction("Error", "Home");
+            return RedirectToAction("Login", "Home");
         }
     }
 
     public IActionResult Asignar(int id)
     {
-        PedidoACadete pedCad = new(id, cadeteRepositorio.GetAll());
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            PedidoACadete pedCad = new(id, cadeteRepositorio.GetAll());
 
-        return View(pedCad);
+            return View(pedCad);
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
     }
 
     [HttpPost]
     public IActionResult Asignar(int IdPedido, int IdCadete)
     {
-        pedidoRepositorio.AsignarCadete(IdPedido, IdCadete);
-
-        return RedirectToAction("Index");
-    }
-
-    public IActionResult ModificarEstado(int idPedido)
-    {
-        return View(pedidoRepositorio.GetById(idPedido));
-    }
-
-    [HttpPost]
-    public IActionResult ModificarEstado(int idPedido, int Estado)
-    {
-        pedidoRepositorio.UpdateEstado(idPedido, Convert.ToString((status)Estado));
-
-        return RedirectToAction("Index", "Cadete");
-    }
-
-    public IActionResult CambiarCadete(int idPedido, int idCadete)
-    {
-        CambiarCadete pedCad = new(idPedido, idCadete, cadeteRepositorio.GetAll());
-
-        return View(pedCad);
-    }
-
-    [HttpPost]
-    public IActionResult CambiarCadete(int IdPedido, int IdCadete, int IdCadeteACambiar)
-    {
-        pedidoRepositorio.CambiarCadete(IdPedido, IdCadeteACambiar);
-
-        return RedirectToAction("Index", "Cadete");
-    }
-
-    public IActionResult Editar(int id)
-    {
-        PedidoViewModel _pedido_ = pedidoRepositorio.GetById(id);
-        return View(new EditarPedidoViewModel(_pedido_.NroPedido, _pedido_.Observaciones));
-    }
-
-    [HttpPost]
-    public IActionResult Editar(EditarPedidoViewModel _pedido_)
-    {
-        if (ModelState.IsValid)
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
         {
-            pedidoRepositorio.UpdatePedido(new(_pedido_.NroPedido, _pedido_.Observaciones));
+            pedidoRepositorio.AsignarCadete(IdPedido, IdCadete);
 
             return RedirectToAction("Index");
         }
         else
         {
-            return RedirectToAction("Error", "Home");
+            return RedirectToAction("Login", "Home");
+        }
+    }
+
+    public IActionResult ModificarEstado(int idPedido)
+    {
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            return View(pedidoRepositorio.GetById(idPedido));
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
+    }
+
+    [HttpPost]
+    public IActionResult ModificarEstado(int idPedido, int Estado)
+    {
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            pedidoRepositorio.UpdateEstado(idPedido, Convert.ToString((status)Estado));
+
+            return RedirectToAction("Index", "Cadete");
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
+    }
+
+    public IActionResult CambiarCadete(int idPedido, int idCadete)
+    {
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            CambiarCadete pedCad = new(idPedido, idCadete, cadeteRepositorio.GetAll());
+
+            return View(pedCad);
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
+    }
+
+    [HttpPost]
+    public IActionResult CambiarCadete(int IdPedido, int IdCadete, int IdCadeteACambiar)
+    {
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            pedidoRepositorio.CambiarCadete(IdPedido, IdCadeteACambiar);
+
+            return RedirectToAction("Index", "Cadete");
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
+    }
+
+    public IActionResult Editar(int id)
+    {
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            PedidoViewModel _pedido_ = pedidoRepositorio.GetById(id);
+            return View(new EditarPedidoViewModel(_pedido_.NroPedido, _pedido_.Observaciones));
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
+    }
+
+    [HttpPost]
+    public IActionResult Editar(EditarPedidoViewModel _pedido_)
+    {
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            if (ModelState.IsValid)
+            {
+                pedidoRepositorio.UpdatePedido(new(_pedido_.NroPedido, _pedido_.Observaciones));
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Error", "Home");
+            }
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
         }
     }
 
     public IActionResult Borrar(int id)
     {
-        pedidoRepositorio.Delete(id);
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            pedidoRepositorio.Delete(id);
 
-        return RedirectToAction("Index");
+            return RedirectToAction("Index");
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
