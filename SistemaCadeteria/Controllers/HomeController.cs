@@ -18,10 +18,12 @@ public class HomeController : Controller
     static string connectionString = "Data Source=DB/PedidosDB.db;Cache=Shared";
     SqliteConnection connection = new SqliteConnection(connectionString);
     SqliteDataReader lector;
+    private readonly IPedidoRepository pedidoRepositorio;
 
     public HomeController(ILogger<HomeController> logger)
     {
         _logger = logger;
+        this.pedidoRepositorio = new PedidoRepository(connectionString);
     }
 
     public IActionResult Index()
@@ -98,13 +100,7 @@ public class HomeController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            SqliteCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT * FROM PedidosPorCliente;";
-            DataTable tabla = new();
-            connection.Open();
-            tabla.Load(command.ExecuteReader());
-            connection.Close();
-
+            DataTable tabla = pedidoRepositorio.PedidosPorCliente();
             return View(tabla);
         }
         else
@@ -118,13 +114,7 @@ public class HomeController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            SqliteCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT * FROM PedidosPorCadete;";
-            DataTable tabla = new();
-            connection.Open();
-            tabla.Load(command.ExecuteReader());
-            connection.Close();
-
+            DataTable tabla = pedidoRepositorio.PedidosPorCadete();
             return View(tabla);
         }
         else

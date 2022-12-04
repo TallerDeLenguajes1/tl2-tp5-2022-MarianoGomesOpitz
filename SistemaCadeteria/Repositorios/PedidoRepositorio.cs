@@ -4,6 +4,7 @@ using SistemaCadeteria.Models;
 using SistemaCadeteria.ViewModels;
 using Microsoft.Data.Sqlite;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace SistemaCadeteria.Repositorios
 {
@@ -17,6 +18,8 @@ namespace SistemaCadeteria.Repositorios
         public void UpdatePedido(PedidoViewModel pedido);
         public void UpdateEstado(int idPedido, string Estado);
         public void Delete(int id);
+        public DataTable PedidosPorCliente();
+        public DataTable PedidosPorCadete();
     }
 
     public class PedidoRepository : IPedidoRepository
@@ -132,13 +135,36 @@ namespace SistemaCadeteria.Repositorios
         }
         public void Delete(int idPedido)
         {
-
             SqliteConnection connection = new SqliteConnection(cadenaConexion);
             SqliteCommand command = connection.CreateCommand();
             command.CommandText = $"DELETE FROM Pedido WHERE IdPedido = '{idPedido}';";
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
+        }
+
+        public DataTable PedidosPorCliente()
+        {
+            SqliteConnection connection = new SqliteConnection(cadenaConexion);
+            SqliteCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT * FROM PedidosPorCliente;";
+            DataTable tabla = new();
+            connection.Open();
+            tabla.Load(command.ExecuteReader());
+            connection.Close();
+            return (tabla);
+        }
+
+        public DataTable PedidosPorCadete()
+        {
+            SqliteConnection connection = new SqliteConnection(cadenaConexion);
+            SqliteCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT * FROM PedidosPorCadete;";
+            DataTable tabla = new();
+            connection.Open();
+            tabla.Load(command.ExecuteReader());
+            connection.Close();
+            return (tabla);
         }
     }
 }
