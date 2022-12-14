@@ -77,7 +77,20 @@ public class HomeController : Controller
         }
         else
         {
-            return RedirectToAction("Login", "Home");
+            return RedirectToAction("DatosIncorrectos");
+        }
+    }
+
+    public IActionResult DatosIncorrectos()
+    {
+        string user = HttpContext.Session.GetString("User");
+        if (string.IsNullOrEmpty(user))
+        {
+            return View();
+        }
+        else
+        {
+            return RedirectToAction("Index");
         }
     }
 
@@ -100,8 +113,16 @@ public class HomeController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            DataTable tabla = pedidoRepositorio.PedidosPorCliente();
-            return View(tabla);
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
+            {
+                DataTable tabla = pedidoRepositorio.PedidosPorCliente();
+                return View(tabla);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         else
         {
@@ -114,8 +135,16 @@ public class HomeController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            DataTable tabla = pedidoRepositorio.PedidosPorCadete();
-            return View(tabla);
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
+            {
+                DataTable tabla = pedidoRepositorio.PedidosPorCadete();
+                return View(tabla);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         else
         {

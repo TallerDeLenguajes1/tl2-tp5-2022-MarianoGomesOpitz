@@ -29,7 +29,15 @@ public class PedidoController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            return View(pedidoRepositorio.GetAll());
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
+            {
+                return View(pedidoRepositorio.GetAll());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         else
         {
@@ -42,7 +50,15 @@ public class PedidoController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            return View();
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         else
         {
@@ -56,16 +72,53 @@ public class PedidoController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            if (ModelState.IsValid)
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
             {
-                ClienteViewModel auxCliente = clienteRepositorio.GetByName(pedido.NombreCliente);
-                pedidoRepositorio.Create(new(pedido.Observaciones, Convert.ToString((status)1), auxCliente));
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        ClienteViewModel auxCliente = clienteRepositorio.GetByName(pedido.NombreCliente);
+                        pedidoRepositorio.Create(new(pedido.Observaciones, Convert.ToString((status)1), auxCliente));
 
-                return RedirectToAction("Index");
+                        return RedirectToAction("Index");
+                    }
+                    catch
+                    {
+                        return RedirectToAction("NoExiste");
+                        throw;
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("Error", "Home");
+                }
             }
             else
             {
-                return RedirectToAction("Error", "Home");
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
+    }
+
+    public IActionResult NoExiste()
+    {
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
             }
         }
         else
@@ -79,9 +132,17 @@ public class PedidoController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            PedidoACadete pedCad = new(id, cadeteRepositorio.GetAll());
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
+            {
+                PedidoACadete pedCad = new(id, cadeteRepositorio.GetAll());
 
-            return View(pedCad);
+                return View(pedCad);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         else
         {
@@ -95,9 +156,17 @@ public class PedidoController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            pedidoRepositorio.AsignarCadete(IdPedido, IdCadete);
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
+            {
+                pedidoRepositorio.AsignarCadete(IdPedido, IdCadete);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         else
         {
@@ -139,9 +208,17 @@ public class PedidoController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            CambiarCadete pedCad = new(idPedido, idCadete, cadeteRepositorio.GetAll());
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
+            {
+                CambiarCadete pedCad = new(idPedido, idCadete, cadeteRepositorio.GetAll());
 
-            return View(pedCad);
+                return View(pedCad);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         else
         {
@@ -155,9 +232,17 @@ public class PedidoController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            pedidoRepositorio.CambiarCadete(IdPedido, IdCadeteACambiar);
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
+            {
+                pedidoRepositorio.CambiarCadete(IdPedido, IdCadeteACambiar);
 
-            return RedirectToAction("Index", "Cadete");
+                return RedirectToAction("Index", "Cadete");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         else
         {
@@ -170,8 +255,16 @@ public class PedidoController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            PedidoViewModel _pedido_ = pedidoRepositorio.GetById(id);
-            return View(new EditarPedidoViewModel(_pedido_.NroPedido, _pedido_.Observaciones));
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
+            {
+                PedidoViewModel _pedido_ = pedidoRepositorio.GetById(id);
+                return View(new EditarPedidoViewModel(_pedido_.NroPedido, _pedido_.Observaciones));
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         else
         {
@@ -185,15 +278,23 @@ public class PedidoController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            if (ModelState.IsValid)
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
             {
-                pedidoRepositorio.UpdatePedido(new(_pedido_.NroPedido, _pedido_.Observaciones));
+                if (ModelState.IsValid)
+                {
+                    pedidoRepositorio.UpdatePedido(new(_pedido_.NroPedido, _pedido_.Observaciones));
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Error", "Home");
+                }
             }
             else
             {
-                return RedirectToAction("Error", "Home");
+                return RedirectToAction("Index", "Home");
             }
         }
         else
@@ -207,9 +308,17 @@ public class PedidoController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            pedidoRepositorio.Delete(id);
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
+            {
+                pedidoRepositorio.Delete(id);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         else
         {

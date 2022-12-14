@@ -25,7 +25,37 @@ public class CadeteController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            return View(cadeteRepository.GetAll());
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
+            {
+                return View(cadeteRepository.GetAll());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        else
+        {
+            return RedirectToAction("Login", "Home");
+        }
+    }
+
+    public IActionResult CadeteNombre()
+    {
+        string user = HttpContext.Session.GetString("User");
+        if (!(string.IsNullOrEmpty(user)))
+        {
+            string rol = HttpContext.Session.GetString("Role");
+            string name = HttpContext.Session.GetString("Name");
+            if (rol == "Cadete")
+            {
+                return View(cadeteRepository.GetByName(name));
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         else
         {
@@ -38,7 +68,15 @@ public class CadeteController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            return View(cadeteRepository.GetById(id));
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
+            {
+                return View(cadeteRepository.GetById(id));
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         else
         {
@@ -51,7 +89,15 @@ public class CadeteController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            return View();
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         else
         {
@@ -65,15 +111,23 @@ public class CadeteController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            if (ModelState.IsValid)
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
             {
-                cadeteRepository.Create(new(_cadete_.Nombre, _cadete_.Direccion, _cadete_.Telefono));
+                if (ModelState.IsValid)
+                {
+                    cadeteRepository.Create(new(_cadete_.Nombre, _cadete_.Direccion, _cadete_.Telefono));
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Error", "Home");
+                }
             }
             else
             {
-                return RedirectToAction("Error", "Home");
+                return RedirectToAction("Index", "Home");
             }
         }
         else
@@ -87,8 +141,16 @@ public class CadeteController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            CadeteViewModel cadete = cadeteRepository.GetById(id);
-            return View(new EditarCadeteViewModel(id, cadete.Nombre, cadete.Direccion, cadete.Telefono));
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
+            {
+                CadeteViewModel cadete = cadeteRepository.GetById(id);
+                return View(new EditarCadeteViewModel(id, cadete.Nombre, cadete.Direccion, cadete.Telefono));
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         else
         {
@@ -102,15 +164,23 @@ public class CadeteController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            if (ModelState.IsValid)
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
             {
-                cadeteRepository.Update(new(_cadete_.Id, _cadete_.Nombre, _cadete_.Direccion, _cadete_.Telefono));
+                if (ModelState.IsValid)
+                {
+                    cadeteRepository.Update(new(_cadete_.Id, _cadete_.Nombre, _cadete_.Direccion, _cadete_.Telefono));
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Error", "Home");
+                }
             }
             else
             {
-                return RedirectToAction("Error", "Home");
+                return RedirectToAction("Index", "Home");
             }
         }
         else
@@ -124,9 +194,17 @@ public class CadeteController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            cadeteRepository.Delete(id);
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
+            {
+                cadeteRepository.Delete(id);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         else
         {

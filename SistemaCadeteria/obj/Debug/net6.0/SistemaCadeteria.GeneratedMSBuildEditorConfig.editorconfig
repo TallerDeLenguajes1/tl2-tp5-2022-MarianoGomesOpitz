@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\tl2-tp5-2022-MarianoGomesOpitz\SistemaCadeteria
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Cadete/CadeteNombre.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FkZXRlXENhZGV0ZU5vbWJyZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Cadete/Crear.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FkZXRlXENyZWFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -41,6 +45,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Cliente/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Home/DatosIncorrectos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEYXRvc0luY29ycmVjdG9zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Home/Error.cshtml]
@@ -85,6 +93,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Pedido/ModificarEstado.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXE1vZGlmaWNhckVzdGFkby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Pedido/NoExiste.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXE5vRXhpc3RlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/tl2-tp5-2022-MarianoGomesOpitz/SistemaCadeteria/Views/Pedido/PertenenciaCliente.cshtml]

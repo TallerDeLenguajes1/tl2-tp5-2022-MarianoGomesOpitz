@@ -1,0 +1,45 @@
+@model SistemaCadeteria.ViewModels.CadeteViewModel;
+
+@{
+    ViewData["Title"] = "Pedidos asignados";
+}
+
+@if (Model.Nombre != null)
+{
+    <h1>Pedidos asignados a @Model.Nombre</h1>
+    if (Model.Pedidos.Count() == 0)
+    {
+        <p>El cadete no posee pedidos asignados</p>
+    }
+    else
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Estado del pedido</th>
+                    <th>Observaciones</th>
+                    <th>Modificar estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pedido in Model.Pedidos)
+                {
+                    <tr>
+                        <td>@pedido.Costumer.Nombre</td>
+                        <td>@pedido.Estado</td>
+                        <td>@pedido.Observaciones</td>
+                        <td><a href="/Pedido/ModificarEstado/?idPedido=@pedido.NroPedido">Modificar</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+else
+{
+    <h1>No existe tal cadete</h1>
+}
+
+<br>
+<a asp-controller="Home" asp-action="CerrarSesion">Cerrar sesion</a>

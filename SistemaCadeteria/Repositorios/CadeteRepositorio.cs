@@ -11,6 +11,7 @@ namespace SistemaCadeteria.Repositorios
     {
         public List<CadeteViewModel> GetAll();
         public CadeteViewModel GetById(int idCadete);
+        public CadeteViewModel GetByName(string nombreCadete);
         public void Create(CadeteViewModel cadete);
         public void Update(CadeteViewModel cadete);
         public void Delete(int id);
@@ -80,6 +81,45 @@ namespace SistemaCadeteria.Repositorios
 
             return (cadete);
         }
+
+        public CadeteViewModel GetByName(string nombreCadete)
+        {
+            SqliteConnection connection = new SqliteConnection(cadenaConexion);
+            SqliteDataReader lector;
+
+            CadeteViewModel cadete = new();
+            SqliteCommand command2 = connection.CreateCommand();
+            command2.CommandText = $"SELECT * FROM Cadete WHERE Nombre = '{nombreCadete}';";
+            connection.Open();
+            lector = command2.ExecuteReader();
+            while (lector.Read())
+            {
+                cadete = new(Convert.ToInt32(lector[0]), Convert.ToString(lector[1]), Convert.ToString(lector[2]), Convert.ToInt64(lector[3]));
+            }
+            connection.Close();
+
+            SqliteCommand command1 = connection.CreateCommand();
+            command1.CommandText = $"SELECT IdPedido FROM Pedido_Cadete WHERE IdCadete = '{cadete.Id}';";
+            connection.Open();
+            lector = command1.ExecuteReader();
+            List<Int32> ids = new();
+            while (lector.Read())
+            {
+                ids.Add(Convert.ToInt32(lector[0]));
+            }
+            connection.Close();
+
+            List<PedidoViewModel> peds = new();
+            foreach (var id in ids)
+            {
+                peds.Add(pedidoRepositorio.GetById(id));
+            }
+
+            cadete.Pedidos = peds;
+
+            return (cadete);
+        }
+
         public void Create(CadeteViewModel cadete)
         {
             SqliteConnection connection = new SqliteConnection(cadenaConexion);

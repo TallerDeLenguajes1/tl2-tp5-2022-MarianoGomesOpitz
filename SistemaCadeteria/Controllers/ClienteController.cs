@@ -25,7 +25,15 @@ public class ClienteController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            return View(clienteRepository.GetAll());
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
+            {
+                return View(clienteRepository.GetAll());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         else
         {
@@ -38,7 +46,15 @@ public class ClienteController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            return View();
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         else
         {
@@ -52,15 +68,23 @@ public class ClienteController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            if (ModelState.IsValid)
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
             {
-                clienteRepository.Create(new(_cliente_.Nombre, _cliente_.Direccion, _cliente_.Telefono, _cliente_.DatosReferenciaDireccion));
+                if (ModelState.IsValid)
+                {
+                    clienteRepository.Create(new(_cliente_.Nombre, _cliente_.Direccion, _cliente_.Telefono, _cliente_.DatosReferenciaDireccion));
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Error", "Home");
+                }
             }
             else
             {
-                return RedirectToAction("Error", "Home");
+                return RedirectToAction("Index", "Home");
             }
         }
         else
@@ -74,8 +98,17 @@ public class ClienteController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            ClienteViewModel _cliente_ = clienteRepository.GetById(id);
-            return View(new EditarClienteViewModel(id, _cliente_.Nombre, _cliente_.Direccion, _cliente_.Telefono, _cliente_.DatosReferenciaDireccion));
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
+            {
+                ClienteViewModel _cliente_ = clienteRepository.GetById(id);
+                return View(new EditarClienteViewModel(id, _cliente_.Nombre, _cliente_.Direccion, _cliente_.Telefono, _cliente_.DatosReferenciaDireccion));
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         else
         {
@@ -89,15 +122,23 @@ public class ClienteController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            if (ModelState.IsValid)
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
             {
-                clienteRepository.Update(new(_cliente_.Id, _cliente_.Nombre, _cliente_.Direccion, _cliente_.Telefono, _cliente_.DatosReferenciaDireccion));
+                if (ModelState.IsValid)
+                {
+                    clienteRepository.Update(new(_cliente_.Id, _cliente_.Nombre, _cliente_.Direccion, _cliente_.Telefono, _cliente_.DatosReferenciaDireccion));
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Error", "Home");
+                }
             }
             else
             {
-                return RedirectToAction("Error", "Home");
+                return RedirectToAction("Index", "Home");
             }
         }
         else
@@ -111,9 +152,17 @@ public class ClienteController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            clienteRepository.Delete(id);
+            string rol = HttpContext.Session.GetString("Role");
+            if (rol == "Admin")
+            {
+                clienteRepository.Delete(id);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         else
         {
