@@ -5,19 +5,19 @@ public class Pedido
     //numero, obs, cliente, estado
     private int nroPedido;
     private string observaciones;
-    private status estado;
+    private string estado;
     private Cliente costumer;
 
     public int NroPedido { get => nroPedido; set => nroPedido = value; }
     public string Observaciones { get => observaciones; set => observaciones = value; }
-    internal status Estado { get => estado; set => estado = value; }
+    internal string Estado { get => estado; set => estado = value; }
     public Cliente Costumer { get => costumer; set => costumer = value; }
 
     public Pedido()
     {
         this.NroPedido = 0;
         this.Observaciones = "";
-        this.Estado = (status)1;
+        this.Estado = Convert.ToString((status)1);
         this.Costumer = new Cliente();
     }
 
@@ -27,7 +27,7 @@ public class Pedido
 
         this.Observaciones = obs;
 
-        this.Estado = (status)est;
+        this.Estado = Convert.ToString((status)est);
 
         this.Costumer = cos;
     }

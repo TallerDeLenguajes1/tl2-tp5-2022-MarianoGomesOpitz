@@ -9,18 +9,18 @@ namespace SistemaCadeteria.ViewModels
     {
         public string DatosReferenciaDireccion { get; set; }
 
-    public ClienteViewModel() : base()
-    { }
+        public ClienteViewModel() : base()
+        { }
 
-    public ClienteViewModel(string name, string direcc, long tel, string datosRef) : base(name, direcc, tel)
-    {
-        this.DatosReferenciaDireccion = datosRef;
-    }
+        public ClienteViewModel(string name, string direcc, long tel, string datosRef) : base(name, direcc, tel)
+        {
+            this.DatosReferenciaDireccion = datosRef;
+        }
 
-    public ClienteViewModel(int i, string name, string direcc, long tel, string datosRef) : base(i, name, direcc, tel)
-    {
-        this.DatosReferenciaDireccion = datosRef;
-    }
+        public ClienteViewModel(int i, string name, string direcc, long tel, string datosRef) : base(i, name, direcc, tel)
+        {
+            this.DatosReferenciaDireccion = datosRef;
+        }
     }
 
     public class CrearClienteViewModel
@@ -76,6 +76,27 @@ namespace SistemaCadeteria.ViewModels
             this.Direccion = direcc;
             this.Telefono = tel;
             this.DatosReferenciaDireccion = datos;
+        }
+    }
+
+    public class MapperClienteViewModel
+    {
+        public List<ClienteViewModel> GetClienteViewModel(List<Cliente> clientes)
+        {
+            List<ClienteViewModel> cliViewModels = new();
+
+            foreach (var cliente in clientes)
+            {
+                ClienteViewModel cliViewModel = new();
+                cliViewModel.Id = cliente.Id;
+                cliViewModel.Nombre = cliente.Nombre;
+                cliViewModel.Direccion = cliente.Direccion;
+                cliViewModel.Telefono = cliente.Telefono;
+                cliViewModel.DatosReferenciaDireccion = cliente.DatosReferenciaDireccion;
+                cliViewModels.Add(cliViewModel);
+            }
+
+            return cliViewModels;
         }
     }
 }

@@ -71,4 +71,26 @@ namespace SistemaCadeteria.ViewModels
             this.Telefono = tel;
         }
     }
+
+    public class MapperCadeteViewModel
+    {
+        public List<CadeteViewModel> GetCadeteViewModel(List<Cadete> cadetes)
+        {
+            List<CadeteViewModel> cadViewModels = new();
+
+            foreach (var cadete in cadetes)
+            {
+                CadeteViewModel cadViewModel = new();
+                cadViewModel.Id = cadete.Id;
+                cadViewModel.Nombre = cadete.Nombre;
+                cadViewModel.Direccion = cadete.Direccion;
+                cadViewModel.Telefono = cadete.Telefono;
+                cadViewModel.Pedidos = cadViewModel.Pedidos;
+                cadViewModels.Add(cadViewModel);
+            }
+
+            return cadViewModels;
+        }
+
+    }
 }

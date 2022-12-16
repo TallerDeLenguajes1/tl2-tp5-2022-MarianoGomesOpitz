@@ -22,7 +22,7 @@ public class Cadete : Persona
 
         foreach (var item in this.Pedidos)
         {
-            if (item.Estado == (status)3)
+            if (item.Estado == Convert.ToString((status)3))
             {
                 (pedidosEntregados)++;
             }

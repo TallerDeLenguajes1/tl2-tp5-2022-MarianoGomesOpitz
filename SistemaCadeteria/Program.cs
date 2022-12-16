@@ -1,6 +1,9 @@
 using SistemaCadeteria.Repositorios;
 
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAutoMapper(typeof(Program));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -18,7 +21,6 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 
