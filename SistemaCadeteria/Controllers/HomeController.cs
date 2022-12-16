@@ -16,7 +16,6 @@ public class HomeController : Controller
     private readonly ILogger<HomeController> _logger;
 
     static string connectionString = "Data Source=DB/PedidosDB.db;Cache=Shared";
-    SqliteConnection connection = new SqliteConnection(connectionString);
     SqliteDataReader lector;
     private readonly IPedidoRepository pedidoRepositorio;
 
@@ -52,32 +51,43 @@ public class HomeController : Controller
     public IActionResult IniciarSesion(string user, string password)
     {
         int count = 0;
-        SqliteConnection connection = new SqliteConnection(connectionString);
-        SqliteCommand command1 = connection.CreateCommand();
-        connection.Open();
-        command1.CommandText = $"SELECT COUNT(*) FROM Usuarios WHERE User ='{user}' AND Password = '{password}';";
-        count = Convert.ToInt32(command1.ExecuteScalar());
-        connection.Close();
 
-        if (count == 1)
+        using (SqliteConnection connection = new SqliteConnection(connectionString))
         {
-            SqliteCommand command2 = connection.CreateCommand();
-            command2.CommandText = $"SELECT Name, User, Role FROM Usuarios WHERE User ='{user}' AND Password = '{password}';";
+            string queryString1 = $"SELECT COUNT(*) FROM Usuarios WHERE User ='{user}' AND Password = '{password}';";
+            var command1 = new SqliteCommand(queryString1, connection);
+
             connection.Open();
-            lector = command2.ExecuteReader();
-            while (lector.Read())
-            {
-                HttpContext.Session.SetString("Name", Convert.ToString(lector[0]));
-                HttpContext.Session.SetString("User", Convert.ToString(lector[1]));
-                HttpContext.Session.SetString("Role", Convert.ToString(lector[2]));
-            }
+
+            count = Convert.ToInt32(command1.ExecuteScalar());
+
             connection.Close();
 
-            return RedirectToAction("Index");
-        }
-        else
-        {
-            return RedirectToAction("DatosIncorrectos");
+            if (count == 1)
+            {
+                string queryString2 = $"SELECT Name, User, Role FROM Usuarios WHERE User ='{user}' AND Password = '{password}';";
+                var command2 = new SqliteCommand(queryString2, connection);
+
+                connection.Open();
+
+                using (var lector = command2.ExecuteReader())
+                {
+                    while (lector.Read())
+                    {
+                        HttpContext.Session.SetString("Name", Convert.ToString(lector[0]));
+                        HttpContext.Session.SetString("User", Convert.ToString(lector[1]));
+                        HttpContext.Session.SetString("Role", Convert.ToString(lector[2]));
+                    }
+                }
+
+                connection.Close();
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("DatosIncorrectos");
+            }
         }
     }
 

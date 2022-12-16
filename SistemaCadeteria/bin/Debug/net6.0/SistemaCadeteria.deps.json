@@ -11,12 +11,7 @@
           "AutoMapper": "12.0.0",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.0",
           "Microsoft.AspNetCore.Session": "2.2.0",
-          "Microsoft.Data.Sqlite": "6.0.10",
-          "SQLite": "3.13.0",
-          "SQLitePCLRaw.bundle_e_sqlite3": "2.1.2",
-          "SQLitePCLRaw.core": "2.1.2",
-          "SQLitePCLRaw.lib.e_sqlite3": "2.1.2",
-          "SQLitePCLRaw.provider.e_sqlite3": "2.1.2",
+          "Microsoft.Data.Sqlite": "7.0.0",
           "System.Data.SQLite": "1.0.116"
         },
         "runtime": {
@@ -114,20 +109,20 @@
         }
       },
       "Microsoft.CSharp/4.7.0": {},
-      "Microsoft.Data.Sqlite/6.0.10": {
+      "Microsoft.Data.Sqlite/7.0.0": {
         "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "6.0.10",
+          "Microsoft.Data.Sqlite.Core": "7.0.0",
           "SQLitePCLRaw.bundle_e_sqlite3": "2.1.2"
         }
       },
-      "Microsoft.Data.Sqlite.Core/6.0.10": {
+      "Microsoft.Data.Sqlite.Core/7.0.0": {
         "dependencies": {
           "SQLitePCLRaw.core": "2.1.2"
         },
         "runtime": {
           "lib/net6.0/Microsoft.Data.Sqlite.dll": {
-            "assemblyVersion": "6.0.10.0",
-            "fileVersion": "6.0.1022.47607"
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.22.51807"
           }
         }
       },
@@ -224,30 +219,6 @@
             "rid": "win-x86",
             "assetType": "native",
             "fileVersion": "4.6.25512.1"
-          }
-        }
-      },
-      "SQLite/3.13.0": {
-        "runtimeTargets": {
-          "runtimes/linux-x64/native/libsqlite3.so": {
-            "rid": "linux-x64",
-            "assetType": "native",
-            "fileVersion": "0.0.0.0"
-          },
-          "runtimes/osx-x64/native/libsqlite3.dylib": {
-            "rid": "osx-x64",
-            "assetType": "native",
-            "fileVersion": "0.0.0.0"
-          },
-          "runtimes/win7-x64/native/sqlite3.dll": {
-            "rid": "win7-x64",
-            "assetType": "native",
-            "fileVersion": "3.13.0.0"
-          },
-          "runtimes/win7-x86/native/sqlite3.dll": {
-            "rid": "win7-x86",
-            "assetType": "native",
-            "fileVersion": "3.13.0.0"
           }
         }
       },
@@ -686,19 +657,19 @@
       "path": "microsoft.csharp/4.7.0",
       "hashPath": "microsoft.csharp.4.7.0.nupkg.sha512"
     },
-    "Microsoft.Data.Sqlite/6.0.10": {
+    "Microsoft.Data.Sqlite/7.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-pqOOplHlr/5pvq2N9NYdsCVaY7ffzz5nNzaKBgjPDrWoQg33+KG/mOjhirsxCFBYgodA6rUdwp3Gic/TpBhUQQ==",
-      "path": "microsoft.data.sqlite/6.0.10",
-      "hashPath": "microsoft.data.sqlite.6.0.10.nupkg.sha512"
+      "sha512": "sha512-/2UYhPUJTDjUWdCn+qiiEN672TGqa25rtnIYp9mbNI39mX47C9ArBHO3nIpa5/jO6ISy1jBzIl9Vx5Tmygu/cg==",
+      "path": "microsoft.data.sqlite/7.0.0",
+      "hashPath": "microsoft.data.sqlite.7.0.0.nupkg.sha512"
     },
-    "Microsoft.Data.Sqlite.Core/6.0.10": {
+    "Microsoft.Data.Sqlite.Core/7.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-TWUjLTzSeENkEChqWrcaAzIrD9i5M2l2qrWDI00lC38xBPUuK1Qf57ZywO+dwmr2S3yS0VUPvpdpqCrq60QaRw==",
-      "path": "microsoft.data.sqlite.core/6.0.10",
-      "hashPath": "microsoft.data.sqlite.core.6.0.10.nupkg.sha512"
+      "sha512": "sha512-WC7SANtaFTmQ/WPyhrE96h88MrH28C7kTBenDf5Eo+IR6CbWM0Uw2pR2++tyYr3qe/zSIsIYroEupB1mLg/adw==",
+      "path": "microsoft.data.sqlite.core/7.0.0",
+      "hashPath": "microsoft.data.sqlite.core.7.0.0.nupkg.sha512"
     },
     "Microsoft.Extensions.Caching.Abstractions/2.2.0": {
       "type": "package",
@@ -804,13 +775,6 @@
       "sha512": "sha512-YhEdSQUsTx+C8m8Bw7ar5/VesXvCFMItyZF7G1AUY+OM0VPZUOeAVpJ4Wl6fydBGUYZxojTDR3I6Bj/+BPkJNA==",
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "hashPath": "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
-    },
-    "SQLite/3.13.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-MJfRiz2p6aMVOxrxGMdVzhpzI0oxTgZSwC8eVuOpV8L7yYaFUu8q/OFYwv9P0/aZ/pdEu24O6gma6wZJMTun9A==",
-      "path": "sqlite/3.13.0",
-      "hashPath": "sqlite.3.13.0.nupkg.sha512"
     },
     "SQLitePCLRaw.bundle_e_sqlite3/2.1.2": {
       "type": "package",

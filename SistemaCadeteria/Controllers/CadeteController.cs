@@ -2,7 +2,6 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using SistemaCadeteria.Models;
 using SistemaCadeteria.ViewModels;
-using Microsoft.Data.Sqlite;
 using SistemaCadeteria.Repositorios;
 
 namespace SistemaCadeteria.Controllers;

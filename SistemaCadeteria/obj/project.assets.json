@@ -164,11 +164,11 @@
           "lib/netcoreapp2.0/_._": {}
         }
       },
-      "Microsoft.Data.Sqlite/6.0.10": {
+      "Microsoft.Data.Sqlite/7.0.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "6.0.10",
-          "SQLitePCLRaw.bundle_e_sqlite3": "2.0.6"
+          "Microsoft.Data.Sqlite.Core": "7.0.0",
+          "SQLitePCLRaw.bundle_e_sqlite3": "2.1.2"
         },
         "compile": {
           "lib/netstandard2.0/_._": {}
@@ -177,10 +177,10 @@
           "lib/netstandard2.0/_._": {}
         }
       },
-      "Microsoft.Data.Sqlite.Core/6.0.10": {
+      "Microsoft.Data.Sqlite.Core/7.0.0": {
         "type": "package",
         "dependencies": {
-          "SQLitePCLRaw.core": "2.0.6"
+          "SQLitePCLRaw.core": "2.1.2"
         },
         "compile": {
           "lib/net6.0/Microsoft.Data.Sqlite.dll": {}
@@ -371,33 +371,6 @@
           "runtimes/win-x86/native/sni.dll": {
             "assetType": "native",
             "rid": "win-x86"
-          }
-        }
-      },
-      "SQLite/3.13.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard1.0/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard1.0/_._": {}
-        },
-        "runtimeTargets": {
-          "runtimes/linux-x64/native/libsqlite3.so": {
-            "assetType": "native",
-            "rid": "linux-x64"
-          },
-          "runtimes/osx-x64/native/libsqlite3.dylib": {
-            "assetType": "native",
-            "rid": "osx-x64"
-          },
-          "runtimes/win7-x64/native/sqlite3.dll": {
-            "assetType": "native",
-            "rid": "win7-x64"
-          },
-          "runtimes/win7-x86/native/sqlite3.dll": {
-            "assetType": "native",
-            "rid": "win7-x86"
           }
         }
       },
@@ -1092,23 +1065,23 @@
         "version.txt"
       ]
     },
-    "Microsoft.Data.Sqlite/6.0.10": {
-      "sha512": "pqOOplHlr/5pvq2N9NYdsCVaY7ffzz5nNzaKBgjPDrWoQg33+KG/mOjhirsxCFBYgodA6rUdwp3Gic/TpBhUQQ==",
+    "Microsoft.Data.Sqlite/7.0.0": {
+      "sha512": "/2UYhPUJTDjUWdCn+qiiEN672TGqa25rtnIYp9mbNI39mX47C9ArBHO3nIpa5/jO6ISy1jBzIl9Vx5Tmygu/cg==",
       "type": "package",
-      "path": "microsoft.data.sqlite/6.0.10",
+      "path": "microsoft.data.sqlite/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/netstandard2.0/_._",
-        "microsoft.data.sqlite.6.0.10.nupkg.sha512",
+        "microsoft.data.sqlite.7.0.0.nupkg.sha512",
         "microsoft.data.sqlite.nuspec"
       ]
     },
-    "Microsoft.Data.Sqlite.Core/6.0.10": {
-      "sha512": "TWUjLTzSeENkEChqWrcaAzIrD9i5M2l2qrWDI00lC38xBPUuK1Qf57ZywO+dwmr2S3yS0VUPvpdpqCrq60QaRw==",
+    "Microsoft.Data.Sqlite.Core/7.0.0": {
+      "sha512": "WC7SANtaFTmQ/WPyhrE96h88MrH28C7kTBenDf5Eo+IR6CbWM0Uw2pR2++tyYr3qe/zSIsIYroEupB1mLg/adw==",
       "type": "package",
-      "path": "microsoft.data.sqlite.core/6.0.10",
+      "path": "microsoft.data.sqlite.core/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1117,7 +1090,7 @@
         "lib/net6.0/Microsoft.Data.Sqlite.xml",
         "lib/netstandard2.0/Microsoft.Data.Sqlite.dll",
         "lib/netstandard2.0/Microsoft.Data.Sqlite.xml",
-        "microsoft.data.sqlite.core.6.0.10.nupkg.sha512",
+        "microsoft.data.sqlite.core.7.0.0.nupkg.sha512",
         "microsoft.data.sqlite.core.nuspec"
       ]
     },
@@ -1411,27 +1384,6 @@
         "runtimes/win-x86/native/sni.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
-      ]
-    },
-    "SQLite/3.13.0": {
-      "sha512": "MJfRiz2p6aMVOxrxGMdVzhpzI0oxTgZSwC8eVuOpV8L7yYaFUu8q/OFYwv9P0/aZ/pdEu24O6gma6wZJMTun9A==",
-      "type": "package",
-      "path": "sqlite/3.13.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "build/net45/SQLite.props",
-        "lib/netstandard1.0/_._",
-        "runtimes/linux-x64/native/libsqlite3.so",
-        "runtimes/osx-x64/native/libsqlite3.dylib",
-        "runtimes/win10-arm/nativeassets/uap10.0/sqlite3.dll",
-        "runtimes/win10-x64/nativeassets/uap10.0/sqlite3.dll",
-        "runtimes/win10-x86/nativeassets/uap10.0/sqlite3.dll",
-        "runtimes/win7-x64/native/sqlite3.dll",
-        "runtimes/win7-x86/native/sqlite3.dll",
-        "sqlite-version.txt",
-        "sqlite.3.13.0.nupkg.sha512",
-        "sqlite.nuspec"
       ]
     },
     "SQLitePCLRaw.bundle_e_sqlite3/2.1.2": {
@@ -2244,12 +2196,7 @@
       "AutoMapper >= 12.0.0",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.0",
       "Microsoft.AspNetCore.Session >= 2.2.0",
-      "Microsoft.Data.Sqlite >= 6.0.10",
-      "SQLite >= 3.13.0",
-      "SQLitePCLRaw.bundle_e_sqlite3 >= 2.1.2",
-      "SQLitePCLRaw.core >= 2.1.2",
-      "SQLitePCLRaw.lib.e_sqlite3 >= 2.1.2",
-      "SQLitePCLRaw.provider.e_sqlite3 >= 2.1.2",
+      "Microsoft.Data.Sqlite >= 7.0.0",
       "System.Data.SQLite >= 1.0.116"
     ]
   },
@@ -2304,27 +2251,7 @@
           },
           "Microsoft.Data.Sqlite": {
             "target": "Package",
-            "version": "[6.0.10, )"
-          },
-          "SQLite": {
-            "target": "Package",
-            "version": "[3.13.0, )"
-          },
-          "SQLitePCLRaw.bundle_e_sqlite3": {
-            "target": "Package",
-            "version": "[2.1.2, )"
-          },
-          "SQLitePCLRaw.core": {
-            "target": "Package",
-            "version": "[2.1.2, )"
-          },
-          "SQLitePCLRaw.lib.e_sqlite3": {
-            "target": "Package",
-            "version": "[2.1.2, )"
-          },
-          "SQLitePCLRaw.provider.e_sqlite3": {
-            "target": "Package",
-            "version": "[2.1.2, )"
+            "version": "[7.0.0, )"
           },
           "System.Data.SQLite": {
             "target": "Package",

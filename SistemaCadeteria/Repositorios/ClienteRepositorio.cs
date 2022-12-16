@@ -30,83 +30,120 @@ namespace SistemaCadeteria.Repositorios
         {
             List<ClienteViewModel> clientes = new();
 
-            SqliteConnection connection = new SqliteConnection(cadenaConexion);
-            SqliteDataReader lector;
-            SqliteCommand command = connection.CreateCommand();
-            connection.Open();
-            command.CommandText = $"SELECT * FROM Cliente;";
-            lector = command.ExecuteReader();
-            while (lector.Read())
+            using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
             {
-                clientes.Add(new(Convert.ToInt32(lector[0]), Convert.ToString(lector[1]), Convert.ToString(lector[2]), Convert.ToInt64(lector[3]), Convert.ToString(lector[4])));
+                string queryString = $"SELECT * FROM Cliente;";
+                var command = new SqliteCommand(queryString, connection);
+
+                connection.Open();
+
+                using (var lector = command.ExecuteReader())
+                {
+                    while (lector.Read())
+                    {
+                        clientes.Add(new(Convert.ToInt32(lector[0]), Convert.ToString(lector[1]), Convert.ToString(lector[2]), Convert.ToInt64(lector[3]), Convert.ToString(lector[4])));
+                    }
+                }
+
+                connection.Close();
             }
-            connection.Close();
 
             return (clientes);
         }
+
         public ClienteViewModel GetById(int idCliente)
         {
             ClienteViewModel cliente = new();
 
-            SqliteConnection connection = new SqliteConnection(cadenaConexion);
-            SqliteDataReader lector;
-            SqliteCommand command = connection.CreateCommand();
-            command.CommandText = $"SELECT * FROM Cliente WHERE IdCliente = '{idCliente}';";
-            connection.Open();
-            lector = command.ExecuteReader();
-            while (lector.Read())
+            using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
             {
-                cliente = new(Convert.ToInt32(lector[0]), Convert.ToString(lector[1]), Convert.ToString(lector[2]), Convert.ToInt64(lector[3]), Convert.ToString(lector[4]));
+                string queryString = $"SELECT * FROM Cliente WHERE IdCliente = '{idCliente}';";
+                var command1 = new SqliteCommand(queryString, connection);
+
+                connection.Open();
+
+                using (var lector = command1.ExecuteReader())
+                {
+                    while (lector.Read())
+                    {
+                        cliente = new(Convert.ToInt32(lector[0]), Convert.ToString(lector[1]), Convert.ToString(lector[2]), Convert.ToInt64(lector[3]), Convert.ToString(lector[4]));
+                    }
+                }
+
+                connection.Close();
             }
-            connection.Close();
 
             return (cliente);
         }
+
         public ClienteViewModel GetByName(string nombreCliente)
         {
             ClienteViewModel cliente = new();
 
-            SqliteConnection connection = new SqliteConnection(cadenaConexion);
-            SqliteDataReader lector;
-            SqliteCommand command = connection.CreateCommand();
-            command.CommandText = $"SELECT * FROM Cliente WHERE Nombre = '{nombreCliente}';";
-            connection.Open();
-            lector = command.ExecuteReader();
-            while (lector.Read())
+            using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
             {
-                cliente = new(Convert.ToInt32(lector[0]), Convert.ToString(lector[1]), Convert.ToString(lector[2]), Convert.ToInt64(lector[3]), Convert.ToString(lector[4]));
+                string queryString = $"SELECT * FROM Cliente WHERE Nombre = '{nombreCliente}';";
+                var command1 = new SqliteCommand(queryString, connection);
+
+                connection.Open();
+
+                using (var lector = command1.ExecuteReader())
+                {
+                    while (lector.Read())
+                    {
+                        cliente = new(Convert.ToInt32(lector[0]), Convert.ToString(lector[1]), Convert.ToString(lector[2]), Convert.ToInt64(lector[3]), Convert.ToString(lector[4]));
+                    }
+                }
+
+                connection.Close();
             }
-            connection.Close();
 
             return (cliente);
         }
+
         public void Create(ClienteViewModel cliente)
         {
-            SqliteConnection connection = new SqliteConnection(cadenaConexion);
-            SqliteCommand command = connection.CreateCommand();
-            command.CommandText = $"INSERT INTO Cliente (Nombre, Direccion, Telefono, DatosReferencia) VALUES ('{cliente.Nombre}', '{cliente.Direccion}', '{cliente.Telefono}', '{cliente.DatosReferenciaDireccion}');";
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
+            {
+                string queryString = $"INSERT INTO Cliente (Nombre, Direccion, Telefono, DatosReferencia) VALUES ('{cliente.Nombre}', '{cliente.Direccion}', '{cliente.Telefono}', '{cliente.DatosReferenciaDireccion}');";
+                var command = new SqliteCommand(queryString, connection);
+
+                connection.Open();
+
+                command.ExecuteNonQuery();
+
+                connection.Close();
+            }
         }
+
         public void Update(ClienteViewModel cliente)
         {
-            SqliteConnection connection = new SqliteConnection(cadenaConexion);
-            SqliteCommand command = connection.CreateCommand();
-            command.CommandText = $"UPDATE Cliente SET Nombre = '{cliente.Nombre}', Direccion = '{cliente.Direccion}', Telefono = '{cliente.Telefono}', DatosReferencia = '{cliente.DatosReferenciaDireccion}' WHERE IdCliente = '{cliente.Id}';";
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
+            {
+                string queryString = $"UPDATE Cliente SET Nombre = '{cliente.Nombre}', Direccion = '{cliente.Direccion}', Telefono = '{cliente.Telefono}', DatosReferencia = '{cliente.DatosReferenciaDireccion}' WHERE IdCliente = '{cliente.Id}';";
+                var command = new SqliteCommand(queryString, connection);
+
+                connection.Open();
+
+                command.ExecuteNonQuery();
+
+                connection.Close();
+            }
         }
+
         public void Delete(int idCliente)
         {
+            using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
+            {
+                string queryString = $"DELETE FROM Cliente WHERE IdCliente = '{idCliente}';";
+                var command = new SqliteCommand(queryString, connection);
 
-            SqliteConnection connection = new SqliteConnection(cadenaConexion);
-            SqliteCommand command = connection.CreateCommand();
-            command.CommandText = $"DELETE FROM Cliente WHERE IdCliente = '{idCliente}';";
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+                connection.Open();
+
+                command.ExecuteNonQuery();
+
+                connection.Close();
+            }
         }
     }
 }
