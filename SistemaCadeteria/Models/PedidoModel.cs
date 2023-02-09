@@ -15,20 +15,26 @@ public class Pedido
 
     public Pedido()
     {
-        this.NroPedido = 0;
-        this.Observaciones = "";
-        this.Estado = Convert.ToString((status)1);
-        this.Costumer = new Cliente();
     }
 
-    public Pedido(int i, string obs, int est, Cliente cos)
-    {
-        this.NroPedido = i;
+    public Pedido(string obs, string est, Cliente C)
+        {
+            this.Observaciones = obs;
+            this.Estado = est;
+            this.Costumer = C;
+        }
 
-        this.Observaciones = obs;
+        public Pedido(int nro, string obs, string est, Cliente C)
+        {
+            this.NroPedido = nro;
+            this.Observaciones = obs;
+            this.Estado = est;
+            this.Costumer = C;
+        }
 
-        this.Estado = Convert.ToString((status)est);
-
-        this.Costumer = cos;
-    }
+        public Pedido(int nro, string obs)
+        {
+            this.NroPedido = nro;
+            this.Observaciones = obs;
+        }
 }

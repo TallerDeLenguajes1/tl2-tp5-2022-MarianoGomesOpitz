@@ -10,12 +10,12 @@ namespace SistemaCadeteria.Repositorios
 {
     public interface IPedidoRepository
     {
-        public List<PedidoViewModel> GetAll();
-        public PedidoViewModel GetById(int idPedido);
-        public void Create(PedidoViewModel pedido);
+        public List<Pedido> GetAll();
+        public Pedido GetById(int idPedido);
+        public void Create(Pedido pedido);
         public void AsignarCadete(int idPedido, int idCadete);
         public void CambiarCadete(int idPedido, int idCadeteACambiar);
-        public void UpdatePedido(PedidoViewModel pedido);
+        public void UpdatePedido(Pedido pedido);
         public void UpdateEstado(int idPedido, string Estado);
         public void Delete(int id);
         public DataTable PedidosPorCliente();
@@ -33,9 +33,9 @@ namespace SistemaCadeteria.Repositorios
             this.clienteRepository = new ClienteRepository(_cadenaConexion_);
         }
 
-        public List<PedidoViewModel> GetAll()
+        public List<Pedido> GetAll()
         {
-            List<PedidoViewModel> pedidos = new();
+            List<Pedido> pedidos = new();
 
             using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
             {
@@ -48,7 +48,7 @@ namespace SistemaCadeteria.Repositorios
                 {
                     while (lector.Read())
                     {
-                        ClienteViewModel auxCliente = clienteRepository.GetById(Convert.ToInt32(lector[1]));
+                        Cliente auxCliente = clienteRepository.GetById(Convert.ToInt32(lector[1]));
                         pedidos.Add(new(Convert.ToInt32(lector[0]), Convert.ToString(lector[2]), Convert.ToString(lector[3]), auxCliente));
                     }
                 }
@@ -80,9 +80,9 @@ namespace SistemaCadeteria.Repositorios
             return (pedidos);
         }
 
-        public PedidoViewModel GetById(int idPedido)
+        public Pedido GetById(int idPedido)
         {
-            PedidoViewModel pedido = new();
+            Pedido pedido = new();
 
             using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
             {
@@ -95,7 +95,7 @@ namespace SistemaCadeteria.Repositorios
                 {
                     while (lector.Read())
                     {
-                        ClienteViewModel auxCliente = clienteRepository.GetById(Convert.ToInt32(lector[1]));
+                        Cliente auxCliente = clienteRepository.GetById(Convert.ToInt32(lector[1]));
                         pedido = new(Convert.ToInt32(lector[0]), Convert.ToString(lector[2]), Convert.ToString(lector[3]), auxCliente);
                     }
                 }
@@ -106,7 +106,7 @@ namespace SistemaCadeteria.Repositorios
             return (pedido);
         }
 
-        public void Create(PedidoViewModel pedido)
+        public void Create(Pedido pedido)
         {
             using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
             {
@@ -151,7 +151,7 @@ namespace SistemaCadeteria.Repositorios
             }
         }
 
-        public void UpdatePedido(PedidoViewModel pedido)
+        public void UpdatePedido(Pedido pedido)
         {
             using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
             {

@@ -9,11 +9,11 @@ namespace SistemaCadeteria.Repositorios
 {
     public interface IClienteRepository
     {
-        public List<ClienteViewModel> GetAll();
-        public ClienteViewModel GetById(int idCliente);
-        public ClienteViewModel GetByName(string nombreCliente);
-        public void Create(ClienteViewModel cliente);
-        public void Update(ClienteViewModel cliente);
+        public List<Cliente> GetAll();
+        public Cliente GetById(int idCliente);
+        public Cliente GetByName(string nombreCliente);
+        public void Create(Cliente cliente);
+        public void Update(Cliente cliente);
         public void Delete(int id);
     }
 
@@ -26,9 +26,9 @@ namespace SistemaCadeteria.Repositorios
             this.cadenaConexion = _cadenaConexion_;
         }
 
-        public List<ClienteViewModel> GetAll()
+        public List<Cliente> GetAll()
         {
-            List<ClienteViewModel> clientes = new();
+            List<Cliente> clientes = new();
 
             using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
             {
@@ -51,9 +51,9 @@ namespace SistemaCadeteria.Repositorios
             return (clientes);
         }
 
-        public ClienteViewModel GetById(int idCliente)
+        public Cliente GetById(int idCliente)
         {
-            ClienteViewModel cliente = new();
+            Cliente cliente = new();
 
             using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
             {
@@ -76,9 +76,9 @@ namespace SistemaCadeteria.Repositorios
             return (cliente);
         }
 
-        public ClienteViewModel GetByName(string nombreCliente)
+        public Cliente GetByName(string nombreCliente)
         {
-            ClienteViewModel cliente = new();
+            Cliente cliente = new();
 
             using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
             {
@@ -101,7 +101,7 @@ namespace SistemaCadeteria.Repositorios
             return (cliente);
         }
 
-        public void Create(ClienteViewModel cliente)
+        public void Create(Cliente cliente)
         {
             using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
             {
@@ -116,7 +116,7 @@ namespace SistemaCadeteria.Repositorios
             }
         }
 
-        public void Update(ClienteViewModel cliente)
+        public void Update(Cliente cliente)
         {
             using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
             {

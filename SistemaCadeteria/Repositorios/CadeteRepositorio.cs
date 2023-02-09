@@ -9,11 +9,11 @@ namespace SistemaCadeteria.Repositorios
 {
     public interface ICadeteRepository
     {
-        public List<CadeteViewModel> GetAll();
-        public CadeteViewModel GetById(int idCadete);
-        public CadeteViewModel GetByName(string nombreCadete);
-        public void Create(CadeteViewModel cadete);
-        public void Update(CadeteViewModel cadete);
+        public List<Cadete> GetAll();
+        public Cadete GetById(int idCadete);
+        public Cadete GetByName(string nombreCadete);
+        public void Create(Cadete cadete);
+        public void Update(Cadete cadete);
         public void Delete(int id);
     }
 
@@ -28,9 +28,9 @@ namespace SistemaCadeteria.Repositorios
             this.pedidoRepositorio = new PedidoRepository(_cadenaConexion_);
         }
 
-        public List<CadeteViewModel> GetAll()
+        public List<Cadete> GetAll()
         {
-            List<CadeteViewModel> cadetes = new();
+            List<Cadete> cadetes = new();
 
             using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
             {
@@ -53,10 +53,10 @@ namespace SistemaCadeteria.Repositorios
             return (cadetes);
         }
 
-        public CadeteViewModel GetById(int idCadete)
+        public Cadete GetById(int idCadete)
         {
             List<Int32> ids = new();
-            CadeteViewModel cadete = new();
+            Cadete cadete = new();
 
             using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
             {
@@ -75,7 +75,7 @@ namespace SistemaCadeteria.Repositorios
 
                 connection.Close();
 
-                List<PedidoViewModel> peds = new();
+                List<Pedido> peds = new();
                 foreach (var id in ids)
                 {
                     peds.Add(pedidoRepositorio.GetById(id));
@@ -100,9 +100,9 @@ namespace SistemaCadeteria.Repositorios
             return (cadete);
         }
 
-        public CadeteViewModel GetByName(string nombreCadete)
+        public Cadete GetByName(string nombreCadete)
         {
-            CadeteViewModel cadete = new();
+            Cadete cadete = new();
             List<Int32> ids = new();
 
             using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
@@ -139,7 +139,7 @@ namespace SistemaCadeteria.Repositorios
 
 
             }
-            List<PedidoViewModel> peds = new();
+            List<Pedido> peds = new();
             foreach (var id in ids)
             {
                 peds.Add(pedidoRepositorio.GetById(id));
@@ -150,7 +150,7 @@ namespace SistemaCadeteria.Repositorios
             return (cadete);
         }
 
-        public void Create(CadeteViewModel cadete)
+        public void Create(Cadete cadete)
         {
             using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
             {
@@ -165,7 +165,7 @@ namespace SistemaCadeteria.Repositorios
             }
         }
 
-        public void Update(CadeteViewModel cadete)
+        public void Update(Cadete cadete)
         {
             using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
             {

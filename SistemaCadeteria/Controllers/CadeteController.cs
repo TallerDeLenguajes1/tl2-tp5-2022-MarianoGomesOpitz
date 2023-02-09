@@ -3,19 +3,23 @@ using Microsoft.AspNetCore.Mvc;
 using SistemaCadeteria.Models;
 using SistemaCadeteria.ViewModels;
 using SistemaCadeteria.Repositorios;
+using AutoMapper;
 
 namespace SistemaCadeteria.Controllers;
 
 public class CadeteController : Controller
 {
     private readonly ILogger<CadeteController> _logger;
+    private readonly IMapper _mapper; 
+
     static string connectionString = "Data Source=DB/PedidosDB.db;Cache=Shared";
 
     private readonly ICadeteRepository cadeteRepository;
 
-    public CadeteController(ILogger<CadeteController> logger)
+    public CadeteController(ILogger<CadeteController> logger, IMapper mapper)
     {
         _logger = logger;
+        _mapper = mapper;
         this.cadeteRepository = new CadeteRepository(connectionString);
     }
 
@@ -27,7 +31,8 @@ public class CadeteController : Controller
             string rol = HttpContext.Session.GetString("Role");
             if (rol == "Admin")
             {
-                return View(cadeteRepository.GetAll());
+                var cadetesVM = _mapper.Map<List<CadeteViewModel>>(cadeteRepository.GetAll());
+                return View(cadetesVM);
             }
             else
             {

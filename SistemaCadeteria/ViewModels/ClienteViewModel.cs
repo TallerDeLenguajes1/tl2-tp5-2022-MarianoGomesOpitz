@@ -78,25 +78,4 @@ namespace SistemaCadeteria.ViewModels
             this.DatosReferenciaDireccion = datos;
         }
     }
-
-    public class MapperClienteViewModel
-    {
-        public List<ClienteViewModel> GetClienteViewModel(List<Cliente> clientes)
-        {
-            List<ClienteViewModel> cliViewModels = new();
-
-            foreach (var cliente in clientes)
-            {
-                ClienteViewModel cliViewModel = new();
-                cliViewModel.Id = cliente.Id;
-                cliViewModel.Nombre = cliente.Nombre;
-                cliViewModel.Direccion = cliente.Direccion;
-                cliViewModel.Telefono = cliente.Telefono;
-                cliViewModel.DatosReferenciaDireccion = cliente.DatosReferenciaDireccion;
-                cliViewModels.Add(cliViewModel);
-            }
-
-            return cliViewModels;
-        }
-    }
 }

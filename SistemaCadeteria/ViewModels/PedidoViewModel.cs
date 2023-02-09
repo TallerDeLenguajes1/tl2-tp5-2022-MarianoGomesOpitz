@@ -67,31 +67,6 @@ namespace SistemaCadeteria.ViewModels
             this.Observaciones = obs;
         }
     }
-
-    public class MapperPedidoViewModel
-    {
-        public List<PedidoViewModel> GetPedidoViewModel(List<Pedido> pedidos)
-        {
-            List<PedidoViewModel> pedViewModels = new();
-
-            foreach (var pedido in pedidos)
-            {
-                PedidoViewModel pedViewModel = new();
-                pedViewModel.NroPedido = pedido.NroPedido;
-                pedViewModel.Observaciones = pedido.Observaciones;
-                pedViewModel.Estado = pedido.Estado;
-                pedViewModel.Costumer.Id = pedido.Costumer.Id;
-                pedViewModel.Costumer.Nombre = pedido.Costumer.Nombre;
-                pedViewModel.Costumer.Direccion = pedido.Costumer.Direccion;
-                pedViewModel.Costumer.Telefono = pedido.Costumer.Telefono;
-                pedViewModel.Costumer.DatosReferenciaDireccion = pedido.Costumer.DatosReferenciaDireccion;
-                pedViewModels.Add(pedViewModel);
-            }
-
-            return pedViewModels;
-        }
-
-    }
 }
 
 enum status

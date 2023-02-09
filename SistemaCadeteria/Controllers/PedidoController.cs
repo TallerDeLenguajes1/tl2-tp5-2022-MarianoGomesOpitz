@@ -3,21 +3,24 @@ using Microsoft.AspNetCore.Mvc;
 using SistemaCadeteria.Models;
 using SistemaCadeteria.ViewModels;
 using SistemaCadeteria.Repositorios;
+using AutoMapper;
 
 namespace SistemaCadeteria.Controllers;
 
 public class PedidoController : Controller
 {
     private readonly ILogger<PedidoController> _logger;
+    private readonly IMapper _mapper; 
 
     static string connectionString = "Data Source=DB/PedidosDB.db;Cache=Shared";
     private readonly IPedidoRepository pedidoRepositorio;
     private readonly IClienteRepository clienteRepositorio;
     private readonly ICadeteRepository cadeteRepositorio;
 
-    public PedidoController(ILogger<PedidoController> logger)
+    public PedidoController(ILogger<PedidoController> logger, IMapper mapper)
     {
         _logger = logger;
+        _mapper = mapper;
         this.pedidoRepositorio = new PedidoRepository(connectionString);
         this.clienteRepositorio = new ClienteRepository(connectionString);
         this.cadeteRepositorio = new CadeteRepository(connectionString);
@@ -31,7 +34,8 @@ public class PedidoController : Controller
             string rol = HttpContext.Session.GetString("Role");
             if (rol == "Admin")
             {
-                return View(pedidoRepositorio.GetAll());
+                var pedidosVM = _mapper.Map<List<PedidoViewModel>>(pedidoRepositorio.GetAll());
+                return View(pedidosVM);
             }
             else
             {
