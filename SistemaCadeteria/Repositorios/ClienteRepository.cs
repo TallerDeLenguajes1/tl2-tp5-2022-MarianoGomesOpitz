@@ -7,23 +7,13 @@ using System.Data;
 
 namespace SistemaCadeteria.Repositorios
 {
-    public interface IClienteRepository
-    {
-        public List<Cliente> GetAll();
-        public Cliente GetById(int idCliente);
-        public Cliente GetByName(string nombreCliente);
-        public void Create(Cliente cliente);
-        public void Update(Cliente cliente);
-        public void Delete(int id);
-    }
-
     public class ClienteRepository : IClienteRepository
     {
         private readonly string cadenaConexion;
 
-        public ClienteRepository(string _cadenaConexion_)
+        public ClienteRepository(IConexionRepository conexion)
         {
-            this.cadenaConexion = _cadenaConexion_;
+            this.cadenaConexion = conexion.GetConnectionString();
         }
 
         public List<Cliente> GetAll()

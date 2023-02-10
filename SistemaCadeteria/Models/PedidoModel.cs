@@ -38,3 +38,10 @@ public class Pedido
             this.Observaciones = obs;
         }
 }
+
+enum status
+{
+    En_Preparación = 1,
+    En_Camino = 2,
+    Entregado = 3,
+}

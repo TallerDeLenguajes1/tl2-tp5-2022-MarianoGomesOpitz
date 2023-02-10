@@ -1,21 +1,14 @@
 using SistemaCadeteria.Repositorios;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAutoMapper(typeof(Program));
 
-builder.Services.AddMvc();
-builder.Services.AddControllers();
 builder.Services.AddLogging();
-
-// Add services to the container.
 builder.Services.AddControllersWithViews();
-
-builder.Services.AddTransient<ICadeteRepository, CadeteRepository>();
-builder.Services.AddTransient<IClienteRepository, ClienteRepository>();
-builder.Services.AddTransient<IPedidoRepository, PedidoRepository>();
-
+builder.Services.AddAutoMapper(typeof(Program));
+//builder.Services.AddTransient<ICadeteRepository, CadeteRepository>();
+//builder.Services.AddTransient<IClienteRepository, ClienteRepository>();
+//builder.Services.AddTransient<IPedidoRepository, PedidoRepository>();
 
 builder.Services.AddDistributedMemoryCache();
 

@@ -10,20 +10,23 @@ namespace SistemaCadeteria.Controllers;
 public class PedidoController : Controller
 {
     private readonly ILogger<PedidoController> _logger;
-    private readonly IMapper _mapper; 
+    private readonly IMapper _mapper;
 
     static string connectionString = "Data Source=DB/PedidosDB.db;Cache=Shared";
-    private readonly IPedidoRepository pedidoRepositorio;
-    private readonly IClienteRepository clienteRepositorio;
-    private readonly ICadeteRepository cadeteRepositorio;
+    private readonly IPedidoRepository _pedidoRepositorio;
+    private readonly IClienteRepository _clienteRepositorio;
+    private readonly ICadeteRepository _cadeteRepositorio;
 
-    public PedidoController(ILogger<PedidoController> logger, IMapper mapper)
+    public PedidoController(ILogger<PedidoController> logger/*,IPedidoRepository pedidoRepositorio ,IClienteRepository clienteRepositorio ,ICadeteRepository cadeteRepositorio */, IMapper mapper)
     {
         _logger = logger;
         _mapper = mapper;
-        this.pedidoRepositorio = new PedidoRepository(connectionString);
-        this.clienteRepositorio = new ClienteRepository(connectionString);
-        this.cadeteRepositorio = new CadeteRepository(connectionString);
+        //this._pedidoRepositorio = pedidoRepositorio;
+        //this._clienteRepositorio = clienteRepositorio;
+        //this._cadeteRepositorio = cadeteRepositorio;
+        this._pedidoRepositorio = new PedidoRepository(connectionString);
+        this._clienteRepositorio = new ClienteRepository(connectionString);
+        this._cadeteRepositorio = new CadeteRepository(connectionString);
     }
 
     public IActionResult Index()
@@ -34,7 +37,7 @@ public class PedidoController : Controller
             string rol = HttpContext.Session.GetString("Role");
             if (rol == "Admin")
             {
-                var pedidosVM = _mapper.Map<List<PedidoViewModel>>(pedidoRepositorio.GetAll());
+                var pedidosVM = _mapper.Map<List<PedidoViewModel>>(_pedidoRepositorio.GetAll());
                 return View(pedidosVM);
             }
             else
@@ -82,8 +85,8 @@ public class PedidoController : Controller
                 {
                     try
                     {
-                        ClienteViewModel auxCliente = clienteRepositorio.GetByName(pedido.NombreCliente);
-                        pedidoRepositorio.Create(new(pedido.Observaciones, Convert.ToString((status)1), auxCliente));
+                        Cliente auxCliente = _clienteRepositorio.GetByName(pedido.NombreCliente);
+                        _pedidoRepositorio.Create(new(pedido.Observaciones, Convert.ToString((status)1), auxCliente));
 
                         return RedirectToAction("Index");
                     }
@@ -138,7 +141,7 @@ public class PedidoController : Controller
             string rol = HttpContext.Session.GetString("Role");
             if (rol == "Admin")
             {
-                PedidoACadete pedCad = new(id, cadeteRepositorio.GetAll());
+                PedidoACadete pedCad = new(id, _cadeteRepositorio.GetAll());
 
                 return View(pedCad);
             }
@@ -162,7 +165,7 @@ public class PedidoController : Controller
             string rol = HttpContext.Session.GetString("Role");
             if (rol == "Admin")
             {
-                pedidoRepositorio.AsignarCadete(IdPedido, IdCadete);
+                _pedidoRepositorio.AsignarCadete(IdPedido, IdCadete);
 
                 return RedirectToAction("Index");
             }
@@ -182,7 +185,9 @@ public class PedidoController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            return View(pedidoRepositorio.GetById(idPedido));
+            Pedido pedido = _pedidoRepositorio.GetById(idPedido);
+            var pedidoVM = _mapper.Map<PedidoViewModel>(pedido);
+            return View(pedidoVM);
         }
         else
         {
@@ -196,7 +201,7 @@ public class PedidoController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            pedidoRepositorio.UpdateEstado(idPedido, Convert.ToString((status)Estado));
+            _pedidoRepositorio.UpdateEstado(idPedido, Convert.ToString((status)Estado));
 
             return RedirectToAction("Index", "Cadete");
         }
@@ -214,7 +219,7 @@ public class PedidoController : Controller
             string rol = HttpContext.Session.GetString("Role");
             if (rol == "Admin")
             {
-                CambiarCadete pedCad = new(idPedido, idCadete, cadeteRepositorio.GetAll());
+                CambiarCadete pedCad = new(idPedido, idCadete, _cadeteRepositorio.GetAll());
 
                 return View(pedCad);
             }
@@ -238,7 +243,7 @@ public class PedidoController : Controller
             string rol = HttpContext.Session.GetString("Role");
             if (rol == "Admin")
             {
-                pedidoRepositorio.CambiarCadete(IdPedido, IdCadeteACambiar);
+                _pedidoRepositorio.CambiarCadete(IdPedido, IdCadeteACambiar);
 
                 return RedirectToAction("Index", "Cadete");
             }
@@ -261,8 +266,8 @@ public class PedidoController : Controller
             string rol = HttpContext.Session.GetString("Role");
             if (rol == "Admin")
             {
-                PedidoViewModel _pedido_ = pedidoRepositorio.GetById(id);
-                return View(new EditarPedidoViewModel(_pedido_.NroPedido, _pedido_.Observaciones));
+                Pedido pedido = _pedidoRepositorio.GetById(id);
+                return View(new EditarPedidoViewModel(pedido.NroPedido, pedido.Observaciones));
             }
             else
             {
@@ -286,7 +291,7 @@ public class PedidoController : Controller
             {
                 if (ModelState.IsValid)
                 {
-                    pedidoRepositorio.UpdatePedido(new(_pedido_.NroPedido, _pedido_.Observaciones));
+                    _pedidoRepositorio.UpdatePedido(new(_pedido_.NroPedido, _pedido_.Observaciones));
 
                     return RedirectToAction("Index");
                 }
@@ -314,7 +319,7 @@ public class PedidoController : Controller
             string rol = HttpContext.Session.GetString("Role");
             if (rol == "Admin")
             {
-                pedidoRepositorio.Delete(id);
+                _pedidoRepositorio.Delete(id);
 
                 return RedirectToAction("Index");
             }

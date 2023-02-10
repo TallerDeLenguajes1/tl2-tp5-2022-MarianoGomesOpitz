@@ -8,29 +8,15 @@ using System.Data.SqlClient;
 
 namespace SistemaCadeteria.Repositorios
 {
-    public interface IPedidoRepository
-    {
-        public List<Pedido> GetAll();
-        public Pedido GetById(int idPedido);
-        public void Create(Pedido pedido);
-        public void AsignarCadete(int idPedido, int idCadete);
-        public void CambiarCadete(int idPedido, int idCadeteACambiar);
-        public void UpdatePedido(Pedido pedido);
-        public void UpdateEstado(int idPedido, string Estado);
-        public void Delete(int id);
-        public DataTable PedidosPorCliente();
-        public DataTable PedidosPorCadete();
-    }
-
     public class PedidoRepository : IPedidoRepository
     {
         private readonly string cadenaConexion;
-        private readonly IClienteRepository clienteRepository;
+        private readonly IClienteRepository _clienteRepository;
 
-        public PedidoRepository(string _cadenaConexion_)
+        public PedidoRepository(IConexionRepository conexion, IClienteRepository clienteRepository)
         {
-            this.cadenaConexion = _cadenaConexion_;
-            this.clienteRepository = new ClienteRepository(_cadenaConexion_);
+            this.cadenaConexion = conexion.GetConnectionString();
+            this._clienteRepository = clienteRepository;
         }
 
         public List<Pedido> GetAll()
@@ -48,7 +34,7 @@ namespace SistemaCadeteria.Repositorios
                 {
                     while (lector.Read())
                     {
-                        Cliente auxCliente = clienteRepository.GetById(Convert.ToInt32(lector[1]));
+                        Cliente auxCliente = _clienteRepository.GetById(Convert.ToInt32(lector[1]));
                         pedidos.Add(new(Convert.ToInt32(lector[0]), Convert.ToString(lector[2]), Convert.ToString(lector[3]), auxCliente));
                     }
                 }
@@ -95,7 +81,7 @@ namespace SistemaCadeteria.Repositorios
                 {
                     while (lector.Read())
                     {
-                        Cliente auxCliente = clienteRepository.GetById(Convert.ToInt32(lector[1]));
+                        Cliente auxCliente = _clienteRepository.GetById(Convert.ToInt32(lector[1]));
                         pedido = new(Convert.ToInt32(lector[0]), Convert.ToString(lector[2]), Convert.ToString(lector[3]), auxCliente);
                     }
                 }

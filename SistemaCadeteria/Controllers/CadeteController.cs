@@ -14,13 +14,14 @@ public class CadeteController : Controller
 
     static string connectionString = "Data Source=DB/PedidosDB.db;Cache=Shared";
 
-    private readonly ICadeteRepository cadeteRepository;
+    private readonly ICadeteRepository _cadeteRepository;
 
-    public CadeteController(ILogger<CadeteController> logger, IMapper mapper)
+    public CadeteController(ILogger<CadeteController> logger, IMapper mapper/*, ICadeteRepository cadeteRepository*/)
     {
-        _logger = logger;
-        _mapper = mapper;
-        this.cadeteRepository = new CadeteRepository(connectionString);
+        this._logger = logger;
+        this._mapper = mapper;
+        //this._cadeteRepository = cadeteRepository;
+        this._cadeteRepository = new CadeteRepository(connectionString);
     }
 
     public IActionResult Index()
@@ -31,7 +32,7 @@ public class CadeteController : Controller
             string rol = HttpContext.Session.GetString("Role");
             if (rol == "Admin")
             {
-                var cadetesVM = _mapper.Map<List<CadeteViewModel>>(cadeteRepository.GetAll());
+                var cadetesVM = _mapper.Map<List<CadeteViewModel>>(_cadeteRepository.GetAll());
                 return View(cadetesVM);
             }
             else
@@ -54,7 +55,8 @@ public class CadeteController : Controller
             string name = HttpContext.Session.GetString("Name");
             if (rol == "Cadete")
             {
-                return View(cadeteRepository.GetByName(name));
+                var cadeteVM = _mapper.Map<CadeteViewModel>(_cadeteRepository.GetByName(name));
+                return View(cadeteVM);
             }
             else
             {
@@ -75,7 +77,8 @@ public class CadeteController : Controller
             string rol = HttpContext.Session.GetString("Role");
             if (rol == "Admin")
             {
-                return View(cadeteRepository.GetById(id));
+                var cadeteVM = _mapper.Map<CadeteViewModel>(_cadeteRepository.GetById(id));
+                return View(cadeteVM);
             }
             else
             {
@@ -120,7 +123,8 @@ public class CadeteController : Controller
             {
                 if (ModelState.IsValid)
                 {
-                    cadeteRepository.Create(new(_cadete_.Nombre, _cadete_.Direccion, _cadete_.Telefono));
+                    var cadete = _mapper.Map<Cadete>(_cadete_);
+                    _cadeteRepository.Create(cadete);
 
                     return RedirectToAction("Index");
                 }
@@ -148,8 +152,9 @@ public class CadeteController : Controller
             string rol = HttpContext.Session.GetString("Role");
             if (rol == "Admin")
             {
-                CadeteViewModel cadete = cadeteRepository.GetById(id);
-                return View(new EditarCadeteViewModel(id, cadete.Nombre, cadete.Direccion, cadete.Telefono));
+                Cadete cadete = _cadeteRepository.GetById(id);
+                var cadeteVM = _mapper.Map<EditarCadeteViewModel>(cadete);
+                return View(cadeteVM);
             }
             else
             {
@@ -173,7 +178,8 @@ public class CadeteController : Controller
             {
                 if (ModelState.IsValid)
                 {
-                    cadeteRepository.Update(new(_cadete_.Id, _cadete_.Nombre, _cadete_.Direccion, _cadete_.Telefono));
+                    var cadete = _mapper.Map<Cadete>(_cadete_);
+                    _cadeteRepository.Update(cadete);
 
                     return RedirectToAction("Index");
                 }
@@ -201,7 +207,7 @@ public class CadeteController : Controller
             string rol = HttpContext.Session.GetString("Role");
             if (rol == "Admin")
             {
-                cadeteRepository.Delete(id);
+                _cadeteRepository.Delete(id);
 
                 return RedirectToAction("Index");
             }

@@ -17,12 +17,13 @@ public class HomeController : Controller
 
     static string connectionString = "Data Source=DB/PedidosDB.db;Cache=Shared";
     SqliteDataReader lector;
-    private readonly IPedidoRepository pedidoRepositorio;
+    private readonly IPedidoRepository _pedidoRepositorio;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger/*, IPedidoRepository pedidoRepository*/)
     {
         _logger = logger;
-        this.pedidoRepositorio = new PedidoRepository(connectionString);
+        //this._pedidoRepositorio = pedidoRepository;
+        this._pedidoRepositorio = new PedidoRepository(connectionString);
     }
 
     public IActionResult Index()
@@ -126,7 +127,7 @@ public class HomeController : Controller
             string rol = HttpContext.Session.GetString("Role");
             if (rol == "Admin")
             {
-                DataTable tabla = pedidoRepositorio.PedidosPorCliente();
+                DataTable tabla = _pedidoRepositorio.PedidosPorCliente();
                 return View(tabla);
             }
             else
@@ -148,7 +149,7 @@ public class HomeController : Controller
             string rol = HttpContext.Session.GetString("Role");
             if (rol == "Admin")
             {
-                DataTable tabla = pedidoRepositorio.PedidosPorCadete();
+                DataTable tabla = _pedidoRepositorio.PedidosPorCadete();
                 return View(tabla);
             }
             else

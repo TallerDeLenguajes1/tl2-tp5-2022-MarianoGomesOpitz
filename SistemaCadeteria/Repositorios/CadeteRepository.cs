@@ -7,16 +7,6 @@ using System.Data;
 
 namespace SistemaCadeteria.Repositorios
 {
-    public interface ICadeteRepository
-    {
-        public List<Cadete> GetAll();
-        public Cadete GetById(int idCadete);
-        public Cadete GetByName(string nombreCadete);
-        public void Create(Cadete cadete);
-        public void Update(Cadete cadete);
-        public void Delete(int id);
-    }
-
     public class CadeteRepository : ICadeteRepository
     {
         private readonly string cadenaConexion;

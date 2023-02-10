@@ -4,11 +4,11 @@ using SistemaCadeteria.ViewModels;
 public class PedidoACadete
 {
     public int Id { get; set; }
-    public List<CadeteViewModel> Cadetes { get; set; }
+    public List<Cadete> Cadetes { get; set; }
 
     public PedidoACadete() { }
 
-    public PedidoACadete(int i, List<CadeteViewModel> c)
+    public PedidoACadete(int i, List<Cadete> c)
     {
         this.Id = i;
         this.Cadetes = c;

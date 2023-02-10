@@ -9,18 +9,19 @@ namespace SistemaCadeteria.Controllers;
 
 public class ClienteController : Controller
 {
-    private readonly ILogger<ClienteController> _logger;   
-    private readonly IMapper _mapper; 
+    private readonly ILogger<ClienteController> _logger;
+    private readonly IMapper _mapper;
 
     static string connectionString = "Data Source=DB/PedidosDB.db;Cache=Shared";
-    
-    private readonly IClienteRepository clienteRepository;
 
-    public ClienteController(ILogger<ClienteController> logger, IMapper mapper)
+    private readonly IClienteRepository _clienteRepository;
+
+    public ClienteController(ILogger<ClienteController> logger, /*IClienteRepository clienteRepository,*/ IMapper mapper)
     {
         _logger = logger;
         _mapper = mapper;
-        this.clienteRepository = new ClienteRepository(connectionString);
+        //this._clienteRepository = clienteRepository;
+        this._clienteRepository = new ClienteRepository(connectionString);
     }
 
     public IActionResult Index()
@@ -31,7 +32,7 @@ public class ClienteController : Controller
             string rol = HttpContext.Session.GetString("Role");
             if (rol == "Admin")
             {
-                var clientesVM = _mapper.Map<List<ClienteViewModel>>(clienteRepository.GetAll());
+                var clientesVM = _mapper.Map<List<ClienteViewModel>>(_clienteRepository.GetAll());
                 return View(clientesVM);
             }
             else
@@ -77,7 +78,8 @@ public class ClienteController : Controller
             {
                 if (ModelState.IsValid)
                 {
-                    clienteRepository.Create(new(_cliente_.Nombre, _cliente_.Direccion, _cliente_.Telefono, _cliente_.DatosReferenciaDireccion));
+                    var cliente = _mapper.Map<Cliente>(_cliente_);
+                    _clienteRepository.Create(cliente);
 
                     return RedirectToAction("Index");
                 }
@@ -105,8 +107,9 @@ public class ClienteController : Controller
             string rol = HttpContext.Session.GetString("Role");
             if (rol == "Admin")
             {
-                ClienteViewModel _cliente_ = clienteRepository.GetById(id);
-                return View(new EditarClienteViewModel(id, _cliente_.Nombre, _cliente_.Direccion, _cliente_.Telefono, _cliente_.DatosReferenciaDireccion));
+                Cliente cliente = _clienteRepository.GetById(id);
+                var clienteVM = _mapper.Map<EditarClienteViewModel>(cliente);
+                return View(clienteVM);
 
             }
             else
@@ -131,7 +134,8 @@ public class ClienteController : Controller
             {
                 if (ModelState.IsValid)
                 {
-                    clienteRepository.Update(new(_cliente_.Id, _cliente_.Nombre, _cliente_.Direccion, _cliente_.Telefono, _cliente_.DatosReferenciaDireccion));
+                    var cliente = _mapper.Map<Cliente>(_cliente_);
+                    _clienteRepository.Update(cliente);
 
                     return RedirectToAction("Index");
                 }
@@ -159,7 +163,7 @@ public class ClienteController : Controller
             string rol = HttpContext.Session.GetString("Role");
             if (rol == "Admin")
             {
-                clienteRepository.Delete(id);
+                _clienteRepository.Delete(id);
 
                 return RedirectToAction("Index");
             }
