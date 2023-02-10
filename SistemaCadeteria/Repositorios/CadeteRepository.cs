@@ -10,12 +10,12 @@ namespace SistemaCadeteria.Repositorios
     public class CadeteRepository : ICadeteRepository
     {
         private readonly string cadenaConexion;
-        private readonly IPedidoRepository pedidoRepositorio;
+        private readonly IPedidoRepository _pedidoRepositorio;
 
-        public CadeteRepository(string _cadenaConexion_)
+        public CadeteRepository(IConexionRepository conexion, IPedidoRepository pedidoRepositorio)
         {
-            this.cadenaConexion = _cadenaConexion_;
-            this.pedidoRepositorio = new PedidoRepository(_cadenaConexion_);
+            this.cadenaConexion = conexion.GetConnectionString();
+            this._pedidoRepositorio = pedidoRepositorio;
         }
 
         public List<Cadete> GetAll()
@@ -68,7 +68,7 @@ namespace SistemaCadeteria.Repositorios
                 List<Pedido> peds = new();
                 foreach (var id in ids)
                 {
-                    peds.Add(pedidoRepositorio.GetById(id));
+                    peds.Add(_pedidoRepositorio.GetById(id));
                 }
 
                 string queryString2 = $"SELECT * FROM Cadete WHERE IdCadete = '{idCadete}';";
@@ -132,7 +132,7 @@ namespace SistemaCadeteria.Repositorios
             List<Pedido> peds = new();
             foreach (var id in ids)
             {
-                peds.Add(pedidoRepositorio.GetById(id));
+                peds.Add(_pedidoRepositorio.GetById(id));
             }
 
             cadete.Pedidos = peds;

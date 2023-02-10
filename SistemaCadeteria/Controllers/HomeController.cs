@@ -19,11 +19,11 @@ public class HomeController : Controller
     SqliteDataReader lector;
     private readonly IPedidoRepository _pedidoRepositorio;
 
-    public HomeController(ILogger<HomeController> logger/*, IPedidoRepository pedidoRepository*/)
+    public HomeController(ILogger<HomeController> logger, IPedidoRepository pedidoRepository)
     {
         _logger = logger;
-        //this._pedidoRepositorio = pedidoRepository;
-        this._pedidoRepositorio = new PedidoRepository(connectionString);
+        this._pedidoRepositorio = pedidoRepository;
+        //this._pedidoRepositorio = new PedidoRepository(connectionString);
     }
 
     public IActionResult Index()

@@ -17,16 +17,16 @@ public class PedidoController : Controller
     private readonly IClienteRepository _clienteRepositorio;
     private readonly ICadeteRepository _cadeteRepositorio;
 
-    public PedidoController(ILogger<PedidoController> logger/*,IPedidoRepository pedidoRepositorio ,IClienteRepository clienteRepositorio ,ICadeteRepository cadeteRepositorio */, IMapper mapper)
+    public PedidoController(ILogger<PedidoController> logger,IPedidoRepository pedidoRepositorio ,IClienteRepository clienteRepositorio ,ICadeteRepository cadeteRepositorio, IMapper mapper)
     {
         _logger = logger;
         _mapper = mapper;
-        //this._pedidoRepositorio = pedidoRepositorio;
-        //this._clienteRepositorio = clienteRepositorio;
-        //this._cadeteRepositorio = cadeteRepositorio;
-        this._pedidoRepositorio = new PedidoRepository(connectionString);
-        this._clienteRepositorio = new ClienteRepository(connectionString);
-        this._cadeteRepositorio = new CadeteRepository(connectionString);
+        this._pedidoRepositorio = pedidoRepositorio;
+        this._clienteRepositorio = clienteRepositorio;
+        this._cadeteRepositorio = cadeteRepositorio;
+        //this._pedidoRepositorio = new PedidoRepository(connectionString);
+        //this._clienteRepositorio = new ClienteRepository(connectionString);
+        //this._cadeteRepositorio = new CadeteRepository(connectionString);
     }
 
     public IActionResult Index()

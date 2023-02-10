@@ -16,12 +16,12 @@ public class ClienteController : Controller
 
     private readonly IClienteRepository _clienteRepository;
 
-    public ClienteController(ILogger<ClienteController> logger, /*IClienteRepository clienteRepository,*/ IMapper mapper)
+    public ClienteController(ILogger<ClienteController> logger, IClienteRepository clienteRepository, IMapper mapper)
     {
         _logger = logger;
         _mapper = mapper;
-        //this._clienteRepository = clienteRepository;
-        this._clienteRepository = new ClienteRepository(connectionString);
+        this._clienteRepository = clienteRepository;
+        //this._clienteRepository = new ClienteRepository(connectionString);
     }
 
     public IActionResult Index()

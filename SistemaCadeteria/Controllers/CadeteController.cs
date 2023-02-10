@@ -16,12 +16,12 @@ public class CadeteController : Controller
 
     private readonly ICadeteRepository _cadeteRepository;
 
-    public CadeteController(ILogger<CadeteController> logger, IMapper mapper/*, ICadeteRepository cadeteRepository*/)
+    public CadeteController(ILogger<CadeteController> logger, IMapper mapper, ICadeteRepository cadeteRepository)
     {
         this._logger = logger;
         this._mapper = mapper;
-        //this._cadeteRepository = cadeteRepository;
-        this._cadeteRepository = new CadeteRepository(connectionString);
+        this._cadeteRepository = cadeteRepository;
+        //this._cadeteRepository = new CadeteRepository(connectionString);
     }
 
     public IActionResult Index()
