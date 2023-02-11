@@ -11,8 +11,6 @@ public class PedidoController : Controller
 {
     private readonly ILogger<PedidoController> _logger;
     private readonly IMapper _mapper;
-
-    static string connectionString = "Data Source=DB/PedidosDB.db;Cache=Shared";
     private readonly IPedidoRepository _pedidoRepositorio;
     private readonly IClienteRepository _clienteRepositorio;
     private readonly ICadeteRepository _cadeteRepositorio;
@@ -24,9 +22,6 @@ public class PedidoController : Controller
         this._pedidoRepositorio = pedidoRepositorio;
         this._clienteRepositorio = clienteRepositorio;
         this._cadeteRepositorio = cadeteRepositorio;
-        //this._pedidoRepositorio = new PedidoRepository(connectionString);
-        //this._clienteRepositorio = new ClienteRepository(connectionString);
-        //this._cadeteRepositorio = new CadeteRepository(connectionString);
     }
 
     public IActionResult Index()

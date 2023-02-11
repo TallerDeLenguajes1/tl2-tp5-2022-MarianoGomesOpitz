@@ -6,11 +6,11 @@
     <h2 class="display-4">Bienvenido al Sistema de Gestión de Cadetería ᕕ( ᐛ )ᕗ</h2>
 </div>
 
-@model List<String>
+@model Usuario
 
-<p><b>Usuario actual:</b> @Model[0]</p>
-<p><b>Nombre:</b> @Model[1]</p>
-<p><b>Rol:</b> @Model[2]</p>
+<p><b>Usuario actual:</b> @Model.User</p>
+<p><b>Nombre:</b> @Model.Name</p>
+<p><b>Rol:</b> @Model.Role</p>
 
 <br>
 

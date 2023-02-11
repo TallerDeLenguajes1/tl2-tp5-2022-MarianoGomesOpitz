@@ -1,5 +1,11 @@
-@model string
-@if (string.IsNullOrEmpty(Model))
+@model Usuario
+@if (!(string.IsNullOrEmpty(Model.User)) && !(string.IsNullOrEmpty(Model.Name)) && !(string.IsNullOrEmpty(Model.Role)))
+{
+    <h3>Ya hay una sesión iniciada del usuario @Model</h3>
+
+    <a asp-controller="Home" asp-action="CerrarSesion">Cerrar sesion</a>
+}
+else
 {
     <h1>Inicio de sesión</h1>
 
@@ -16,10 +22,4 @@
 
         <input type="submit" value="Iniciar">
     </form>
-}
-else
-{
-    <h3>Ya hay una sesión iniciada</h3>
-
-    <a asp-controller="Home" asp-action="CerrarSesion">Cerrar sesion</a>
 }

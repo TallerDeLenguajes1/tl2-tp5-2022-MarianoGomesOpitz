@@ -14,16 +14,15 @@ namespace SistemaCadeteria.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-
-    static string connectionString = "Data Source=DB/PedidosDB.db;Cache=Shared";
     SqliteDataReader lector;
     private readonly IPedidoRepository _pedidoRepositorio;
+    private readonly ILoginRepository _loginRepositorio;
 
-    public HomeController(ILogger<HomeController> logger, IPedidoRepository pedidoRepository)
+    public HomeController(ILogger<HomeController> logger, IPedidoRepository pedidoRepository, ILoginRepository loginRepositorio)
     {
         _logger = logger;
         this._pedidoRepositorio = pedidoRepository;
-        //this._pedidoRepositorio = new PedidoRepository(connectionString);
+        this._loginRepositorio = loginRepositorio;
     }
 
     public IActionResult Index()
@@ -31,11 +30,11 @@ public class HomeController : Controller
         string user = HttpContext.Session.GetString("User");
         if (!(string.IsNullOrEmpty(user)))
         {
-            List<String> modelo = new();
-            modelo.Add(HttpContext.Session.GetString("User"));
-            modelo.Add(HttpContext.Session.GetString("Name"));
-            modelo.Add(HttpContext.Session.GetString("Role"));
-            return View(model: modelo);
+            Usuario us = new();
+            us.User = HttpContext.Session.GetString("User");
+            us.Name = HttpContext.Session.GetString("Name");
+            us.Role = HttpContext.Session.GetString("Role");
+            return View(us);
         }
         else
         {
@@ -45,50 +44,29 @@ public class HomeController : Controller
 
     public IActionResult Login()
     {
-        return View(model: HttpContext.Session.GetString("User"));
+        Usuario us = new();
+        us.User = HttpContext.Session.GetString("User");
+        us.Name = HttpContext.Session.GetString("Name");
+        us.Role = HttpContext.Session.GetString("Role");
+        return View(us);
     }
 
     [HttpPost]
     public IActionResult IniciarSesion(string user, string password)
     {
-        int count = 0;
+        int count = _loginRepositorio.CantFilas(user, password);
 
-        using (SqliteConnection connection = new SqliteConnection(connectionString))
+        if (count == 1)
         {
-            string queryString1 = $"SELECT COUNT(*) FROM Usuarios WHERE User ='{user}' AND Password = '{password}';";
-            var command1 = new SqliteCommand(queryString1, connection);
-
-            connection.Open();
-
-            count = Convert.ToInt32(command1.ExecuteScalar());
-
-            connection.Close();
-
-            if (count == 1)
-            {
-                string queryString2 = $"SELECT Name, User, Role FROM Usuarios WHERE User ='{user}' AND Password = '{password}';";
-                var command2 = new SqliteCommand(queryString2, connection);
-
-                connection.Open();
-
-                using (var lector = command2.ExecuteReader())
-                {
-                    while (lector.Read())
-                    {
-                        HttpContext.Session.SetString("Name", Convert.ToString(lector[0]));
-                        HttpContext.Session.SetString("User", Convert.ToString(lector[1]));
-                        HttpContext.Session.SetString("Role", Convert.ToString(lector[2]));
-                    }
-                }
-
-                connection.Close();
-
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                return RedirectToAction("DatosIncorrectos");
-            }
+            Usuario us = _loginRepositorio.DatosUsuario(user, password);
+            HttpContext.Session.SetString("Name", us.Name);
+            HttpContext.Session.SetString("User", us.User);
+            HttpContext.Session.SetString("Role", us.Role);
+            return RedirectToAction("Index");
+        }
+        else
+        {
+            return RedirectToAction("DatosIncorrectos");
         }
     }
 

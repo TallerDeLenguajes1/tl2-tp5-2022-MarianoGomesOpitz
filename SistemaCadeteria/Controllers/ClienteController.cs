@@ -11,9 +11,6 @@ public class ClienteController : Controller
 {
     private readonly ILogger<ClienteController> _logger;
     private readonly IMapper _mapper;
-
-    static string connectionString = "Data Source=DB/PedidosDB.db;Cache=Shared";
-
     private readonly IClienteRepository _clienteRepository;
 
     public ClienteController(ILogger<ClienteController> logger, IClienteRepository clienteRepository, IMapper mapper)
@@ -21,7 +18,6 @@ public class ClienteController : Controller
         _logger = logger;
         _mapper = mapper;
         this._clienteRepository = clienteRepository;
-        //this._clienteRepository = new ClienteRepository(connectionString);
     }
 
     public IActionResult Index()

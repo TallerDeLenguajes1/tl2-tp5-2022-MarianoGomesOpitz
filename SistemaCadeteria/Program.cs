@@ -8,6 +8,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddSingleton<IConexionRepository, ConexionRepository>();
+builder.Services.AddTransient<ILoginRepository, LoginRepository>();
 builder.Services.AddTransient<ICadeteRepository, CadeteRepository>();
 builder.Services.AddTransient<IClienteRepository, ClienteRepository>();
 builder.Services.AddTransient<IPedidoRepository, PedidoRepository>();

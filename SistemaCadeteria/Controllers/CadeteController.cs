@@ -12,8 +12,6 @@ public class CadeteController : Controller
     private readonly ILogger<CadeteController> _logger;
     private readonly IMapper _mapper; 
 
-    static string connectionString = "Data Source=DB/PedidosDB.db;Cache=Shared";
-
     private readonly ICadeteRepository _cadeteRepository;
 
     public CadeteController(ILogger<CadeteController> logger, IMapper mapper, ICadeteRepository cadeteRepository)
@@ -21,7 +19,6 @@ public class CadeteController : Controller
         this._logger = logger;
         this._mapper = mapper;
         this._cadeteRepository = cadeteRepository;
-        //this._cadeteRepository = new CadeteRepository(connectionString);
     }
 
     public IActionResult Index()

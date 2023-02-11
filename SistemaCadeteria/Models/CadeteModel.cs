@@ -20,20 +20,4 @@ public class Cadete : Persona
     {
        this.Pedidos = peds;
     }
-
-    public int JornalACobrar()
-    {
-        int montoBase = 300, montoGanado = 0, pedidosEntregados = 0;
-
-        foreach (var item in this.Pedidos)
-        {
-            if (item.Estado == Convert.ToString((status)3))
-            {
-                (pedidosEntregados)++;
-            }
-        }
-
-        montoGanado = pedidosEntregados * 300;
-        return (montoGanado);
-    }
 }
