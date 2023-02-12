@@ -339,6 +339,15 @@
           }
         }
       },
+      "NLog/5.0.5": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/NLog.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/NLog.dll": {}
+        }
+      },
       "runtime.native.System.Data.SqlClient.sni/4.7.0": {
         "type": "package",
         "dependencies": {
@@ -1323,6 +1332,30 @@
         "version.txt"
       ]
     },
+    "NLog/5.0.5": {
+      "sha512": "NOTWSyUEljmjMq7OqZ1X9iu4bJ+rW/o6pt79Jq8j2Q7s8DyoMMCJwe0HoCKcNjhYRJ++b+E8erH6E6WwaCTshQ==",
+      "type": "package",
+      "path": "nlog/5.0.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "N.png",
+        "lib/net35/NLog.dll",
+        "lib/net35/NLog.xml",
+        "lib/net45/NLog.dll",
+        "lib/net45/NLog.xml",
+        "lib/net46/NLog.dll",
+        "lib/net46/NLog.xml",
+        "lib/netstandard1.3/NLog.dll",
+        "lib/netstandard1.3/NLog.xml",
+        "lib/netstandard1.5/NLog.dll",
+        "lib/netstandard1.5/NLog.xml",
+        "lib/netstandard2.0/NLog.dll",
+        "lib/netstandard2.0/NLog.xml",
+        "nlog.5.0.5.nupkg.sha512",
+        "nlog.nuspec"
+      ]
+    },
     "runtime.native.System.Data.SqlClient.sni/4.7.0": {
       "sha512": "9kyFSIdN3T0qjDQ2R0HRXYIhS3l5psBzQi6qqhdLz+SzFyEy4sVxNOke+yyYv8Cu8rPER12c3RDjLT8wF3WBYQ==",
       "type": "package",
@@ -2197,6 +2230,7 @@
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.0",
       "Microsoft.AspNetCore.Session >= 2.2.0",
       "Microsoft.Data.Sqlite >= 7.0.0",
+      "NLog >= 5.0.5",
       "System.Data.SQLite >= 1.0.116"
     ]
   },
@@ -2252,6 +2286,10 @@
           "Microsoft.Data.Sqlite": {
             "target": "Package",
             "version": "[7.0.0, )"
+          },
+          "NLog": {
+            "target": "Package",
+            "version": "[5.0.5, )"
           },
           "System.Data.SQLite": {
             "target": "Package",

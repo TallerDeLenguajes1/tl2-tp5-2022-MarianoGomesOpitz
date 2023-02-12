@@ -54,6 +54,10 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
+            "NLog": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
             "System.Data.SQLite": {
               "target": "Package",
               "version": "[1.0.116, )"

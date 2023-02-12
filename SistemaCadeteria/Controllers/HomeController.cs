@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using SistemaCadeteria.Repositorios;
 using Microsoft.AspNetCore.Session;
 using Microsoft.AspNetCore.Http;
+using NLog;
 
 namespace SistemaCadeteria.Controllers;
 
@@ -17,18 +18,44 @@ public class HomeController : Controller
     SqliteDataReader lector;
     private readonly IPedidoRepository _pedidoRepositorio;
     private readonly ILoginRepository _loginRepositorio;
+    private readonly Logger log;
 
     public HomeController(ILogger<HomeController> logger, IPedidoRepository pedidoRepository, ILoginRepository loginRepositorio)
     {
         _logger = logger;
         this._pedidoRepositorio = pedidoRepository;
         this._loginRepositorio = loginRepositorio;
+        this.log = LogManager.GetCurrentClassLogger();
     }
 
     public IActionResult Index()
     {
-        string user = HttpContext.Session.GetString("User");
-        if (!(string.IsNullOrEmpty(user)))
+        try
+        {
+            string user = HttpContext.Session.GetString("User");
+            if (!(string.IsNullOrEmpty(user)))
+            {
+                Usuario us = new();
+                us.User = HttpContext.Session.GetString("User");
+                us.Name = HttpContext.Session.GetString("Name");
+                us.Role = HttpContext.Session.GetString("Role");
+                return View(us);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        }
+        catch (System.Exception ex)
+        {
+            log.Error(ex);
+            throw;
+        }
+    }
+
+    public IActionResult Login()
+    {
+        try
         {
             Usuario us = new();
             us.User = HttpContext.Session.GetString("User");
@@ -36,108 +63,140 @@ public class HomeController : Controller
             us.Role = HttpContext.Session.GetString("Role");
             return View(us);
         }
-        else
+        catch (System.Exception ex)
         {
-            return RedirectToAction("Login", "Home");
+            log.Error(ex);
+            throw;
         }
-    }
-
-    public IActionResult Login()
-    {
-        Usuario us = new();
-        us.User = HttpContext.Session.GetString("User");
-        us.Name = HttpContext.Session.GetString("Name");
-        us.Role = HttpContext.Session.GetString("Role");
-        return View(us);
     }
 
     [HttpPost]
     public IActionResult IniciarSesion(string user, string password)
     {
-        int count = _loginRepositorio.CantFilas(user, password);
+        try
+        {
+            int count = _loginRepositorio.CantFilas(user, password);
 
-        if (count == 1)
-        {
-            Usuario us = _loginRepositorio.DatosUsuario(user, password);
-            HttpContext.Session.SetString("Name", us.Name);
-            HttpContext.Session.SetString("User", us.User);
-            HttpContext.Session.SetString("Role", us.Role);
-            return RedirectToAction("Index");
+            if (count == 1)
+            {
+                Usuario us = _loginRepositorio.DatosUsuario(user, password);
+                HttpContext.Session.SetString("Name", us.Name);
+                HttpContext.Session.SetString("User", us.User);
+                HttpContext.Session.SetString("Role", us.Role);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("DatosIncorrectos");
+            }
         }
-        else
+        catch (System.Exception ex)
         {
-            return RedirectToAction("DatosIncorrectos");
+            log.Error(ex);
+            throw;
         }
     }
 
     public IActionResult DatosIncorrectos()
     {
-        string user = HttpContext.Session.GetString("User");
-        if (string.IsNullOrEmpty(user))
+        try
         {
-            return View();
+            string user = HttpContext.Session.GetString("User");
+            if (string.IsNullOrEmpty(user))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
-        else
+        catch (System.Exception ex)
         {
-            return RedirectToAction("Index");
+            log.Error(ex);
+            throw;
         }
     }
 
     public IActionResult CerrarSesion()
     {
-        string user = HttpContext.Session.GetString("User");
-        if (!(string.IsNullOrEmpty(user)))
+        try
         {
-            HttpContext.Session.Clear();
-            return RedirectToAction("Login", "Home");
+            string user = HttpContext.Session.GetString("User");
+            if (!(string.IsNullOrEmpty(user)))
+            {
+                HttpContext.Session.Clear();
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
-        else
+        catch (System.Exception ex)
         {
-            return RedirectToAction("Login", "Home");
+            log.Error(ex);
+            throw;
         }
     }
 
     public IActionResult PedidosPorCliente()
     {
-        string user = HttpContext.Session.GetString("User");
-        if (!(string.IsNullOrEmpty(user)))
+        try
         {
-            string rol = HttpContext.Session.GetString("Role");
-            if (rol == "Admin")
+            string user = HttpContext.Session.GetString("User");
+            if (!(string.IsNullOrEmpty(user)))
             {
-                DataTable tabla = _pedidoRepositorio.PedidosPorCliente();
-                return View(tabla);
+                string rol = HttpContext.Session.GetString("Role");
+                if (rol == "Admin")
+                {
+                    DataTable tabla = _pedidoRepositorio.PedidosPorCliente();
+                    return View(tabla);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Home");
             }
         }
-        else
+        catch (System.Exception ex)
         {
-            return RedirectToAction("Login", "Home");
+            log.Error(ex);
+            throw;
         }
     }
 
     public IActionResult PedidosPorCadete()
     {
-        string user = HttpContext.Session.GetString("User");
-        if (!(string.IsNullOrEmpty(user)))
+        try
         {
-            string rol = HttpContext.Session.GetString("Role");
-            if (rol == "Admin")
+            string user = HttpContext.Session.GetString("User");
+            if (!(string.IsNullOrEmpty(user)))
             {
-                DataTable tabla = _pedidoRepositorio.PedidosPorCadete();
-                return View(tabla);
+                string rol = HttpContext.Session.GetString("Role");
+                if (rol == "Admin")
+                {
+                    DataTable tabla = _pedidoRepositorio.PedidosPorCadete();
+                    return View(tabla);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Home");
             }
         }
-        else
+        catch (System.Exception ex)
         {
-            return RedirectToAction("Login", "Home");
+            log.Error(ex);
+            throw;
         }
     }
 

@@ -358,3 +358,5 @@ D:\tl2-tp5-2022-MarianoGomesOpitz\SistemaCadeteria\obj\Debug\net6.0\refint\Siste
 D:\tl2-tp5-2022-MarianoGomesOpitz\SistemaCadeteria\obj\Debug\net6.0\SistemaCadeteria.pdb
 D:\tl2-tp5-2022-MarianoGomesOpitz\SistemaCadeteria\obj\Debug\net6.0\SistemaCadeteria.genruntimeconfig.cache
 D:\tl2-tp5-2022-MarianoGomesOpitz\SistemaCadeteria\obj\Debug\net6.0\ref\SistemaCadeteria.dll
+D:\tl2-tp5-2022-MarianoGomesOpitz\SistemaCadeteria\bin\Debug\net6.0\NLog.dll
+D:\tl2-tp5-2022-MarianoGomesOpitz\SistemaCadeteria\bin\Debug\net6.0\nlog.config

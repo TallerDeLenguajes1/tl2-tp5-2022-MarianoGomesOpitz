@@ -4,218 +4,285 @@ using SistemaCadeteria.Models;
 using SistemaCadeteria.ViewModels;
 using SistemaCadeteria.Repositorios;
 using AutoMapper;
+using NLog;
 
 namespace SistemaCadeteria.Controllers;
 
 public class CadeteController : Controller
 {
     private readonly ILogger<CadeteController> _logger;
-    private readonly IMapper _mapper; 
+    private readonly IMapper _mapper;
 
     private readonly ICadeteRepository _cadeteRepository;
+    private readonly Logger log;
 
     public CadeteController(ILogger<CadeteController> logger, IMapper mapper, ICadeteRepository cadeteRepository)
     {
         this._logger = logger;
         this._mapper = mapper;
         this._cadeteRepository = cadeteRepository;
+        this.log = LogManager.GetCurrentClassLogger();
     }
 
     public IActionResult Index()
     {
-        string user = HttpContext.Session.GetString("User");
-        if (!(string.IsNullOrEmpty(user)))
+        try
         {
-            string rol = HttpContext.Session.GetString("Role");
-            if (rol == "Admin")
+            string user = HttpContext.Session.GetString("User");
+            if (!(string.IsNullOrEmpty(user)))
             {
-                var cadetesVM = _mapper.Map<List<CadeteViewModel>>(_cadeteRepository.GetAll());
-                return View(cadetesVM);
+                string rol = HttpContext.Session.GetString("Role");
+                if (rol == "Admin")
+                {
+                    var cadetesVM = _mapper.Map<List<CadeteViewModel>>(_cadeteRepository.GetAll());
+                    return View(cadetesVM);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Home");
             }
         }
-        else
+        catch (System.Exception ex)
         {
-            return RedirectToAction("Login", "Home");
+            log.Error(ex);
+            throw;
         }
     }
 
     public IActionResult CadeteNombre()
     {
-        string user = HttpContext.Session.GetString("User");
-        if (!(string.IsNullOrEmpty(user)))
+        try
         {
-            string rol = HttpContext.Session.GetString("Role");
-            string name = HttpContext.Session.GetString("Name");
-            if (rol == "Cadete")
+            string user = HttpContext.Session.GetString("User");
+            if (!(string.IsNullOrEmpty(user)))
             {
-                var cadeteVM = _mapper.Map<CadeteViewModel>(_cadeteRepository.GetByName(name));
-                return View(cadeteVM);
+                string rol = HttpContext.Session.GetString("Role");
+                string name = HttpContext.Session.GetString("Name");
+                if (rol == "Cadete")
+                {
+                    var cadeteVM = _mapper.Map<CadeteViewModel>(_cadeteRepository.GetByName(name));
+                    return View(cadeteVM);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Home");
             }
         }
-        else
+        catch (System.Exception ex)
         {
-            return RedirectToAction("Login", "Home");
+            log.Error(ex);
+            throw;
         }
     }
 
     public IActionResult PedidosAsignados(int id)
     {
-        string user = HttpContext.Session.GetString("User");
-        if (!(string.IsNullOrEmpty(user)))
+        try
         {
-            string rol = HttpContext.Session.GetString("Role");
-            if (rol == "Admin")
+            string user = HttpContext.Session.GetString("User");
+            if (!(string.IsNullOrEmpty(user)))
             {
-                var cadeteVM = _mapper.Map<CadeteViewModel>(_cadeteRepository.GetById(id));
-                return View(cadeteVM);
+                string rol = HttpContext.Session.GetString("Role");
+                if (rol == "Admin")
+                {
+                    var cadeteVM = _mapper.Map<CadeteViewModel>(_cadeteRepository.GetById(id));
+                    return View(cadeteVM);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Home");
             }
         }
-        else
+        catch (System.Exception ex)
         {
-            return RedirectToAction("Login", "Home");
+            log.Error(ex);
+            throw;
         }
     }
 
     public IActionResult Crear()
     {
-        string user = HttpContext.Session.GetString("User");
-        if (!(string.IsNullOrEmpty(user)))
+        try
         {
-            string rol = HttpContext.Session.GetString("Role");
-            if (rol == "Admin")
+            string user = HttpContext.Session.GetString("User");
+            if (!(string.IsNullOrEmpty(user)))
             {
-                return View();
+                string rol = HttpContext.Session.GetString("Role");
+                if (rol == "Admin")
+                {
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Home");
             }
         }
-        else
+        catch (System.Exception ex)
         {
-            return RedirectToAction("Login", "Home");
+            log.Error(ex);
+            throw;
         }
     }
 
     [HttpPost]
     public IActionResult Crear(CrearCadeteViewModel _cadete_)
     {
-        string user = HttpContext.Session.GetString("User");
-        if (!(string.IsNullOrEmpty(user)))
+        try
         {
-            string rol = HttpContext.Session.GetString("Role");
-            if (rol == "Admin")
+            string user = HttpContext.Session.GetString("User");
+            if (!(string.IsNullOrEmpty(user)))
             {
-                if (ModelState.IsValid)
+                string rol = HttpContext.Session.GetString("Role");
+                if (rol == "Admin")
                 {
-                    var cadete = _mapper.Map<Cadete>(_cadete_);
-                    _cadeteRepository.Create(cadete);
+                    if (ModelState.IsValid)
+                    {
+                        var cadete = _mapper.Map<Cadete>(_cadete_);
+                        _cadeteRepository.Create(cadete);
 
-                    return RedirectToAction("Index");
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Error", "Home");
+                    }
                 }
                 else
                 {
-                    return RedirectToAction("Error", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Home");
             }
         }
-        else
+        catch (System.Exception ex)
         {
-            return RedirectToAction("Login", "Home");
+            log.Error(ex);
+            throw;
         }
     }
 
     public IActionResult Editar(int id)
     {
-        string user = HttpContext.Session.GetString("User");
-        if (!(string.IsNullOrEmpty(user)))
+        try
         {
-            string rol = HttpContext.Session.GetString("Role");
-            if (rol == "Admin")
+            string user = HttpContext.Session.GetString("User");
+            if (!(string.IsNullOrEmpty(user)))
             {
-                Cadete cadete = _cadeteRepository.GetById(id);
-                var cadeteVM = _mapper.Map<EditarCadeteViewModel>(cadete);
-                return View(cadeteVM);
+                string rol = HttpContext.Session.GetString("Role");
+                if (rol == "Admin")
+                {
+                    Cadete cadete = _cadeteRepository.GetById(id);
+                    var cadeteVM = _mapper.Map<EditarCadeteViewModel>(cadete);
+                    return View(cadeteVM);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Home");
             }
         }
-        else
+        catch (System.Exception ex)
         {
-            return RedirectToAction("Login", "Home");
+            log.Error(ex);
+            throw;
         }
     }
 
     [HttpPost]
     public IActionResult Editar(EditarCadeteViewModel _cadete_)
     {
-        string user = HttpContext.Session.GetString("User");
-        if (!(string.IsNullOrEmpty(user)))
+        try
         {
-            string rol = HttpContext.Session.GetString("Role");
-            if (rol == "Admin")
+            string user = HttpContext.Session.GetString("User");
+            if (!(string.IsNullOrEmpty(user)))
             {
-                if (ModelState.IsValid)
+                string rol = HttpContext.Session.GetString("Role");
+                if (rol == "Admin")
                 {
-                    var cadete = _mapper.Map<Cadete>(_cadete_);
-                    _cadeteRepository.Update(cadete);
+                    if (ModelState.IsValid)
+                    {
+                        var cadete = _mapper.Map<Cadete>(_cadete_);
+                        _cadeteRepository.Update(cadete);
 
-                    return RedirectToAction("Index");
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Error", "Home");
+                    }
                 }
                 else
                 {
-                    return RedirectToAction("Error", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Home");
             }
         }
-        else
+        catch (System.Exception ex)
         {
-            return RedirectToAction("Login", "Home");
+            log.Error(ex);
+            throw;
         }
     }
 
     public IActionResult Borrar(int id)
     {
-        string user = HttpContext.Session.GetString("User");
-        if (!(string.IsNullOrEmpty(user)))
+        try
         {
-            string rol = HttpContext.Session.GetString("Role");
-            if (rol == "Admin")
+            string user = HttpContext.Session.GetString("User");
+            if (!(string.IsNullOrEmpty(user)))
             {
-                _cadeteRepository.Delete(id);
+                string rol = HttpContext.Session.GetString("Role");
+                if (rol == "Admin")
+                {
+                    _cadeteRepository.Delete(id);
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Home");
             }
         }
-        else
+        catch (System.Exception ex)
         {
-            return RedirectToAction("Login", "Home");
+            log.Error(ex);
+            throw;
         }
     }
 

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "qo65LeCE54+thq1E1sXsF6GBG4mzaX3VTlmjqc7JBnKA7aenf139/i0eVbz0+J+F9CN/pTXxWf9zLWC38ffC2A==",
+  "dgSpecHash": "hdsGWn2uOYYV4RgXF8SP4oL1jY1aGuKDXr5OAn3iY19KUJyjOB3yUOUfix89BzcPcZ46+mcDPZWjGQZrlNWsVg==",
   "success": true,
   "projectFilePath": "D:\\tl2-tp5-2022-MarianoGomesOpitz\\SistemaCadeteria\\SistemaCadeteria.csproj",
   "expectedPackageFiles": [
@@ -29,6 +29,7 @@
     "C:\\Users\\dagov\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\dagov\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\dagov\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\dagov\\.nuget\\packages\\nlog\\5.0.5\\nlog.5.0.5.nupkg.sha512",
     "C:\\Users\\dagov\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
     "C:\\Users\\dagov\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\dagov\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
