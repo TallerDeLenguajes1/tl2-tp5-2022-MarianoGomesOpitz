@@ -49,6 +49,7 @@ public class HomeController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -66,6 +67,7 @@ public class HomeController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -93,6 +95,7 @@ public class HomeController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -114,6 +117,7 @@ public class HomeController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -136,6 +140,7 @@ public class HomeController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -166,6 +171,7 @@ public class HomeController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -196,6 +202,7 @@ public class HomeController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }

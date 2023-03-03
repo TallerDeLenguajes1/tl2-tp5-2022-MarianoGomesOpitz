@@ -50,6 +50,7 @@ public class CadeteController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -81,6 +82,7 @@ public class CadeteController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -111,6 +113,7 @@ public class CadeteController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -140,6 +143,7 @@ public class CadeteController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -180,6 +184,7 @@ public class CadeteController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -211,6 +216,7 @@ public class CadeteController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -251,6 +257,7 @@ public class CadeteController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -282,6 +289,7 @@ public class CadeteController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }

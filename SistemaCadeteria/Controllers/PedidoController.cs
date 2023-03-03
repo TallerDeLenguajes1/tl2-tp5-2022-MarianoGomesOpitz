@@ -53,6 +53,7 @@ public class PedidoController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -82,6 +83,7 @@ public class PedidoController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -131,6 +133,7 @@ public class PedidoController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -160,6 +163,7 @@ public class PedidoController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -191,6 +195,7 @@ public class PedidoController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -223,6 +228,7 @@ public class PedidoController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -246,6 +252,7 @@ public class PedidoController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -270,6 +277,7 @@ public class PedidoController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -301,6 +309,7 @@ public class PedidoController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -333,6 +342,7 @@ public class PedidoController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -363,6 +373,7 @@ public class PedidoController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -402,6 +413,7 @@ public class PedidoController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -433,6 +445,7 @@ public class PedidoController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }

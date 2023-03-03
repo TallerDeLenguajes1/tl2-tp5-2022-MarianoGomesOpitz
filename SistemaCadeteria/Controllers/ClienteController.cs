@@ -49,6 +49,7 @@ public class ClienteController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -78,6 +79,7 @@ public class ClienteController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -118,6 +120,7 @@ public class ClienteController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -150,6 +153,7 @@ public class ClienteController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -190,6 +194,7 @@ public class ClienteController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
@@ -221,6 +226,7 @@ public class ClienteController : Controller
         catch (System.Exception ex)
         {
             log.Error(ex);
+            return RedirectToAction("Error");
             throw;
         }
     }
